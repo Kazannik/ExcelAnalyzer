@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,285 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_Button_Description" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="About_Button_Label" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="About_Button_ScreenTip" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="About_Button_SuperTip" xml:space="preserve">
+    <value>О программе</value>
+  </data>
+  <data name="AddSheet_Button_Description" xml:space="preserve">
+    <value>Добавление копий листов с соответсвющими алгоритму именами</value>
+  </data>
+  <data name="AddSheet_Button_Label" xml:space="preserve">
+    <value>Добавить листы</value>
+  </data>
+  <data name="AddSheet_Button_ScreenTip" xml:space="preserve">
+    <value>Добавление листов для промежуточных результатов</value>
+  </data>
+  <data name="AddSheet_Button_SuperTip" xml:space="preserve">
+    <value>Добавление листов для промежуточных результатов. Имена листов формируются автоматически согласно алгоритму суммирования.</value>
+  </data>
+  <data name="AutoSum_Button_Description" xml:space="preserve">
+    <value>Суммирование значений по алгоритму сложения</value>
+  </data>
+  <data name="AutoSum_Button_Label" xml:space="preserve">
+    <value>Суммировать значения</value>
+  </data>
+  <data name="AutoSum_Button_ScreenTip" xml:space="preserve">
+    <value>Суммирование значений по алгоритму сложения</value>
+  </data>
+  <data name="AutoSum_Button_SuperTip" xml:space="preserve">
+    <value>Суммирование значений по алгоритму сложения с использованием промежуточных результатов.</value>
+  </data>
+  <data name="CheckedFile_Button_Description" xml:space="preserve">
+    <value>Диалоговое окно для контроля наличия набора именнованных файлов Microsoft Office Excel</value>
+  </data>
+  <data name="CheckedFile_Button_Label" xml:space="preserve">
+    <value>Контроль наличия файлов Microsoft Office Excel...</value>
+  </data>
+  <data name="CheckedFile_Button_ScreenTip" xml:space="preserve">
+    <value>Контроль наличия файлов Microsoft Office Excel</value>
+  </data>
+  <data name="CheckedFile_Button_SuperTip" xml:space="preserve">
+    <value>Открывает диалоговое окно для контроля наличия файлов Microsoft Office Excel в коллекции именнованных папок.</value>
+  </data>
+  <data name="CreateFolders_Button_Description" xml:space="preserve">
+    <value>Создание набора именнованых папок для дальнейшего сбора данных</value>
+  </data>
+  <data name="CreateFolders_Button_Label" xml:space="preserve">
+    <value>Создать набор папок для сбора файлов...</value>
+  </data>
+  <data name="CreateFolders_Button_ScreenTip" xml:space="preserve">
+    <value>Создание набора папок для сбора файлов</value>
+  </data>
+  <data name="CreateFolders_Button_SuperTip" xml:space="preserve">
+    <value>Создание набора папок с определенными именами для дальнейшего сбора и обработки данных из файлов Microsoft Office Excel.</value>
+  </data>
+  <data name="EqualsSheet_Button_Description" xml:space="preserve">
+    <value>Сравнение значений ячеек текущего листа со значениями других листов.</value>
+  </data>
+  <data name="EqualsSheet_Button_Label" xml:space="preserve">
+    <value>Сравнение значений</value>
+  </data>
+  <data name="EqualsSheet_Button_ScreenTip" xml:space="preserve">
+    <value>Сравнение значений</value>
+  </data>
+  <data name="EqualsSheet_Button_SuperTip" xml:space="preserve">
+    <value>Сравнение значений ячеек текущего листа со значениями других выбранных листов.</value>
+  </data>
+  <data name="ExcelAnalyzerPane_Button_Description" xml:space="preserve">
+    <value>Отображение панели анализа данных</value>
+  </data>
+  <data name="ExcelAnalyzerPane_Button_Label" xml:space="preserve">
+    <value>Панель анализа данных</value>
+  </data>
+  <data name="ExcelAnalyzerPane_Button_ScreenTip" xml:space="preserve">
+    <value>Панель анализа данных</value>
+  </data>
+  <data name="ExcelAnalyzerPane_Button_SuperTip" xml:space="preserve">
+    <value>Отображение панели анализа данных, позволяющей просматиривать и анализировать  сведения, расположеннные на нескольких листах Microsoft Office Excel.</value>
+  </data>
+  <data name="ExportData_Button_Description" xml:space="preserve">
+    <value>Экспорт данных в формате СПО АРМ Статистика ГП РФ.</value>
+  </data>
+  <data name="ExportData_Button_Label" xml:space="preserve">
+    <value>Экспорт данных в АРМ Статистика</value>
+  </data>
+  <data name="ExportData_Button_ScreenTip" xml:space="preserve">
+    <value>Экспорт данных в формате АРМ Статистика</value>
+  </data>
+  <data name="ExportData_Button_SuperTip" xml:space="preserve">
+    <value>Экспорт данных в формате СПО "Автоматизированное рабочее место "Статистика Генеральной прокуратуры Российской Федерации".</value>
+  </data>
+  <data name="ExportForm_Button_Description" xml:space="preserve">
+    <value>Экспорт формы отчета в формате СПО АРМ Статистика ГП РФ.</value>
+  </data>
+  <data name="ExportForm_Button_Label" xml:space="preserve">
+    <value>Экспорт формы отчета в АРМ Статистика</value>
+  </data>
+  <data name="ExportForm_Button_ScreenTip" xml:space="preserve">
+    <value>Экспорт формы отчета в формате АРМ Статистика</value>
+  </data>
+  <data name="ExportForm_Button_SuperTip" xml:space="preserve">
+    <value>Экспорт формы отчета в формате СПО "Автоматизированное рабочее место "Статистика Генеральной прокуратуры Российской Федерации".</value>
+  </data>
+  <data name="ExportToARM_Button_Description" xml:space="preserve">
+    <value>Экспорт данных в формате СПО АРМ Статистика ГП РФ.</value>
+  </data>
+  <data name="ExportToARM_Button_Label" xml:space="preserve">
+    <value>Экспорт данных в АРМ Статистика</value>
+  </data>
+  <data name="ExportToARM_Button_ScreenTip" xml:space="preserve">
+    <value>Экспорт данных в формате АРМ Статистика</value>
+  </data>
+  <data name="ExportToARM_Button_SuperTip" xml:space="preserve">
+    <value>Экспорт данных в формате СПО "Автоматизированное рабочее место "Статистика Генеральной прокуратуры Российской Федерации".</value>
+  </data>
+  <data name="FileImport_Button_Description" xml:space="preserve">
+    <value>Импортировать листы из книг Microsoft Office Excel файлов, находящихся в наборе именнованых папок</value>
+  </data>
+  <data name="FileImport_Button_Label" xml:space="preserve">
+    <value>Импортировать</value>
+  </data>
+  <data name="FileImport_Button_ScreenTip" xml:space="preserve">
+    <value>Импорт всех файлов в единую книгу Microsoft Office Excel</value>
+  </data>
+  <data name="FileImport_Button_SuperTip" xml:space="preserve">
+    <value>Импорт всех файлов в единую книгу Microsoft Office Excel. Имена импортированных листов формируются в соответсвии с наименованиями папок в которых расположены соответствующие файлы.</value>
+  </data>
+  <data name="File_Button_Description" xml:space="preserve">
+    <value>Набор комманд для импорта данных</value>
+  </data>
+  <data name="File_Button_Label" xml:space="preserve">
+    <value>Работа с файлами</value>
+  </data>
+  <data name="File_Button_ScreenTip" xml:space="preserve">
+    <value>Работа с файлами</value>
+  </data>
+  <data name="File_Button_SuperTip" xml:space="preserve">
+    <value>Набор комманд для импорта данных</value>
+  </data>
+  <data name="Help_Button_Description" xml:space="preserve">
+    <value>Получение справочных сведений</value>
+  </data>
+  <data name="Help_Button_Label" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Help_Button_ScreenTip" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="Help_Button_SuperTip" xml:space="preserve">
+    <value>Получение справочных сведений</value>
+  </data>
+  <data name="Import_Button_Description" xml:space="preserve">
+    <value>Импортировать листы из книг Microsoft Office Excel файлов, находящихся в наборе именнованых папок</value>
+  </data>
+  <data name="Import_Button_Label" xml:space="preserve">
+    <value>Импорт файлов в единую книгу Microsoft Office Excel...</value>
+  </data>
+  <data name="Import_Button_ScreenTip" xml:space="preserve">
+    <value>Импорт файлов в единую книгу Microsoft Office Excel</value>
+  </data>
+  <data name="Import_Button_SuperTip" xml:space="preserve">
+    <value>Импорт файлов в единую книгу Microsoft Office Excel. Имена импортированных листов формируются в соответсвии с наименованиями папок в которых расположены соответствующие файлы.</value>
+  </data>
+  <data name="InsertCaption_Button_Description" xml:space="preserve">
+    <value>Вставка имен листов</value>
+  </data>
+  <data name="InsertCaption_Button_Label" xml:space="preserve">
+    <value>Вставить имена листов</value>
+  </data>
+  <data name="InsertCaption_Button_ScreenTip" xml:space="preserve">
+    <value>Вставка имен листов</value>
+  </data>
+  <data name="InsertCaption_Button_SuperTip" xml:space="preserve">
+    <value>Вставка в выбранную ячейку имен листов</value>
+  </data>
+  <data name="InsertCopy_Button_Description" xml:space="preserve">
+    <value>Копирование содержимого ячеек и вставка</value>
+  </data>
+  <data name="InsertCopy_Button_Label" xml:space="preserve">
+    <value>Копировать и вставить</value>
+  </data>
+  <data name="InsertCopy_Button_ScreenTip" xml:space="preserve">
+    <value>Копирование и вставка</value>
+  </data>
+  <data name="InsertCopy_Button_SuperTip" xml:space="preserve">
+    <value>Копирование содержимого диапазона ячеек в буфер обмена и вставка в соответсвующий диапазон ячеек остальных листов книги Microsoft Office Excel</value>
+  </data>
+  <data name="InsertFormula_Button_Description" xml:space="preserve">
+    <value>Вставка формул в ячейки</value>
+  </data>
+  <data name="InsertFormula_Button_Label" xml:space="preserve">
+    <value>Вставить формулы</value>
+  </data>
+  <data name="InsertFormula_Button_ScreenTip" xml:space="preserve">
+    <value>Вставка формул в ячейки</value>
+  </data>
+  <data name="InsertFormula_Button_SuperTip" xml:space="preserve">
+    <value>Вставка в выбранную ячейку формулы</value>
+  </data>
+  <data name="InsertText_Button_Description" xml:space="preserve">
+    <value>Вставка текста в ячейки</value>
+  </data>
+  <data name="InsertText_Button_Label" xml:space="preserve">
+    <value>Вставить текст</value>
+  </data>
+  <data name="InsertText_Button_ScreenTip" xml:space="preserve">
+    <value>Вставка текста в ячейки</value>
+  </data>
+  <data name="InsertText_Button_SuperTip" xml:space="preserve">
+    <value>Вставка в выбранную ячейку текста</value>
+  </data>
+  <data name="List_Button_Description" xml:space="preserve">
+    <value>Формирование листа, содержащего построчный срез значений.</value>
+  </data>
+  <data name="List_Button_Label" xml:space="preserve">
+    <value>Построчный срез</value>
+  </data>
+  <data name="List_Button_ScreenTip" xml:space="preserve">
+    <value>Формирование построчного среза</value>
+  </data>
+  <data name="List_Button_SuperTip" xml:space="preserve">
+    <value>Для построчного среза необходимо: 1. На листе итоговых значений выделить необходимыю ячейку. В результате в книгу будет добавлен лист в котором в качестве строк будут отражены заголовки листов, а в качестве граф показатели строк листа итоговых значений.</value>
+  </data>
+  <data name="OpenArm_Button_Description" xml:space="preserve">
+    <value>Работа с данными СПО АРМ "Статистика ГП РФ".</value>
+  </data>
+  <data name="OpenArm_Button_Label" xml:space="preserve">
+    <value>Работа с данными АРМ Статистика</value>
+  </data>
+  <data name="OpenArm_Button_ScreenTip" xml:space="preserve">
+    <value>Работа с данными СПО АРМ "Статистика ГП РФ"</value>
+  </data>
+  <data name="OpenArm_Button_SuperTip" xml:space="preserve">
+    <value>Работа с данными СПО "Автоматизированное рабочее место "Статистика Генеральной прокуратуры Российской Федерации".</value>
+  </data>
+  <data name="Sheet_Button_Description" xml:space="preserve">
+    <value>Набор комманд для группировки данных</value>
+  </data>
+  <data name="Sheet_Button_Label" xml:space="preserve">
+    <value>Группировка</value>
+  </data>
+  <data name="Sheet_Button_ScreenTip" xml:space="preserve">
+    <value>Группировка</value>
+  </data>
+  <data name="Sheet_Button_SuperTip" xml:space="preserve">
+    <value>Набор комманд для группировки данных в соответсвии с алгоритмом суммирования.</value>
+  </data>
+  <data name="SortDialog_Button_Description" xml:space="preserve">
+    <value>Сортировка листов по алфавиту либо по алгоритму</value>
+  </data>
+  <data name="SortDialog_Button_Label" xml:space="preserve">
+    <value>Сортировать листы...</value>
+  </data>
+  <data name="SortDialog_Button_ScreenTip" xml:space="preserve">
+    <value>Сортировка листов</value>
+  </data>
+  <data name="SortDialog_Button_SuperTip" xml:space="preserve">
+    <value>Сортировка листов в книге либо по алфавиту, либо по алгоритму.</value>
+  </data>
+  <data name="Sum_Button_Description" xml:space="preserve">
+    <value>Суммирование значений ячеек со всех листов кроме текущего.</value>
+  </data>
+  <data name="Sum_Button_Label" xml:space="preserve">
+    <value>Суммировать значения</value>
+  </data>
+  <data name="Sum_Button_ScreenTip" xml:space="preserve">
+    <value>Суммирование значений</value>
+  </data>
+  <data name="Sum_Button_SuperTip" xml:space="preserve">
+    <value>Для суммирования значений ячеек со всех листов необходимо: 1. Добавить лист для итоговых значений. 2. Выделить на листе итоговых значений требуемый диапазон. В результате значения со всех листов будут суммированы и их сумма будет отражена на листе итоговых значений.</value>
+  </data>
 </root>
