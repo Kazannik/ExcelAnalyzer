@@ -10,16 +10,18 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Базовое логическое выражение, объединяющее два алгебраических выражения.
     /// </summary>
-    abstract class ExpressionBase : LogicExpressionBase
+    public abstract class Expression : ExpressionBase
     {
         protected ArithmeticExpressions.ExpressionBase _leftExpression;
         protected ArithmeticExpressions.ExpressionBase _rightExpression;
 
-        private ExpressionBase(ArithmeticExpressions.ExpressionBase left, ArithmeticExpressions.ExpressionBase right)
+        private Expression(ArithmeticExpressions.ExpressionBase left, ArithmeticExpressions.ExpressionBase right)
         {
             this._leftExpression = left;
             this._rightExpression = right;
         }
+
+        public abstract bool Value { get; }
 
         /// <summary>
         /// Признак содержания ошибки в выражении.
@@ -39,7 +41,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
         //    return new LogicArithmeticExpression(Expression.Create(left), Expression.Create(right));  
         //}
 
-        public static ExpressionBase Create(string text, string cellpattern)
+        public static Expression Create(string text, string cellpattern)
         {
             string context = text.Replace(" ", "");
             regexAll = new Regex(@"((" + cellpattern + @")|" + ArithmeticcsArithmetic + @"|" + csOpen + @"|" + csClose + @")", options);

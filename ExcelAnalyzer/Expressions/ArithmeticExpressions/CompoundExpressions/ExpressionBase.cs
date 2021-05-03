@@ -40,45 +40,32 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
             get { return this._rightExpression; }
         }
 
-        public static new ArithmeticExpressions.ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
+        public static ArithmeticExpressions.ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
         {
             int i = array.GetLastIndex();
             if (i > 0)
             {
-                if (array[i].Action != UnitCollection.ActionType.Other)
+                switch (array[i].UnitType)
                 {
-                    switch (array[i].UnitType)
-                    {
-                        case UnitCollection.MatchType.Addition:
-                            return AdditionExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Division:
-                            return DivisionExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Fix:
-                            return FixExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Mod:
-                            return ModExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Multiplication:
-                            return MultiplicationExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Subtracting:
-                            return SubtractingExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Power:
-                            return PowerExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        case UnitCollection.MatchType.Sqrt:
-                            return SqrtExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
-                            break;
-                        default:
+                    case UnitCollection.MatchType.Addition:
+                        return AdditionExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Division:
+                        return DivisionExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Fix:
+                        return FixExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Mod:
+                        return ModExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Multiplication:
+                        return MultiplicationExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Subtracting:
+                        return SubtractingExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Power:
+                        return PowerExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    case UnitCollection.MatchType.Sqrt:
+                        return SqrtExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
+                    default:
                             return ErrorExpression.Create(array);
-                            break;
-                    }
-                }
-                return ErrorExpression.Create(array);
+                   }
             }
             else if (i == 0)
             {
@@ -88,18 +75,15 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
                     {
                         case UnitCollection.MatchType.Addition:
                             return PositiveExpression.Create(ref cells, UnitCollection.Create(array, 1));
-                            break;
                         case UnitCollection.MatchType.Subtracting:
                             return NegativeExpression.Create(ref cells, UnitCollection.Create(array, 1));
-                            break;
                         default:
                             return ErrorExpression.Create(array);
-                            break;
                     }
                 }
                 else { return ErrorExpression.Create(array); }
             }
-            else { return ArithmeticExpressions.ExpressionBase.Create(ref (Dictionary<string, ICell>)cells, array); }
+            else { return ArithmeticExpressions.Expression.Create(ref cells, array); }
         }
     }
 }

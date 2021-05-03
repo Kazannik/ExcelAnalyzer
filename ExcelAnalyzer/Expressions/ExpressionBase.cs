@@ -4,18 +4,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ExcelAnalyzer.Expressions.ArithmeticExpressions
+namespace ExcelAnalyzer.Expressions
 {
     /// <summary>
     /// Базовый класс выражений.
     /// </summary>
-    public abstract class ExpressionBase: Expressions.ExpressionBase
+    public abstract class ExpressionBase
     {
         /// <summary>
-        /// Значение алгебраического выражения.
+        /// Признак содержания ошибки в выражении.
         /// </summary>
-        public abstract decimal Value { get; }
+        public abstract bool IsError { get; }
 
+        /// <summary>
+        /// Строковое представление выражения.
+        /// </summary>
+        public abstract string Formula();
+
+        /// <summary>
+        /// Определяемые пользователем данные, связанные с этим объектом.
+        /// </summary>
+        public object Tag { get; set; }
+
+        
         //public static ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
         //{
         //    if (array.Count == 0)

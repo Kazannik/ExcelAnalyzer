@@ -5,9 +5,9 @@ namespace ExcelAnalyzer.Expressions.BooleanExpressions
     /// <summary>
     /// Противоположное логическое выражение.
     /// </summary>
-    class LogicNotExpression : LogicExpressionBase
+    class LogicNotExpression : ExpressionBase
     {
-        private LogicExpressionBase _expression;
+        private ExpressionBase _expression;
 
         public static LogicNotExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
@@ -16,7 +16,7 @@ namespace ExcelAnalyzer.Expressions.BooleanExpressions
 
         private LogicNotExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>

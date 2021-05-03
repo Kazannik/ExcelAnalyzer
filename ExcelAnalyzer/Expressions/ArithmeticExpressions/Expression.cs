@@ -3,7 +3,7 @@
 namespace ExcelAnalyzer.Expressions.ArithmeticExpressions
 {
     /// <summary>
-    /// Базовый элемент алгебраического выражения.
+    /// Конструктор алгебраических выражений.
     /// </summary>
     abstract class Expression
     {

@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Логическое выражение (БОЛЬШЕ ИЛИ РАВНО).
     /// </summary>
-    class LogicMoreOrEqualArithmeticExpression : ExpressionBase
+    class LogicMoreOrEqualArithmeticExpression : Expression
     {
         public new static LogicMoreOrEqualArithmeticExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
@@ -18,7 +18,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
 
         private LogicMoreOrEqualArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>

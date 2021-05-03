@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Логическое выражение (БОЛЬШЕ).
     /// </summary>
-    class LogicMoreArithmeticExpression : ExpressionBase
+    class LogicMoreArithmeticExpression : Expression
     {
         public new static LogicMoreArithmeticExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
@@ -18,7 +18,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
 
         private LogicMoreArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>

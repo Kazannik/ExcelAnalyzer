@@ -10,16 +10,16 @@ namespace ExcelAnalyzer.Expressions.BooleanExpressions.CompoundExpressions
     /// <summary>
     /// Составное логическое выражение.
     /// </summary>
-    abstract class ExpressionBase : LogicExpressionBase
+    abstract class ExpressionBase : Expressions.ExpressionBase
     {
-        protected LogicExpressionBase _leftExpression;
-        protected LogicExpressionBase _rightExpression;
+        protected Expressions.ExpressionBase _leftExpression;
+        protected Expressions.ExpressionBase _rightExpression;
 
 
-        protected ExpressionBase(ref Dictionary<string, ArithmeticExpressions.ICell> cells, LogicExpressionBase left, LogicExpressionBase right)
+        protected ExpressionBase(ref Dictionary<string, ArithmeticExpressions.ICell> cells, Expressions.ExpressionBase left, Expressions.ExpressionBase right)
         {
             this._leftExpression = BooleanExpressions.LogicExpressionBase.Create(ref cells, left);
-            this._rightExpression = LogicExpressionBase.Create(ref cells, right);
+            this._rightExpression = Expressions.ExpressionBase.Create(ref cells, right);
         }
 
         /// <summary>

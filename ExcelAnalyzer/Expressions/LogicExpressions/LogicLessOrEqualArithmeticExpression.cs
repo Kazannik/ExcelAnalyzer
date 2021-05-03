@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Логическое выражение (МЕНЬШЕ ИЛИ РАВНО).
     /// </summary>
-    class LogicLessOrEqualArithmeticExpression : ExpressionBase
+    class LogicLessOrEqualArithmeticExpression : Expression
     {
         public new static LogicLessOrEqualArithmeticExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
@@ -18,7 +18,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
 
         private LogicLessOrEqualArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>

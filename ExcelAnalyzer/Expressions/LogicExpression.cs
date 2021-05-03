@@ -6,9 +6,9 @@ namespace ExcelAnalyzer.Expressions
     /// <summary>
     /// Логическое выражение.
     /// </summary>
-    public class LogicExpression : LogicExpressionBase
+    public class LogicExpression : LogicExpressions.Expression
     {
-        private LogicExpressionBase _expression;
+        private Expression _expression;
         private Dictionary<string, ArithmeticExpressions.ICell> _collection;
 
         #region РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ
@@ -102,13 +102,13 @@ namespace ExcelAnalyzer.Expressions
         private LogicExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
             this._collection = cells;
-            this._expression = LogicExpressionBase.Create(ref this._collection, array);
+            this._expression = ExpressionBase.Create(ref this._collection, array);
         }
 
         private LogicExpression(UnitCollection array)
         {
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
-            this._expression = LogicExpressions.ExpressionBase.Create(ref this._collection, array);
+            this._expression = LogicExpressions.Expression.Create(ref this._collection, array);
         }
 
         public static LogicExpression Create(string text)

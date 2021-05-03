@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Expressions
 {
-    public class BooleanExpression : LogicExpressionBase
+    public class BooleanExpression : ExpressionBase
     {
-        private LogicExpressionBase _expression;
+        private ExpressionBase _expression;
         private Dictionary<string, ArithmeticExpressions.ICell> _collection;
 
         #region РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ
@@ -103,13 +103,13 @@ namespace ExcelAnalyzer.Expressions
         private BooleanExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
             this._collection = cells;
-            this._expression = LogicExpressionBase.Create(ref this._collection, array);
+            this._expression = ExpressionBase.Create(ref this._collection, array);
         }
 
         private BooleanExpression(UnitCollection array)
         {
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
-            this._expression = LogicExpressions.ExpressionBase.Create(ref this._collection, array);
+            this._expression = LogicExpressions.Expression.Create(ref this._collection, array);
         }
 
         public static LogicExpression Create(string text)

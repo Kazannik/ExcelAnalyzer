@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Логическое выражение (РАВНО).
     /// </summary>
-    class LogicEqualArithmeticExpression : ExpressionBase
+    class LogicEqualArithmeticExpression : Expression
     {
         public static LogicEqualArithmeticExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {

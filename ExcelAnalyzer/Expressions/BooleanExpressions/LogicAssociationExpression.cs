@@ -9,13 +9,13 @@ namespace ExcelAnalyzer.Expressions.BooleanExpressions
     /// <summary>
     /// Логическое выражение, заключенное в скобки.
     /// </summary>
-    class LogicAssociationExpression : LogicExpressionBase
+    class LogicAssociationExpression : ExpressionBase
     {
-        private LogicExpressionBase _expression;
+        private ExpressionBase _expression;
 
         private LogicAssociationExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>

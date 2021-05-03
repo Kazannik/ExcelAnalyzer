@@ -893,46 +893,46 @@ namespace ExcelAnalyzer.Expressions
             {
                 return MatchType.Sqrt;
             }
-            else if (LogicExpression.regexAnd.IsMatch(match.Value))
-            {
-                return MatchType.And;
-            }
-            else if (LogicExpression.regexEqual.IsMatch(match.Value))
-            {
-                return MatchType.Equal;
-            }
-            else if (LogicExpression.regexLess.IsMatch(match.Value))
-            {
-                return MatchType.Less;
-            }
-            else if (LogicExpression.regexLessOrEqual.IsMatch(match.Value))
-            {
-                return MatchType.LessOrEqual;
-            }
-            else if (LogicExpression.regexMore.IsMatch(match.Value))
-            {
-                return MatchType.More;
-            }
-            else if (LogicExpression.regexMoreOrEqual.IsMatch(match.Value))
-            {
-                return MatchType.MoreOrEqual;
-            }
-            else if (LogicExpression.regexNot.IsMatch(match.Value))
-            {
-                return MatchType.Not;
-            }
-            else if (LogicExpression.regexNotEqual.IsMatch(match.Value))
-            {
-                return MatchType.NotEqual;
-            }
-            else if (LogicExpression.regexOr.IsMatch(match.Value))
-            {
-                return MatchType.Or;
-            }
-            else if (LogicExpression.regexXor.IsMatch(match.Value))
-            {
-                return MatchType.Xor;
-            }
+            //else if (LogicExpression.regexAnd.IsMatch(match.Value))
+            //{
+            //    return MatchType.And;
+            //}
+            //else if (LogicExpression.regexEqual.IsMatch(match.Value))
+            //{
+            //    return MatchType.Equal;
+            //}
+            //else if (LogicExpression.regexLess.IsMatch(match.Value))
+            //{
+            //    return MatchType.Less;
+            //}
+            //else if (LogicExpression.regexLessOrEqual.IsMatch(match.Value))
+            //{
+            //    return MatchType.LessOrEqual;
+            //}
+            //else if (LogicExpression.regexMore.IsMatch(match.Value))
+            //{
+            //    return MatchType.More;
+            //}
+            //else if (LogicExpression.regexMoreOrEqual.IsMatch(match.Value))
+            //{
+            //    return MatchType.MoreOrEqual;
+            //}
+            //else if (LogicExpression.regexNot.IsMatch(match.Value))
+            //{
+            //    return MatchType.Not;
+            //}
+            //else if (LogicExpression.regexNotEqual.IsMatch(match.Value))
+            //{
+            //    return MatchType.NotEqual;
+            //}
+            //else if (LogicExpression.regexOr.IsMatch(match.Value))
+            //{
+            //    return MatchType.Or;
+            //}
+            //else if (LogicExpression.regexXor.IsMatch(match.Value))
+            //{
+            //    return MatchType.Xor;
+            //}
             else
             {
                 return MatchType.Decimal;

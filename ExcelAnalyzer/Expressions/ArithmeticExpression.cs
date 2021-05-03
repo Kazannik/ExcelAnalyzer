@@ -150,13 +150,13 @@ namespace ExcelAnalyzer.Expressions
         private ArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
             this._collection = cells;
-            this._expression = ArithmeticExpressions.ExpressionBase.Create(ref this._collection, array);
+            this._expression = ArithmeticExpressions.Expression.Create(ref this._collection, array);
         }
 
         private ArithmeticExpression(UnitCollection array)
         {
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
-            this._expression = ArithmeticExpressions.ExpressionBase.Create(ref this._collection, array);
+            this._expression = ArithmeticExpressions.Expression.Create(ref this._collection, array);
         }
 
         public static ArithmeticExpression Create(string text)

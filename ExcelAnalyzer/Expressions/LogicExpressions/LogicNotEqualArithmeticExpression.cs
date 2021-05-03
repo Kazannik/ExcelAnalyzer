@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
     /// <summary>
     /// Логическое выражение (НЕ РАВНО).
     /// </summary>
-    class LogicNotEqualArithmeticExpression : ExpressionBase
+    class LogicNotEqualArithmeticExpression : Expression
     {
         public static LogicNotEqualArithmeticExpression Create(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
@@ -18,7 +18,7 @@ namespace ExcelAnalyzer.Expressions.LogicExpressions
 
         private LogicNotEqualArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
-            this._expression = LogicExpressionBase.Create(ref cells, array);
+            this._expression = ExpressionBase.Create(ref cells, array);
         }
 
         /// <summary>
