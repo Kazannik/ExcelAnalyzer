@@ -1,0 +1,271 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StatLibrary.Expressions.ArithmeticExpression" Collapsed="true">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AMAgBABIAAgRAEAACCAEQAAQgCADBMAAAAAgwCEKAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicExpression" Collapsed="true">
+    <Position X="38.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>iAAAAACAAAAABEEABABBgABAAEIDBEABEAAg6AAgAAE=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicExpressionBase" Collapsed="true">
+    <Position X="53.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicArithmeticExpression" Collapsed="true">
+    <Position X="46.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAgAAAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicEqualArithmeticExpression" Collapsed="true">
+    <Position X="50" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicMoreArithmeticExpression" Collapsed="true">
+    <Position X="52.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicLessArithmeticExpression" Collapsed="true">
+    <Position X="41" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicMoreOrEqualArithmeticExpression" Collapsed="true">
+    <Position X="43.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicLessOrEqualArithmeticExpression" Collapsed="true">
+    <Position X="45.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicNotEqualArithmeticExpression" Collapsed="true">
+    <Position X="47.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicNotExpression" Collapsed="true">
+    <Position X="34.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAggAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicAssociationExpression" Collapsed="true">
+    <Position X="36.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAggAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.PositiveExpression" Collapsed="true">
+    <Position X="25.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAggAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.NegativeExpression" Collapsed="true">
+    <Position X="27.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAggAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.AssociationExpression" Collapsed="true">
+    <Position X="29.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAggAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.CellExpression" Collapsed="true">
+    <Position X="32" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAgAgQAAACAAAAAAAABBEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="StatLibrary.Expressions.ValueExpression" Collapsed="true">
+    <Position X="2.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.ErrorExpression" Collapsed="true">
+    <Position X="5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAABBEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.CompoundExpression" Collapsed="true">
+    <Position X="15.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAgCAAAAAAAAAABAEAAAIAAAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.AdditionExpression" Collapsed="true">
+    <Position X="14" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.SubtractingExpression" Collapsed="true">
+    <Position X="18.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.MultiplicationExpression" Collapsed="true">
+    <Position X="20.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.DivisionExpression" Collapsed="true">
+    <Position X="23" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.FixExpression" Collapsed="true">
+    <Position X="7.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.ModExpression" Collapsed="true">
+    <Position X="9.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.PowerExpression" Collapsed="true">
+    <Position X="11.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.SqrtExpression" Collapsed="true">
+    <Position X="16.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicCompoundExpression" Collapsed="true">
+    <Position X="63.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAgAAAAAAAAAAABAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicEqualExpression" Collapsed="true">
+    <Position X="65.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicMoreExpression" Collapsed="true">
+    <Position X="70.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicLessExpression" Collapsed="true">
+    <Position X="54.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicMoreOrEqualExpression" Collapsed="true">
+    <Position X="56.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicLessOrEqualExpression" Collapsed="true">
+    <Position X="59" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicNotEqualExpression" Collapsed="true">
+    <Position X="61.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicAndExpression" Collapsed="true">
+    <Position X="63.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicOrExpression" Collapsed="true">
+    <Position X="68" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StatLibrary.Expressions.LogicXorExpression" Collapsed="true">
+    <Position X="72.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAABEAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="StatLibrary.Expressions.ICell" Collapsed="true">
+    <Position X="75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAgQAAAAAAAAAAAAABAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Expression\Expressions.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

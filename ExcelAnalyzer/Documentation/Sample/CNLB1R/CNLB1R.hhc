@@ -1,0 +1,556 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="Window Styles" value="0x800227">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Основная процедура печати">
+		<param name="Local" value="contents/0001_basicprinting.html">
+		<param name="ImageNumber" value="18">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Изменение настроек по умолчанию">
+		<param name="Local" value="contents/0002_defaultsettings.html">
+		<param name="ImageNumber" value="18">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Оговорка">
+		<param name="Local" value="contents/0003_disclaimer.html">
+		<param name="ImageNumber" value="18">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Торговые марки">
+		<param name="Local" value="contents/0004_trademarks.html">
+		<param name="ImageNumber" value="18">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Функции, предлагаемые на всех вкладках">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0100_common.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Предварительный просмотр настроек">
+			<param name="Local" value="contents/0101_preview.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Приостановление процесса печати">
+			<param name="Local" value="contents/0102_hold.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Защищенная печать">
+			<param name="Local" value="contents/0103_secured.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Сохранение данных для печати">
+			<param name="Local" value="contents/0104_store.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Объединение нескольких файлов">
+			<param name="Local" value="contents/0105_combine.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать с профилями">
+			<param name="Local" value="contents/0106_profiles.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Добавление профилей">
+			<param name="Local" value="contents/0107_addprofile.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Правка списка профилей">
+			<param name="Local" value="contents/0108_editprofilelist.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1100_commontab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Добавление профиля]">
+				<param name="Local" value="contents/1101_addprofiledb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Правка профиля]">
+				<param name="Local" value="contents/1102_editprofiledb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Подтвердить PIN-код]/[Подтвердить пароль]">
+				<param name="Local" value="contents/1103_confirmpindb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Детали удержания]">
+				<param name="Local" value="contents/1104_holddetailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Детали защищенной печати]">
+				<param name="Local" value="contents/1105_secureddetailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Сохранение деталей]">
+				<param name="Local" value="contents/1106_storedetailsdb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Основные настройки]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0110_basic.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Масштаб">
+			<param name="Local" value="contents/0201_scale.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Уменьшенный макет">
+			<param name="Local" value="contents/0202_nin1.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать плакатов">
+			<param name="Local" value="contents/0203_poster.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Односторонняя и двухсторонняя печать">
+			<param name="Local" value="contents/0301_onetwosided.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать буклета">
+			<param name="Local" value="contents/0302_booklet.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Установка метода окончательной обработки">
+			<param name="Local" value="contents/0304_finish.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Переключение между цветной печатью и печатью в оттенках серого">
+			<param name="Local" value="contents/0503_grayscale.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1110_basictab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Макет страницы]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0200_pagesetup.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Масштаб">
+			<param name="Local" value="contents/0201_scale.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Уменьшенный макет">
+			<param name="Local" value="contents/0202_nin1.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать плакатов">
+			<param name="Local" value="contents/0203_poster.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать фонового изображения">
+			<param name="Local" value="contents/0204_watermark.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Использование специальной бумаги">
+			<param name="Local" value="contents/0205_usingcustom.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать с наложением">
+			<param name="Local" value="contents/0206_overlay.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать на бумаге местного стандарта">
+			<param name="Local" value="contents/0207_localstandard.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1200_pagesetuptab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Сведения о плакате]">
+				<param name="Local" value="contents/1204_posterdetailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Правка фонового изображения]">
+				<param name="Local" value="contents/1201_editwatermarkdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки специального формата бумаги]">
+				<param name="Local" value="contents/1202_custompaperdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Параметры страницы]">
+				<param name="Local" value="contents/1203_pageoptionsdb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Окончательная обработка]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0300_finishing.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Односторонняя и двухсторонняя печать">
+			<param name="Local" value="contents/0301_onetwosided.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать буклета">
+			<param name="Local" value="contents/0302_booklet.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Бесшвейное скрепление">
+			<param name="Local" value="contents/0303_perfect.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Установка метода окончательной обработки">
+			<param name="Local" value="contents/0304_finish.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Сгибание">
+			<param name="Local" value="contents/0305_fold.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1300_finishingtab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Расширенные настройки]">
+				<param name="Local" value="contents/1301_detailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Расширенные настройки буклета]">
+				<param name="Local" value="contents/1302_bookletdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки бесшвейного скрепления]">
+				<param name="Local" value="contents/1303_perfectdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Сведения о стеке]">
+				<param name="Local" value="contents/1305_stackdetailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Дополнительные настройки]">
+				<param name="Local" value="contents/1304_advanceddb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Источник бумаги]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0400_papersource.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Указание источников бумаги">
+			<param name="Local" value="contents/0401_papersourceset.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Указание типов бумаги">
+			<param name="Local" value="contents/0402_papertype.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки обложки">
+			<param name="Local" value="contents/0403_cover.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки бумаги для таблиц">
+			<param name="Local" value="contents/0404_tab.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Вставка листов">
+			<param name="Local" value="contents/0405_inserter.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1400_papersourcetab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки типа бумаги]">
+				<param name="Local" value="contents/1401_papertypedb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Сведения о бумаге для таблиц]">
+				<param name="Local" value="contents/1402_tabdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки передней/задней стороны обложки]">
+				<param name="Local" value="contents/1403_coverdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки вставки листа]">
+				<param name="Local" value="contents/1404_insertdb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Качество]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0500_quality.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройка объектов">
+			<param name="Local" value="contents/0501_object.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Переключение между цветной печатью и печатью в оттенках серого">
+			<param name="Local" value="contents/0503_grayscale.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Регулировка цветов">
+			<param name="Local" value="contents/0502_colorsettings.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1500_qualitytab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Дополнительные настройки]">
+				<param name="Local" value="contents/1501_advanceddb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройка цвета]/[Настройки полутонов]">
+				<param name="Local" value="contents/1502_colorsettingsdb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладка [Настройки устройства]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0800_device.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройка параметров печати">
+			<param name="Local" value="contents/0801_printeroptions.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройка версии функции">
+			<param name="Local" value="contents/0802_functionversion.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Управление именем подразделения">
+			<param name="Local" value="contents/0803_departmentid.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Проверка подлинности пользователя">
+			<param name="Local" value="contents/0808_userauthentic.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки информации пользователя">
+			<param name="Local" value="contents/0804_userinfo.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки источника бумаги">
+			<param name="Local" value="contents/0805_paperselection.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1800_devicetab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки имени подразделения/PIN-кода]/[Настройки имени подразделения/пароля]">
+				<param name="Local" value="contents/1801_deptidsettingsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки проверки подлинности пользователя]">
+				<param name="Local" value="contents/1809_userauthenticdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Подтвердить имя подразделения/PIN-код]/[Подтвердить имя подразделения/пароль]">
+				<param name="Local" value="contents/1802_confirmdeptiddb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Подтвердить имя/пароль пользователя]">
+				<param name="Local" value="contents/1810_confirmuserdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки информации пользователя]">
+				<param name="Local" value="contents/1803_userinfodb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Расширенные настройки]">
+				<param name="Local" value="contents/1804_detailsdb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Настройки функций устройства]">
+				<param name="Local" value="contents/1805_devicefunctiondb.html">
+				</OBJECT>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Формат для назначения лотка]">
+				<param name="Local" value="contents/1806_formtotraydb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Вкладки [Профиль]">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Что можно сделать">
+			<param name="Local" value="contents/0900_profile.html">
+			<param name="ImageNumber" value="37">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Добавление клиентских профилей">
+			<param name="Local" value="contents/0901_addprofile.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Правка списка клиентских профилей">
+			<param name="Local" value="contents/0902_editprofilelist.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Экспорт/импорт клиентских профилей">
+			<param name="Local" value="contents/0903_importexport.html">
+			<param name="ImageNumber" value="35">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Настройки">
+			<param name="Local" value="contents/1900_profiletab.html">
+			<param name="ImageNumber" value="19">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="Диалоговое окно [Добавление/изменение профиля]">
+				<param name="Local" value="contents/1901_addeditprofiledb.html">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Поиск и устранение неисправностей">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Невозможно выбрать параметр печати">
+			<param name="Local" value="contents/2000_nosettings.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Выполнение задания на печать не начинается">
+			<param name="Local" value="contents/2001_noprinting.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Неудовлетворительные результаты печати">
+			<param name="Local" value="contents/2002_undesired.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Выполнение задания на печать требует слишком много времени">
+			<param name="Local" value="contents/2003_toolong.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Нечеткая печать">
+			<param name="Local" value="contents/2004_notclean.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Печать с наложением не выполняется">
+			<param name="Local" value="contents/2005_nooverlay.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="Не удается определить состояние принтера либо использовать функцию управления именем подразделения или проверку подлинности пользователя">
+			<param name="Local" value="contents/2006_noinfo.html">
+			<param name="ImageNumber" value="41">
+			</OBJECT>
+	</UL>
+</UL>
+</BODY></HTML>

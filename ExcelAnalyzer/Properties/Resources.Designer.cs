@@ -133,6 +133,88 @@ namespace ExcelAnalyzer.Properties {
         }
         
         /// <summary>
+        ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap APPICON {
+            get {
+                object obj = ResourceManager.GetObject("APPICON", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отображение панели инструментов для работы с данными, сохраненными в формате АРМ Статистика.
+        /// </summary>
+        internal static string ArmDataAnalyzerPane_Button_Description {
+            get {
+                return ResourceManager.GetString("ArmDataAnalyzerPane_Button_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на АРМ Статистика.
+        /// </summary>
+        internal static string ArmDataAnalyzerPane_Button_Label {
+            get {
+                return ResourceManager.GetString("ArmDataAnalyzerPane_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на СПО АРМ «Статистика ГП РФ» (АРМ Статистика).
+        /// </summary>
+        internal static string ArmDataAnalyzerPane_Button_ScreenTip {
+            get {
+                return ResourceManager.GetString("ArmDataAnalyzerPane_Button_ScreenTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Отображение панели инструментов для работы с данными, сохраненными в формате, совместимом со специальным программным обеспечением автоматизированное рабочее место «Статистика Генеральной прокуратуры Российской Федерации» (АРМ Статистика)..
+        /// </summary>
+        internal static string ArmDataAnalyzerPane_Button_SuperTip {
+            get {
+                return ResourceManager.GetString("ArmDataAnalyzerPane_Button_SuperTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обновление значений в текущей книге..
+        /// </summary>
+        internal static string ArmDataRefresh_Button_Description {
+            get {
+                return ResourceManager.GetString("ArmDataRefresh_Button_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обновить значения.
+        /// </summary>
+        internal static string ArmDataRefresh_Button_Label {
+            get {
+                return ResourceManager.GetString("ArmDataRefresh_Button_Label", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обновление значений.
+        /// </summary>
+        internal static string ArmDataRefresh_Button_ScreenTip {
+            get {
+                return ResourceManager.GetString("ArmDataRefresh_Button_ScreenTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Обновление значений из источника данных в формате, совместимом со специальным программным обеспечением автоматизированное рабочее место «Статистика Генеральной прокуратуры Российской Федерации» (АРМ Статистика)..
+        /// </summary>
+        internal static string ArmDataRefresh_Button_SuperTip {
+            get {
+                return ResourceManager.GetString("ArmDataRefresh_Button_SuperTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Суммирование значений по алгоритму сложения.
         /// </summary>
         internal static string AutoSum_Button_Description {

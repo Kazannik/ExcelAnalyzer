@@ -1,0 +1,135 @@
+<html DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tool="http://www.microsoft.com/tooltip"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1251"></META><META NAME="save" CONTENT="history"></META><title>Фильтрация трассировок</title><link rel="stylesheet" type="text/css" href="../local/Classic.css"></link><script src="../local/script.js"></script></head><body><input type="hidden" id="userDataCache" class="userDataStyle"></input><input type="hidden" id="hiddenScrollOffset"></input><img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif"></img><img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif"></img><img id="collapseImage" style="display:none; height:0; width:0;" src="../local/collapse.gif"></img><img id="expandImage" style="display:none; height:0; width:0;" src="../local/exp.gif"></img><img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif"></img><img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif"></img><div id="header"><table width="100%" id="topTable"><tr id="headerTableRow1"><td align="left"><span id="runningHeaderText"></span></td></tr><tr id="headerTableRow2"><td align="left"><span id="nsrTitle">Фильтрация трассировок</span></td></tr><tr id="headerTableRow3"><td></td></tr></table></div><div id="mainSection"><div id="mainBody"><div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()"></div>
+    <p>Чтобы упростить анализ файлов трассировки, их можно фильтровать тремя различными способами. </p>
+    <ul><li class="unordered">
+        Панель инструментов фильтрации предоставляет доступ к предустановленным фильтрам. Открыть ее можно через меню <b>Вид</b>.<br /><br />
+      </li><li class="unordered">
+        С помощью встроенного фильтра средства просмотра можно выборочно фильтровать компоненты трассировок инфраструктуры WCF. По умолчанию он настроен на пропуск всех сообщений инфраструктуры. Параметры этого фильтра задаются в подменю <b>Параметры фильтра</b> в меню <b>Вид</b>.<br /><br />
+      </li><li class="unordered">
+        Пользовательские фильтры XPath позволяют пользователям полностью контролировать процесс фильтрации. Их можно задавать в меню <b>Пользовательский фильтр</b>.<br /><br />
+      </li></ul>
+    <p>Отображаются только те данные трассировки, которые проходят через все активные фильтры.</p>
+  <h2 class="heading">Использование панели инструментов фильтра</h2><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Панель фильтра отображается в верхней части инструмента. Если она отсутствует, включите ее в меню <b>Вид</b>. Панель содержит три компонента:</p>
+      <ul xmlns=""><li class="unordered">
+          Искать: <b>Искать</b> определяет элемент, поиск которого осуществляется при выполнении фильтрации. Например, если требуется найти все трассировки, относящиеся к контексту процесса Х, то в этом поле следует ввести «Х», а в поле <b>Диапазон поиска</b> ввести «Process Name». Это поле заменяется элементом управления выбора даты и времени, если выбран фильтр по времени.<br /><br />
+        </li><li class="unordered">
+          Диапазон поиска: это поле определяет тип применяемого фильтра. Допустимые значения: «Process Name», «Time Range», «Event ID» и «endpoint address».<br /><br />
+        </li><li class="unordered">
+          Уровень: определяет минимальный уровень трассировки, допускаемый фильтром. Например, при значении «Error and Up» отображаются трассировки с ошибочным или критическим состоянием. Этот фильтр комбинируется с критериями, заданными в полях «Искать» и «Диапазон поиска».<br /><br />
+        </li></ul>
+      <p xmlns="">Кнопка <b>Применить фильтр</b> запускает операцию фильтрации. Некоторые фильтры, в особенности если они применяются к большим объемам данных, выполняются достаточно долго. Процесс фильтрации можно отменить путем нажатия кнопки <b>Остановить</b>, которая появляется на месте кнопки <b>Применить фильтр</b> после запуска операции фильтрации.</p>
+      <p xmlns="">Кнопка <b>Очистить</b> сбрасывает все фильтры, в результате чего они настраиваются на пропуск всех трассировок.</p>
+    </content></div><h2 class="heading">Параметры фильтрации</h2><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Средство просмотра может автоматически удалять трассировки WCF из представления. Он также может выборочно удалять трассировки, относящиеся к отдельным областям WCF, например, удалять из представления трассировки, относящиеся к транзакциям. </p>
+      <p xmlns="">Параметры этого фильтра задаются в подменю <b>Параметры фильтра</b> в меню <b>Вид</b>.</p>
+    </content></div><h2 class="heading">Пользовательские фильтры</h2><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Если вы знаете язык XML Path (XPath), то сможете использовать его для создания собственных настраиваемых фильтров для поиска данных трассировки для любого элемента XML. Фильтры доступны на панели инструментов фильтрации.</p>
+      <p xmlns="">В пользовательских фильтрах могут быть предусмотрены параметры. Также можно импортировать уже имеющиеся пользовательские фильтры XPath.</p>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Создание пользовательского фильтра</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Фильтры можно создавать двумя способами:</p>
+        </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Создание пользовательского фильтра при помощи мастера шаблонов</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Можно щелкнуть имеющуюся трассировку и создать фильтр, основываясь на структуре этой трассировки. В этом примере создается пользовательский фильтр, основанный на идентификаторе потока.</p>
+              <ol class="ordered" xmlns=""><li>
+                  На панели трассировки в правой части средства просмотра выберите трассировку, содержащую элемент, для которого требуется выполнить фильтрацию.<br /><br />
+                </li><li>
+                  Нажмите кнопку <b>Создать пользовательский фильтр</b>, расположенную в верхней части панели трассировки.<br /><br />
+                </li><li>
+                  В появившемся диалоговом окне введите имя фильтра. В этом примере введите «Thread ID». Также можно ввести описание фильтра.<br /><br />
+                </li><li>
+                  Древовидное представление в левой части окна отображает схему записи трассировки, в первом шаге. Перейдите к элементу, для которого требуется создать условие. В этом примере перейдите к атрибуту ThreadID, расположенному, скорее всего, в узле System.Execution. Дважды щелкните атрибут <b>ThreadID</b> в древовидном представлении. Будет создано выражение для атрибута в правой части диалогового окна.<br /><br />
+                </li><li>
+                  Измените значение в поле параметра условия «ThreadID», указав «{0}» вместо «Нет». В результате выполнения этого действия при применении фильтра станет возможной настройка значения «ThreadID». (См. раздел «Применение фильтра»). Можно задавать до четырех параметров. Условия совмещаются при помощи оператора «ИЛИ».<br /><br />
+                </li><li>
+                  Щелкните <b>Ok</b>, чтобы создать фильтр.<br /><br />
+                </li></ol>
+              <p xmlns="">
+                <b>Замечание</b>   Если фильтр создан при помощи мастера шаблонов, его можно будет редактировать только вручную. Невозможно запустить мастер для фильтра, который уже был создан. Кроме того, условия фильтра XPath, созданного с помощью мастера шаблонов, комбинируются с помощью оператора «ИЛИ». Если необходимо использовать оператор «И», выражение фильтра можно отредактировать после его создания. </p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Создание пользовательского фильтра вручную</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <h4 class="subHeading" xmlns=""><b>Создание пользовательского фильтра XPath вручную</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В меню <b>Вид</b> щелкните элемент меню <b>Пользовательские фильтры</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В появившемся диалоговом окне нажмите кнопку <b>Создать</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Как минимум, следует указать имя фильтра и выражение XPath.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Нажмите кнопку <b>OК</b>.</p>
+                    </content>
+                  </li></ol></ddue:steps></div>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Применение пользовательского фильтра</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <h4 class="subHeading" xmlns=""><b>Применение пользовательского фильтра</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Выберите фильтр, который необходимо применить, в поле <b>Диапазон поиска</b> на панели инструментов фильтрации. В случае предыдущего примера выберите «Thread ID».</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Задайте искомое значение в поле <b>Найти</b>. В данном примере введите идентификатор потока, который требуется найти.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Щелкните <b>Применить фильтр</b> и просмотрите результаты выполнения операции.</p>
+                    </content>
+                  </li></ol></ddue:steps></div>
+              <p xmlns="">Если в фильтре используется множество параметров, вводите их в поле <b>Найти</b> через точку с запятой «;» в качестве разделителя. Например, следующая строка задает три параметра: «1;findValue;text». Средство просмотра применяет «1» к параметру фильтра {0}. «findValue» и «text» применяются к параметрам {1} и {2}, соответственно.</p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Совместное использование пользовательских фильтров</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Пользовательские фильтры можно совместно использовать в местах, где запущен инструмент Trace Viewer. Фильтры можно быстро экспортировать в файл определения, а затем импортировать этот файл в другое место.</p>
+              <h4 class="subHeading" xmlns=""><b>Импорт пользовательского фильтра</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В меню <b>Вид</b> щелкните <b>Пользовательские фильтры</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В открывшемся диалоговом окне нажмите кнопку <b>Импорт</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Перейдите к файлу пользовательского фильтра (STVCF), щелкните файл и нажмите кнопку <b>Открыть</b>.</p>
+                    </content>
+                  </li></ol></ddue:steps></div>
+              <h4 class="subHeading" xmlns=""><b>Экспорт пользовательского фильтра</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В меню «Вид» щелкните <b>Пользовательские фильтры</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">В появившемся диалоговом окне выберите фильтр, который следует экспортировать.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Нажмите кнопку <b>Экспорт</b>.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Укажите имя и расположение файла определения пользовательского фильтра (STVCF) и нажмите кнопку <b>Сохранить</b>.</p>
+                    </content>
+                  </li></ol></ddue:steps><conclusion xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                  <content>
+                    <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+                      Эти пользовательские фильтры можно импортировать и экспортировать только в Service Trace Viewer. Выполнить их чтение другими средствами невозможно.<p></p>
+                    </td></tr></table><p></p></div>
+                  </content>
+                </conclusion></div>
+            </content></div>
+        </sections></div>
+    </sections></div><!--[if gte IE 5]>
+			<tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]--></div><div id="footer">
+    <p />
+    <hr />
+    <a href="mailto:sdkfdbk@microsoft.com?subject=Отзыв по документации: Фильтрация трассировок - 3C0DB297-5170-483E-98F4-4CF1E7776828">
+      
+      Отправить комментарии к этому разделу в корпорацию Майкрософт.
+    </a>
+    <br /> <br /> 
+  2010-02-23</div></div></body></html>

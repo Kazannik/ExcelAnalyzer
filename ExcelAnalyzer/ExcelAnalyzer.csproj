@@ -76,6 +76,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
     <DefineConstants>$(DefineConstants);DEBUG;TRACE</DefineConstants>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <!--
     This section defines properties that are set when the "Release" configuration is selected.
@@ -152,12 +153,115 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="Arm\Content.cs" />
+    <Compile Include="Arm\Form.cs" />
+    <Compile Include="Arm\FormCollection.cs" />
+    <Compile Include="Arm\Period.cs" />
+    <Compile Include="Arm\Region.cs" />
+    <Compile Include="Arm\RegionCollection.cs" />
+    <Compile Include="Arm\RegionsTree.cs" />
+    <Compile Include="Controls\BaseComboBox.cs" />
+    <Compile Include="Controls\ColorThemeList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ColorThemeList.Designer.cs">
+      <DependentUpon>ColorThemeList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\BasePeriodBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\PeriodBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PeriodBox.Designer.cs">
+      <DependentUpon>PeriodBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PeriodPicker.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\PeriodPickerPopupForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PeriodPickerPopupForm.Designer.cs">
+      <DependentUpon>PeriodPickerPopupForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\RegionComboBox.cs" />
+    <Compile Include="Controls\ToolStripCheckBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\ToolStripNumericUpDown.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WorkbookBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WorkbookBox.Designer.cs">
+      <DependentUpon>WorkbookBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WorkbookListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\WorkbookListBox.Designer.cs">
+      <DependentUpon>WorkbookListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WorkbookListBoxItem.cs" />
+    <Compile Include="Dialogs\AboutDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\AboutDialog.Designer.cs">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ExcelAnalyzerConstants.cs" />
     <Compile Include="ExcelAnalyzerRibbon.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ExcelAnalyzerRibbon.Designer.cs">
       <DependentUpon>ExcelAnalyzerRibbon.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Expressions\ArithmeticExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\Expression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\AssociationExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CellExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\AdditionExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\DivisionExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\FixExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\ModExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\MultiplicationExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\PowerExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\SqrtExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\SubtractingExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\ErrorExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\ICell.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\NegativeExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\PositiveExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\ValueExpression.cs" />
+    <Compile Include="Expressions\BooleanExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\LogicAndExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\LogicEqualExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\LogicNotEqualExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\LogicOrExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\LogicXorExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\LogicAssociationExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\LogicNotExpression.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\LogicExpression.cs" />
+    <Compile Include="Expressions\LogicExpressionBase.cs" />
+    <Compile Include="Expressions\LogicExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicEqualArithmeticExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicLessArithmeticExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicLessOrEqualArithmeticExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicMoreArithmeticExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicMoreOrEqualArithmeticExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LogicNotEqualArithmeticExpression.cs" />
+    <Compile Include="Expressions\UnitCollection.cs" />
+    <Compile Include="Gdi32.cs" />
+    <Compile Include="Panes\ArmDataAnalyzerPane.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Panes\ArmDataAnalyzerPane.Designer.cs">
+      <DependentUpon>ArmDataAnalyzerPane.cs</DependentUpon>
     </Compile>
     <Compile Include="Panes\ExcelAnalyzerPane.cs">
       <SubType>UserControl</SubType>
@@ -168,8 +272,29 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="Controls\BasePeriodBox.resx">
+      <DependentUpon>BasePeriodBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PeriodBox.resx">
+      <DependentUpon>PeriodBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PeriodPickerPopupForm.resx">
+      <DependentUpon>PeriodPickerPopupForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WorkbookBox.resx">
+      <DependentUpon>WorkbookBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\WorkbookListBox.resx">
+      <DependentUpon>WorkbookListBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\AboutDialog.resx">
+      <DependentUpon>AboutDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ExcelAnalyzerRibbon.resx">
       <DependentUpon>ExcelAnalyzerRibbon.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Panes\ArmDataAnalyzerPane.resx">
+      <DependentUpon>ArmDataAnalyzerPane.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Panes\ExcelAnalyzerPane.resx">
       <DependentUpon>ExcelAnalyzerPane.cs</DependentUpon>
@@ -184,7 +309,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="ExcelAnalyzer_TemporaryKey.pfx" />
+    <None Include="app.config" />
+    <None Include="Documentation\Analyzer for Microsoft Office Excel.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Documentation\Analyzer for Microsoft Office Excel.hhp" />
+    <None Include="OpSoftCertificate.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -192,7 +322,143 @@
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Controls\TextEditorBox\Actions\BookmarkActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\CaretActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\ClipBoardActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\FoldActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\FormatActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\HomeEndActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\IEditAction.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\MiscActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Actions\SelectionActions.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\AbstractSegment.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\BookmarkManager\Bookmark.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\BookmarkManager\BookmarkEventHandler.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\BookmarkManager\BookmarkManager.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\BookmarkManager\BookmarkManagerMemento.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\DefaultDocument.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\DefaultTextEditorProperties.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\DocumentEventArgs.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\DocumentFactory.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FoldingStrategy\FoldingManager.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FoldingStrategy\FoldMarker.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FoldingStrategy\IFoldingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FoldingStrategy\IndentFoldingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FormattingStrategy\DefaultFormattingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\FormattingStrategy\IFormattingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\DefaultHighlightingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\FontContainer.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightBackground.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightColor.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightInfo.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightingColorNotFoundException.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightingDefinitionInvalidException.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightingDefinitionParser.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightingManager.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightingStrategyFactory.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\HighlightRuleSet.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\IHighlightingStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\NextMarker.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\PrevMarker.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\Span.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\SpanStack.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\SyntaxModes\FileSyntaxModeProvider.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\SyntaxModes\ISyntaxModeFileProvider.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\SyntaxModes\ResourceSyntaxModeProvider.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\SyntaxModes\SyntaxMode.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\HighlightingStrategy\TextWord.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\IDocument.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\ISegment.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\ITextEditorProperties.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\LineManager\DeferredEventList.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\LineManager\LineManager.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\LineManager\LineManagerEventArgs.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\LineManager\LineSegment.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\LineManager\LineSegmentTree.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\MarkerStrategy\MarkerStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\MarkerStrategy\TextMarker.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\Selection\ColumnRange.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\Selection\DefaultSelection.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\Selection\ISelection.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\Selection\SelectionManager.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextAnchor.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextBufferStrategy\GapTextBufferStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextBufferStrategy\ITextBufferStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextBufferStrategy\StringTextBufferStrategy.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextLocation.cs" />
+    <Compile Include="Controls\TextEditorBox\Document\TextUtilities.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\AbstractMargin.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\BracketHighlighter.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\BrushRegistry.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\Caret.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\AbstractCompletionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\CodeCompletionListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\CodeCompletionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\DeclarationViewWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\ICompletionData.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\CompletionWindow\ICompletionDataProvider.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\DrawableLine.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\FoldMargin.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\GutterMargin.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\HRuler.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\IconBarMargin.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\Ime.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\InsightWindow\IInsightDataProvider.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\InsightWindow\InsightWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\TextArea.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\TextAreaClipboardHandler.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\TextAreaControl.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\TextAreaDragDropHandler.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\TextAreaMouseHandler.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\TextAreaUpdate.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\TextEditorBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\TextEditorControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TextEditorBox\Gui\TextView.cs" />
+    <Compile Include="Controls\TextEditorBox\Gui\ToolTipRequestEventArgs.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\IUndoableOperation.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\UndoableDelete.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\UndoableInsert.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\UndoableReplace.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\UndoQueue.cs" />
+    <Compile Include="Controls\TextEditorBox\Undo\UndoStack.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\AugmentableRedBlackTree.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\CheckedList.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\FileReader.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\LoggingService.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\LookupTable.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\MouseWheelHandler.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\RedBlackTreeIterator.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\RtfWriter.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TextUtility.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipPainter.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipPainterTools.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipSection.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipSpacer.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipSplitter.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\TipText.cs" />
+    <Compile Include="Controls\TextEditorBox\Util\WeakCollection.cs" />
     <Compile Include="ThisAddIn.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -205,6 +471,27 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Content Include="Documentation\html\about.htm" />
+    <Content Include="Documentation\html\checkfiles.htm" />
+    <Content Include="Documentation\html\createfolders.htm" />
+    <Content Include="Documentation\html\export.htm" />
+    <Content Include="Documentation\html\importfiles.htm" />
+    <Content Include="Documentation\html\sumtools.htm" />
+    <Content Include="Documentation\html\template.htm" />
+    <Content Include="Documentation\html\tools.htm" />
+    <Content Include="Documentation\html\welcome.htm" />
+    <Content Include="Documentation\html\worksheettools.htm" />
+    <None Include="Resources\Up_HS.png" />
+    <None Include="Resources\Right_HS.png" />
+    <None Include="Resources\OpenLock.png" />
+    <None Include="Resources\Left_HS.png" />
+    <None Include="Resources\Down_HS.png" />
+    <None Include="Resources\CloseLock.png" />
+    <None Include="Resources\GetPositionHS.png" />
+    <None Include="Resources\APPICON.png" />
+    <None Include="Resources\CopyHS.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -213,10 +500,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>ExcelAnalyzer_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>OpSoftCertificate.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>9096A0EEA7FC564A90E8D5677CC9B5C093825918</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>B2BDFF2F5486FFF8CBEBAED35F5359A3682CE299</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

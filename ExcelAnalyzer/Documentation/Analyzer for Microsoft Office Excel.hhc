@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="Window Styles" value="0x800025">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Icirc; &iuml;&eth;&icirc;&atilde;&eth;&agrave;&igrave;&igrave;&aring;">
+		<param name="Local" value="html\welcome.htm">
+		<param name="URL" value="html\welcome.htm">
+		<param name="ImageNumber" value="17">
+		</OBJECT>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="Stat for Microsoft Office Excel 2007">
+		<param name="Local" value="html\welcome.htm">
+		<param name="ImageNumber" value="1">
+		</OBJECT>
+	<UL>
+		<LI> <OBJECT type="text/sitemap">
+			<param name="Name" value="&Icirc;&ntilde;&iacute;&icirc;&acirc;&iacute;&ucirc;&aring; &ocirc;&oacute;&iacute;&ecirc;&ouml;&egrave;&egrave; &iuml;&eth;&egrave;&euml;&icirc;&aelig;&aring;&iacute;&egrave;&yuml;">
+			<param name="Local" value="html\welcome.htm">
+			<param name="ImageNumber" value="1">
+			</OBJECT>
+		<UL>
+			<LI> <OBJECT type="text/sitemap">
+				<param name="Name" value="&Ntilde;&icirc;&ccedil;&auml;&agrave;&iacute;&egrave;&aring; &ecirc;&icirc;&euml;&euml;&aring;&ecirc;&ouml;&egrave;&egrave; &auml;&egrave;&eth;&eth;&aring;&ecirc;&ograve;&icirc;&eth;&egrave;&eacute; (&iuml;&agrave;&iuml;&icirc;&ecirc;)">
+				<param name="Local" value="html\createfolders.htm">
+				<param name="URL" value="html\createfolders.htm">
+				</OBJECT>
+		</UL>
+	</UL>
+	<LI> <OBJECT type="text/sitemap">
+		<param name="Name" value="&Icirc;&aacute; &agrave;&acirc;&ograve;&icirc;&eth;&aring;">
+		<param name="Local" value="html\about.htm">
+		<param name="URL" value="html\about.htm">
+		<param name="ImageNumber" value="27">
+		</OBJECT>
+</UL>
+</BODY></HTML>

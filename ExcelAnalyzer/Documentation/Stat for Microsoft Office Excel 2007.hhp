@@ -1,0 +1,26 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Stat for Microsoft Office Excel 2007.chm
+Contents file=Stat for Microsoft Office Excel 2007.hhc
+Default Font=MS Sans Serif,8,204
+Default topic=html\welcome.htm
+Display compile progress=Yes
+Full-text search=Yes
+Index file=Stat for Microsoft Office Excel 2007.hhk
+Language=0x419 Русский (Россия)
+Title=Stat for Microsoft Office Excel 2007
+
+
+[FILES]
+html\welcome.htm
+html\createfolders.htm
+html\checkfiles.htm
+html\importfiles.htm
+html\worksheettools.htm
+html\sumtools.htm
+html\export.htm
+html\tools.htm
+html\about.htm
+
+[INFOTYPES]
+

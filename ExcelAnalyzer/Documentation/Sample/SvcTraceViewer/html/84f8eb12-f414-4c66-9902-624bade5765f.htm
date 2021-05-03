@@ -1,0 +1,41 @@
+<html DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tool="http://www.microsoft.com/tooltip"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1251"></META><META NAME="save" CONTENT="history"></META><title>Навигация по данным трассировок</title><link rel="stylesheet" type="text/css" href="../local/Classic.css"></link><script src="../local/script.js"></script></head><body><input type="hidden" id="userDataCache" class="userDataStyle"></input><input type="hidden" id="hiddenScrollOffset"></input><img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif"></img><img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif"></img><img id="collapseImage" style="display:none; height:0; width:0;" src="../local/collapse.gif"></img><img id="expandImage" style="display:none; height:0; width:0;" src="../local/exp.gif"></img><img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif"></img><img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif"></img><div id="header"><table width="100%" id="topTable"><tr id="headerTableRow1"><td align="left"><span id="runningHeaderText"></span></td></tr><tr id="headerTableRow2"><td align="left"><span id="nsrTitle">Навигация по данным трассировок</span></td></tr><tr id="headerTableRow3"><td></td></tr></table></div><div id="mainSection"><div id="mainBody"><div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()"></div>
+    <p>Поскольку трассировки записываются поэтапно во время работы приложения, навигация по трассировкам может помочь при отладке приложения. Программа Service Trace Viewer предоставляет различные способы навигации по трассировкам.</p>
+  <h2 class="heading">Шаг вперед или назад</h2><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Если считать каждую трассировку строкой кода в программе, то шаг вперед похож на команду «Перейти к следующей» в интегрированной среде разработки Visual Studio. Единственное отличие заключается в том, что при работе с трассировками можно совершать шаги назад. Шаг вперед означает переход к следующей трассировке в действии.</p>
+      <ul xmlns=""><li class="unordered">
+          Шаг вперед: используйте меню <b>Действие</b> или нажмите клавишу «F10». Также можно использовать кнопку со стрелкой «вниз» на панели трассировки.<br /><br />
+        </li><li class="unordered">
+          Шаг назад: используйте меню <b>Действие</b> или нажмите клавишу «F9». Также можно использовать кнопку со стрелкой «вверх» на панели трассировки.<br /><br />
+        </li></ul>
+    </content></div><h2 class="heading">Отслеживание перенаправлений</h2><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Трассировки перенаправлений — это специальные трассировки в файле трассировки. Посредством трассировки перенаправления одно действие может перенаправляться другому действию. Например, «Действие А» может перенаправиться к «Действию Б». В таком случае в «Действии А» имеется трассировка перенаправления с именем «К действию» и значок перенаправления. Эта трассировка перенаправления является связкой между двумя трассировками. В «Действии Б» также может присутствовать трассировка перенаправления при завершении действия, предназначенная для перенаправления обратно к «Действию А». Этот процесс похож вызов функций в программах: «Действие А» вызывает «Действие Б», а «Действие Б» затем осуществляет возврат.</p>
+      <p xmlns="">«Отслеживание перенаправлений» похоже на функцию «Шаг с заходом» в отладчике. Отслеживается перенаправление от «Действия А» к «Действию Б». Это не влияет на какие-либо другие трассировки.</p>
+      <p xmlns="">Существует два способа отслеживания перенаправлений: при помощи мыши или при помощи клавиатуры.</p>
+      <ul xmlns=""><li class="unordered">
+          При помощи мыши: дважды щелкните трассировку перенаправления на панели трассировки.<br /><br />
+        </li><li class="unordered">
+          При помощи клавиатуры: выберите трассировки перенаправления и выберите «Отслеживание перенаправления» в меню <b>Действие</b>, или нажмите клавишу «F11».<br /><br />
+        </li></ul>
+      <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+        Во многих случаях, когда «Действие А» перенаправляется к «Действию Б», «Действие А» ожидает обратного перенаправления «Действия Б» к «Действию А». Это означает, что «Действие А» не имеет запланированных трассировок во время выполнения трассировки «Действием Б». Однако, «Действие А» может не находиться в состоянии ожидания, а продолжать записывать трассировки. Также возможна ситуация, когда «Действие Б» не перенаправляется обратно «Действию А». Таким образом, перенаправления действий все же отличны от вызовов функций. Представление графика позволяет лучше понять суть перенаправления действий.<p></p>
+      </td></tr></table><p></p></div>
+    </content></div><h2 class="heading">Переход к следующему или предыдущему перенаправлению</h2><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">При анализе текущего действия может понадобиться быстро найти действия, к которым оно перенаправляется. Команда «Переход к следующему перенаправлению» позволяет найти следующую трассировку перенаправления действия. После нахождения трассировки перенаправления с помощью команды «Отслеживание перенаправления», можно перейти к следующему действию:</p>
+      <ul xmlns=""><li class="unordered">
+          Перейти к следующему перенаправлению: используйте меню <b>Действие</b> или нажмите сочетание клавиш «CTRL + F10».<br /><br />
+        </li><li class="unordered">
+          Перейти к предыдущему перенаправлению: используйте меню <b>Действие</b> или нажмите сочетание клавиш «CTRL + F9».<br /><br />
+        </li></ul>
+    </content></div><h2 class="heading">Навигация в представлении графика</h2><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Хотя навигация в области действий и области трассировки похожа на процесс отладки, использование представления <b>Графика</b> открывает гораздо более широкие возможности навигации. Дополнительные сведения см. в разделе <a href="9a1350b1-c8bb-41b0-8d19-87537df7d554.htm">Просмотр данных трассировки</a>.</p>
+    </content></div><!--[if gte IE 5]>
+			<tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]--></div><div id="footer">
+    <p />
+    <hr />
+    <a href="mailto:sdkfdbk@microsoft.com?subject=Отзыв по документации: Навигация по данным трассировок - 84F8EB12-F414-4C66-9902-624BADE5765F">
+      
+      Отправить комментарии к этому разделу в корпорацию Майкрософт.
+    </a>
+    <br /> <br /> 
+  2010-02-23</div></div></body></html>

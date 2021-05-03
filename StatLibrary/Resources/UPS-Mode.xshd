@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+
+<!-- Syntaxdefinition for UPS, v0.1 Rev 1 by Christian Holm -->
+<!-- Updated 2005 by Daniel Grunwald for VB.NET 2.0 -->
+
+<SyntaxDefinition name = "UPS" extensions = ".ups">
+	
+	<Properties>
+		<Property name="LineComment" value="//"/>
+	</Properties>
+	
+	<Digits name = "Digits"   bold = "false" italic = "false" color = "Black"/>
+	
+	<RuleSets>
+		<RuleSet ignorecase = "true">
+		
+			<Delimiters>~!@%^*()+=|\#/{}[];"'&lt;&gt;,.?</Delimiters>
+			
+			<Span name = "STRING" bold = "false" italic = "false" color = "Black" stopateol = "true" escapecharacter='"'>
+				<Begin>"</Begin>
+				<End>"</End>
+			</Span>
+<!--
+		    <Span name = "LINECOMMENT" rule = "DocumentSet" bold = "false" italic = "false" color = "Green" stopateol = "true">
+		        <Begin>'</Begin>
+		    </Span>
+		
+		    <Span name = "LINECOMMENT" rule = "DocumentSet" bold = "false" italic = "false" color = "Green" stopateol = "true">
+		        <Begin>REM</Begin>
+		    </Span>
+-->
+			<Span name = "PREPROCESSORDIRECTIVE" rule = "PreprocessorSet" bold = "false" italic = "false" color = "Maroon" stopateol = "true">
+				<Begin startofline="true">#</Begin>
+			</Span>
+			
+			<Span name = "DATELITERAL" bold = "false" italic = "false" color = "Blue" stopateol = "true">
+				<Begin startofline="false">#</Begin>
+				<End>#</End>
+			</Span>
+			
+			<Span name = "LINECOMMENT" bold = "false" italic = "false" color = "Green" stopateol = "true">
+				<Begin>'</Begin>
+			</Span>
+			
+			<Span name = "LINECOMMENT" bold = "false" italic = "false" color = "Green" stopateol = "true">
+				<Begin singleword="true">REM@C</Begin>
+			</Span>
+			
+			<KeyWords name = "DataTypes" bold="false" italic="true" color="#6F002F">
+				<Key word = "ч" />
+        <Key word = "час" />
+        <Key word = "час." />
+        <Key word = "часа" />
+				<Key word = "часов" />
+				<Key word = "м" />
+				<Key word = "мин" />
+				<Key word = "мин." />
+				<Key word = "минут" />
+        <Key word = "минута" />
+        <Key word = "минуты" />
+        <Key word = "с" />
+				<Key word = "сек" />
+				<Key word = "сек." />
+				<Key word = "секунда" />
+				<Key word = "секунды" />
+				<Key word = "секунд" />
+			</KeyWords>
+			
+			<KeyWords name = "Constants" bold="true" italic="true" color="Black">
+				<Key word = "Да" />
+				<Key word = "да" />
+				<Key word = "Нет" />
+        <Key word = "нет" />
+        <Key word = "Выбрать" />
+        <Key word = "выбрать" />
+        <Key word = "Исключить" />
+        <Key word = "исключить" />
+      </KeyWords>
+			
+			<KeyWords name = "GlobalConstructs" bold="true" italic="false" color="DarkBlue">
+				<Key word = "Тест:" />
+				<Key word = "Группа:" />
+				<Key word = "Вопрос:" />
+				<Key word = "Ответ:" />
+			</KeyWords>
+			
+			<KeyWords name = "CommentsWord" bold="true" italic="false" color="Green">
+				<Key word = "Комментарий:" />
+			</KeyWords>
+     
+      <KeyWords name = "EstimationWord" bold="true" italic="false" color="Orange">
+        <Key word = "Оценки:" />
+      </KeyWords>
+
+      <KeyWords name = "MainSetting" bold="true" italic="false" color="Blue">
+        <Key word = "Обязательный" />
+        <Key word = "Обязательный:" />
+        <Key word = "Время:" />
+        <Key word = "Тип:" />
+        <Key word = "Баллы:" />
+        <Key word = "Количество:" />
+        <Key word = "Случайно" />
+        <Key word = "Случайно:" />
+        <Key word = "Верный" />
+        <Key word = "Верный:" />
+        <Key word = "e-mail:" />
+      </KeyWords>
+			
+			<KeyWords name = "ContextKeywords" bold="false" italic="true" color="Black">
+				<Key word = "Отлично" />
+				<Key word = "Хорошо" />
+				<Key word = "Удовлетворительно" />
+				<Key word = "Неудовлетворительно" />
+			</KeyWords>
+		</RuleSet>
+		
+		<RuleSet name = "PreprocessorSet" ignorecase = "true">
+			<!--<Delimiters>~!@%^*()-+=|\#/{}[]:;"'&lt;&gt;,.?</Delimiters>-->
+			
+			<!--<KeyWords name = "PreProcessor" bold="true" italic="false" color="Maroon">
+				<Key word = "Const" />
+				<Key word = "If" />
+				<Key word = "ElseIf" /> 
+				<Key word = "Else" />
+				<Key word = "End" />
+				<Key word = "ExternalSource" />
+				<Key word = "Region" />
+				<Key word = "ExternalChecksum" />
+			</KeyWords>-->
+		</RuleSet>
+	</RuleSets>
+</SyntaxDefinition>

@@ -1,0 +1,77 @@
+<html DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tool="http://www.microsoft.com/tooltip"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1251"></META><META NAME="save" CONTENT="history"></META><title>Открытие файлов трассировки</title><link rel="stylesheet" type="text/css" href="../local/Classic.css"></link><script src="../local/script.js"></script></head><body><input type="hidden" id="userDataCache" class="userDataStyle"></input><input type="hidden" id="hiddenScrollOffset"></input><img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif"></img><img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif"></img><img id="collapseImage" style="display:none; height:0; width:0;" src="../local/collapse.gif"></img><img id="expandImage" style="display:none; height:0; width:0;" src="../local/exp.gif"></img><img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif"></img><img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif"></img><div id="header"><table width="100%" id="topTable"><tr id="headerTableRow1"><td align="left"><span id="runningHeaderText"></span></td></tr><tr id="headerTableRow2"><td align="left"><span id="nsrTitle">Открытие файлов трассировки</span></td></tr><tr id="headerTableRow3"><td></td></tr></table></div><div id="mainSection"><div id="mainBody"><div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()"></div>
+    <p>Программа Service Trace Viewer поддерживает три типа файлов:</p>
+    <ul><li class="unordered">
+        Файлы трассировки Windows Communication Foundation (WCF) (SVCLOG)<br /><br />
+      </li><li class="unordered">
+        Файлы трассировки событий (ETL)<br /><br />
+      </li><li class="unordered">
+        Файлы трассировки Crimson<br /><br />
+      </li></ul>
+  <h2 class="heading">Открытие данных трассировки</h2><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Программа Service Trace Viewer позволяет открыть любой поддерживаемый файл трассировки, добавить или интегрировать дополнительные файлы трассировки, а также открыть и выполнить одновременное слияние группы файлов трассировки.</p>
+      <h4 class="subHeading" xmlns=""><b>Открытие файла трассировки</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+            <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Запустите Service Trace Viewer: в командном окне перейдите в папку установки WCF, после чего введите <b>SvcTraceViewer.exe</b>.</p>
+            </content>
+          </li></ol></ddue:steps><conclusion xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <content>
+            <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+              Программа Trace Viewer может быть ассоциирована с двумя типами файлов: SVCLOG и STVPROJ. С помощью двух параметров в командной строке можно регистрировать и отменять регистрацию расширений файлов.<p></p>
+              /register: зарегистрировать связь расширений файлов «SVCLOG» и «STVPROJ» с программой SvcTraceViewer.exe.<p></p>
+              /unregister: отменить регистрацию связи расширений файлов «SVCLOG» и «STVPROJ» с программой SvcTraceViewer.exe.<p></p>
+            </td></tr></table><p></p></div>
+            <ol class="ordered" xmlns=""><li>
+                При запуске Service Trace Viewer щелкните меню <b>Файл</b> и выберите <b>Открыть</b>. Перейдите в папку, где находятся файлы трассировки.<br /><br />
+              </li><li>
+                Дважды щелкните имя файла трассировки, который требуется открыть. Также можно нажать клавишу «SHIFT» и щелкнуть несколько файлов трассировки, чтобы открыть их одновременно. Service Trace Viewer производит слияние содержимого всех файлов и отображает данные в одном представлении. Например, можно открыть файлы трассировки как для клиента, так и для службы. Это удобно, если в конфигурации включено ведение журнала сообщений и распространение действий. Таким образом, можно проверить обмен сообщениями между клиентом и службой. Также можно перетащить несколько файлов в средство просмотра или использовать вкладку «Проект». Дополнительные сведения см. в разделе «Управление проектом».<br /><br />
+              </li><li>
+                Для добавления дополнительных файлов трассировки в открытую коллекцию щелкните меню <b>Файл</b> и выберите пункт <b>Добавить</b>. В открывшемся окне перейдите в расположение файлов трассировки и дважды щелкните левой кнопкой мыши файл, который нужно добавить.<br /><br />
+              </li></ol>
+          </content>
+        </conclusion></div>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Трассировка событий и трассировка Crimson</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Собственный формат средства просмотра — это формат трассировки событий WCF. Трассировки, создаваемые в различных форматах, должны конвертироваться перед их отображением в средстве просмотра. На данный момент кроме формата трассировки событий средство просмотра поддерживает трассировку событий и трассировку Crimson. </p>
+          <p xmlns="">При открытии файла, не содержащего трассировок действий, средство просмотра пытается конвертировать файл. Необходимо указать имя и расположение файла, который будет содержать конвертированные данные трассировки. После конвертирования данных средство просмотра отображает содержимое в новом файле. </p>
+          <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+            Процессу необходим некоторых объем свободного дискового пространства для сохранения конвертированных данных трассировки. Убедитесь в том, что на диске достаточно свободного пространства для сохранения данных, прежде чем начинать конвертирование. В противном случае конвертация не будет выполнена.<p></p>
+          </td></tr></table><p></p></div>
+        </content></div>
+    </sections></div><h2 class="heading">Управление проектами</h2><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Средство просмотра поддерживает проекты, что упрощает просмотр множества файлов трассировки. Например, если имеется файл трассировки клиента и файл трассировки службы, то их можно добавить в проект. После этого при каждом открытии проекта все файлы трассировки проекта будут загружаться одновременно.</p>
+      <p xmlns="">Существует два способа управления проектами.</p>
+      <ul xmlns=""><li class="unordered">
+          В меню <b>Файл</b> можно открыть, сохранить или закрыть проект.<br /><br />
+        </li><li class="unordered">
+          На вкладке <b>Проект</b> можно добавлять файлы в проект.<br /><br />
+        </li></ul>
+    </content></div><h2 class="heading">Загрузка больших файлов трассировки</h2><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Файлы трассировки могут быть очень большими. Например, если трассировка выполняется на уровне «Подробно», то результирующий файл трассировки за несколько минут работы легко может достичь размера в несколько сотен мегабайт или более, в зависимости от скорости подключения сети и схемы подключения.</p>
+      <p xmlns="">При открытии очень большого файла трассировки в программе Service Trace Viewer производительность системы резко снижается. После загрузки может произойти значительное снижение скорости загрузки и увеличение времени отклика. Реальная скорость время от времени меняется в зависимости от конфигурации оборудования. На большинстве компьютеров загрузка файла трассировки, имеющего размер более 200 Мб, в значительной степени снижает производительность системы. При работе с файлами трассировки, имеющими размер более 1 Гб, программа может использовать всю доступную оперативную память или очень долго не отвечать на запросы.</p>
+      <p xmlns="">Во избежание низкой скорости загрузки и продолжительного времени отклика при анализе крупных файлов трассировки в программе Service Trace Viewer предусмотрена возможность частичной загрузки, осуществляющая в один момент времени лишь небольшую часть трассировки. Например, имеется файл трассировки размером более 1 Гб, работающий на сервере на протяжении нескольких дней. При возникновении каких-либо ошибок и попытке анализа трассировки нет надобности открывать весь файл трассировки целиком. Вместо этого можно загрузить трассировки за определенный период времени, когда, скорее всего, произошла ошибка. Поскольку область данных сокращается, программа Service Trace Viewer загружает файл быстрее, и можно найти ошибку, используя небольшой объем данных.</p>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Включение частичной загрузки</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Включать частичную загрузку вручную не следует. Если общий размер открываемого файла(ов) трассировки превышает 40 Мб, то программа Service Trace Viewer автоматически отображает диалоговое окно частичной загрузки, чтобы можно было выбрать часть, которую требуется загрузить.</p>
+          <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+            Поскольку трассировки могут быть распределены неравномерно по времени, то длительность временного периода, который указывается на панели частичной загрузки, может не быть пропорциональна отображаемому размеру загружаемых данных. Реальный размер загружаемых данных может быть меньше, чем предполагаемый размер, отображаемый в диалоговом окне частичной загрузки.<p></p>
+          </td></tr></table><p></p></div>
+        </content></div>
+      <h3 class="subHeading" xmlns="">Настройка частичной загрузки</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">После частичной загрузки файла трассировки может понадобиться изменить набор данных, который требуется загрузить. Это можно сделать с помощью панели инструментов частичной загрузки, расположенной в верхней части средства просмотра:</p>
+          <ol class="ordered" xmlns=""><li>
+              Переместите панель инструментов с помощью мыши или введите время начала и окончания.<br /><br />
+            </li><li>
+              Нажмите кнопку <b>Настроить</b>.<br /><br />
+            </li></ol>
+        </content></div>
+    </sections></div><!--[if gte IE 5]>
+			<tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]--></div><div id="footer">
+    <p />
+    <hr />
+    <a href="mailto:sdkfdbk@microsoft.com?subject=Отзыв по документации: Открытие файлов трассировки - E5DB87A5-9C6C-4E73-AEDE-9D930679B395">
+      
+      Отправить комментарии к этому разделу в корпорацию Майкрософт.
+    </a>
+    <br /> <br /> 
+  2010-02-23</div></div></body></html>

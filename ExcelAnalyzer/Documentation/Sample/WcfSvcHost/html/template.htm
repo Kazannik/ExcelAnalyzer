@@ -1,0 +1,131 @@
+<html DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tool="http://www.microsoft.com/tooltip"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1251"></META><META NAME="save" CONTENT="history"></META><title>Использование узла службы WCF (WcfSvcHost.exe)</title><link rel="stylesheet" type="text/css" href="../local/Classic.css"></link><script src="../local/script.js"></script></head><body><input type="hidden" id="userDataCache" class="userDataStyle"></input><input type="hidden" id="hiddenScrollOffset"></input><img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif"></img><img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif"></img><img id="collapseImage" style="display:none; height:0; width:0;" src="../local/collapse.gif"></img><img id="expandImage" style="display:none; height:0; width:0;" src="../local/exp.gif"></img><img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif"></img><img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif"></img><div id="header"><table width="100%" id="topTable"><tr id="headerTableRow1"><td align="left"><span id="runningHeaderText"></span></td></tr><tr id="headerTableRow2"><td align="left"><span id="nsrTitle">Использование узла службы WCF (WcfSvcHost.exe)</span></td></tr><tr id="headerTableRow3"><td></td></tr></table></div><div id="mainSection"><div id="mainBody"><div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()"></div>
+    <p>
+      Windows Communication Foundation (WCF) Узел службы (WcfSvcHost.exe) делает возможным запуск отладчика Visual Studio (F5) для автоматического размещения и проверки реализованной службы. Затем службу можно проверить с помощью тестового клиента WCF (WcfTestClient.exe) или своего собственного клиента для поиска и устранения потенциальных ошибок. </p>
+  <h2 class="heading">Узел службы WCF</h2><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        WCF Узел службы выполняет перечисление служб в проекте службы WCF, загружает конфигурацию проекта и создает экземпляр узла для каждой найденной службы. Средство встроено в Visual Studio посредством шаблона службы WCF и вызывается в начале отладки проекта. </p>
+      <p xmlns="">С помощью узла службы WCF можно проверить службу WCF WCF (в проекте библиотеки служб WCF) без создания дополнительного кода или фиксации в конкретном узле во время разработки. </p>
+      <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+        Узел службы WCF не поддерживает частичное доверие. При необходимости использования службы WCF в частичном доверии не используется шаблон проекта библиотеки служб WCF в Visual Studio для построения службы. Вместо этого создайте новый веб-сайт в Visual Studio путем выбора шаблона веб-сайта службы WCF, который может разместить службу в веб-сервере, в котором поддерживается частичное доверие WCF.<p></p>
+      </td></tr></table><p></p></div>
+    </content></div><h2 class="heading">Типы проектов, размещенные узлом службы WCF</h2><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">
+        Узел службы WCF может разместить следующие типы проекта библиотеки служб WCF: библиотека служб WCF, библиотека служб последовательных рабочих процессов, библиотека служб рабочих процессов конечного компьютера и библиотека служб синдикации. Узел службы WCF также может разместить службы, которые можно добавить в проект библиотеки служб с помощью функциональной возможности <b>Добавить элемент</b>. Сюда включается служба WCF, служба конечного компьютера WF, последовательная служба WF, служба конечного компьютера WF XAML и последовательная служба WF XAML.</p>
+      <p xmlns="">Однако следует отметить, что это средство не окажет содействия в настройке узла. Для этой задачи необходимо вручную отредактировать файл App.config. Это средство также не выполняет проверку подлинности пользовательских файлов конфигурации. </p>
+      <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/Caution.gif"></img>Внимание! </th></tr><tr><td>
+        Узел службы WCF не следует использовать для размещения служб в рабочей среде, так как он не был разработан для этой цели.  Узел службы WCF не поддерживает требования к надежности, безопасности и управляемости такой среды. Вместо этого используется IIS, поскольку таким образом обеспечивается высочайшие свойства надежности и мониторинга, предоставляющие предпочтительное решение для служб размещения. После завершения разработки служб необходимо перенести службы из узла службы WCF в IIS.<p></p>
+      </td></tr></table><p></p></div>
+    </content></div><h2 class="heading">Сценарии для использования узла службы WCF</h2><div id="sectionSection2" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">В Visual Studio</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">В следующей таблице перечислены все параметры в диалоговом окне <b>Аргументы командной строки</b>, которые можно найти, щелкнув правой кнопкой мыши проект в <b>обозревателе решений</b> в Visual Studio, выбрав <b>Свойства</b>, выбрав вкладку <b>Отладка</b> и нажав кнопку <b>Запуск проекта</b>. Эти параметры используются при настройке узла службы WCF.</p>
+          <h3 class="subHeading" xmlns=""></h3><table xmlns=""><tr>
+                <th>
+                  Параметр
+                </th>
+                <th>
+                  Значение
+                </th>
+              </tr><tr>
+              <td>
+                <p>
+                  <code>/client</code>
+                </p>
+              </td>
+              <td>
+                <p>Необязательный параметр, задающий путь к исполняемому файлу для запуска после размещения служб. Он запускает тестовый клиент WCF, следующий за размещением.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>/clientArg</code>
+                </p>
+              </td>
+              <td>
+                <p>Задайте строку в качестве аргумента, передаваемого настраиваемому клиентскому приложению.</p>
+              </td>
+            </tr><tr>
+              <td>
+                <p>
+                  <code>/?</code>
+                </p>
+              </td>
+              <td>
+                <p>Отображает текст справки.</p>
+              </td>
+            </tr></table>
+        </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Использование тестового клиента WCF</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">После создания нового проекта службы WCF и нажатия клавиши F5 для запуска отладчика узел службы WCF запускает размещение всех служб, найденных в проекте. Тестовый клиент WCF автоматически открывает и отображает список конечных точек службы, определенных в файле конфигурации. В главном окне можно проверить параметры и вызвать службу. </p>
+              <p xmlns="">Чтобы убедиться в использовании тестового клиента WCF, щелкните правой кнопкой мыши проект в <b>обозревателе решений</b> в Visual Studio, выберите <b>Свойства</b> и выберите вкладку <b>Отладка</b>. Нажмите кнопку <b>Запуск проекта</b> и убедитесь, что в диалоговом окне <b>Аргументы командной строки</b> отображается следующее:</p>
+              <p xmlns="">
+                <code>/client:WcfTestClient.exe</code>
+              </p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Использование настраиваемого клиента</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Чтобы использовать настраиваемый клиент, щелкните правой кнопкой мыши проект в <b>обозревателе решений</b> в Visual Studio, выберите <b>Свойства</b> и выберите вкладку <b>Отладка</b>. Нажмите кнопку <b>Запуск проекта</b> и отредактируйте параметр <code>/client</code> в диалоговом окне <b>Аргументы командной строки</b>, чтобы указать настраиваемый клиент, как указано в следующем примере: </p>
+              <p xmlns="">
+                <code>/client:"path/CustomClient.exe"</code>
+              </p>
+              <p xmlns="">При нажатии клавиши F5 для повторного запуска службы узел службы WCF автоматически выполнит запуск настраиваемого клиента и запустит отладчик.</p>
+              <p xmlns="">Также можно использовать параметр <code>/clientArg:</code>, чтобы указать строку в качестве аргумента, переданного настраиваемому клиентскому приложению, как указано в следующем примере: </p>
+              <p xmlns="">
+                <code>/client:"path/CustomClient.exe" /clientArg:"arguments that are passed to Client"</code>
+              </p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Указание отсутствия клиента</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Чтобы указать отсутствие использования клиента после размещения службы WCF, щелкните правой кнопкой мыши проект в <b>обозревателе решений</b> в Visual Studio, выберите <b>Свойства</b> и выберите вкладку <b>Отладка</b>. Нажмите кнопку <b>Запуск проекта</b> и оставьте пустым диалоговое окно <b>Аргументы командной строки</b>.</p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Использование настраиваемого узла</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Чтобы использовать настраиваемый узел, щелкните правой кнопкой мыши проект в <b>обозревателе решений</b> в Visual Studio, выберите <b>Свойства</b> и выберите вкладку <b>Отладка</b>. Нажмите кнопку <b>Запуск внешней программы</b> и введите полный путь к настраиваемому узлу. Также можно использовать диалоговое окно <b>Аргументы командной строки</b>, чтобы задать аргументы для передачи узлу.</p>
+            </content></div>
+        </sections></div>
+    </sections></div><h2 class="heading">Пользовательский интерфейс узла службы WCF</h2><div id="sectionSection3" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">При изначальном запуске узла службы WCF (путем нажатия клавиши F5 в Visual Studio) автоматически откроется окно <b>Узел службы WCF</b>. При выполнении узла службы WCF значок программы автоматически появится в области уведомлений. Дважды щелкните значок, чтобы открыть окно <b>Узел службы WCF</b>. </p>
+      <p xmlns="">При возникновении ошибок во время размещения службы откроется диалоговое окно узла службы WCF, чтобы отобразить соответствующие сведения. </p>
+      <p xmlns="">В главном окне <b>Узел службы WCF</b> содержатся два меню:</p>
+      <ul xmlns=""><li class="unordered">
+          
+            <b>Файл</b>: содержит команды <b>Закрыть</b> и <b>Выход</b>. При нажатии кнопки <b>Закрыть</b> диалоговое окно <b>Узел службы WCF</b> закрывается, но размещение служб продолжается. При нажатии кнопки <b>Выход</b> узел службы WCF также завершает работу. Также завершается работа всех размещенных служб.<br /><br />
+        </li><li class="unordered">
+          
+            <b>Справка</b>: содержит команду <b>О программе</b>, в которой содержатся сведения о версии. Также в ней содержится команда <b>Справка</b>, которая также может открыть файл справки. <br /><br />
+        </li></ul>
+      <p xmlns="">В главном окне <b>Узел службы WCF</b> содержатся две области:</p>
+      <ul xmlns=""><li class="unordered">
+          Первая область — <b>Служба</b>. В ней содержится список, отображающий основные сведения всех служб. К ним относятся следующие сведения: <br /><br />
+          <ul><li class="unordered">
+              
+                <b>Служба</b>: составляет список всех служб.<br /><br />
+            </li><li class="unordered">
+              
+                <b>Состояние</b>: составляет список состояния службы. Допустимые значения: «Запущено», «Остановлено» и «Ошибка». <br /><br />
+            </li><li class="unordered">
+              
+                <b>Адрес метаданных</b>: отображает адрес метаданных служб. <br /><br />
+            </li></ul>
+        </li><li class="unordered">
+          Вторая область — <b>Дополнительные сведения</b>. В ней отображены подробные сведения о состоянии службы при выборе конкретной строки службы в области <b>Служба</b>. Если состояние — «Ошибка», можно просмотреть полное сообщение об ошибке на экране.<br /><br />
+        </li></ul>
+    </content></div><h2 class="heading">Остановка узла службы WCF</h2><div id="sectionSection4" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Работу узла службы WCF можно завершить следующими четырьмя способами:</p>
+      <ul xmlns=""><li class="unordered">
+          Остановите сеанс отладки в Visual Studio.<br /><br />
+        </li><li class="unordered">
+          Выберите вариант <b>Выход</b> в меню <b>Файл</b> в окне <b>Узел службы WCF</b>.<br /><br />
+        </li><li class="unordered">
+          Выберите вариант <b>Выход</b> в всплывающем меню значка в панели задач узла службы WCF в области уведомлений системы.<br /><br />
+        </li><li class="unordered">
+          Выйдите из тестового клиента WCF, если он используется.<br /><br />
+        </li></ul>
+    </content></div><!--[if gte IE 5]>
+			<tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]--></div><div id="footer">
+    <p />
+    <hr />
+    <a href="mailto:sdkfdbk@microsoft.com?subject=Отзыв по документации: Использование узла службы WCF (WcfSvcHost.exe) - f6be36cf-8448-4bf3-8053-6490778a1aa6">
+      
+      Отправить комментарии к этому разделу в корпорацию Майкрософт.
+    </a>
+    <br /> <br /> 
+  2010-02-11</div></div></body></html>

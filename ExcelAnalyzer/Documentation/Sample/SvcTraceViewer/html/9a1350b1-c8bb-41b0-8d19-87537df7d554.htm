@@ -1,0 +1,134 @@
+<html DIR="LTR" xmlns:MSHelp="http://msdn.microsoft.com/mshelp" xmlns:ddue="http://ddue.schemas.microsoft.com/authoring/2003/5" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:tool="http://www.microsoft.com/tooltip"><head><META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET=windows-1251"></META><META NAME="save" CONTENT="history"></META><title>Просмотр данных трассировки</title><link rel="stylesheet" type="text/css" href="../local/Classic.css"></link><script src="../local/script.js"></script></head><body><input type="hidden" id="userDataCache" class="userDataStyle"></input><input type="hidden" id="hiddenScrollOffset"></input><img id="dropDownImage" style="display:none; height:0; width:0;" src="../local/drpdown.gif"></img><img id="dropDownHoverImage" style="display:none; height:0; width:0;" src="../local/drpdown_orange.gif"></img><img id="collapseImage" style="display:none; height:0; width:0;" src="../local/collapse.gif"></img><img id="expandImage" style="display:none; height:0; width:0;" src="../local/exp.gif"></img><img id="copyImage" style="display:none; height:0; width:0;" src="../local/copycode.gif"></img><img id="copyHoverImage" style="display:none; height:0; width:0;" src="../local/copycodeHighlight.gif"></img><div id="header"><table width="100%" id="topTable"><tr id="headerTableRow1"><td align="left"><span id="runningHeaderText"></span></td></tr><tr id="headerTableRow2"><td align="left"><span id="nsrTitle">Просмотр данных трассировки</span></td></tr><tr id="headerTableRow3"><td></td></tr></table></div><div id="mainSection"><div id="mainBody"><div id="allHistory" class="saveHistory" onsave="saveAll()" onload="loadAll()"></div>
+    <p>Windows Communication Foundation (WCF) создает трассировки с использованием формата трассировки действий. В модели трассировки действий отдельные трассировки группируются в действиях в соответствии со своим назначением. Процесс логического контроля передается между действиями. Например, во время работы приложения появляется и исчезает множество действий «отправка сообщения».</p>
+    <p>Во время выполнения WCF создает набор действий, описывающих происходящее в системе. </p>
+  <h2 class="heading">Переключение между различными представлениями</h2><div id="sectionSection0" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Программа Service Trace Viewer предусматривает четыре различных представления. Они отображаются в виде вкладок на левой панели средства просмотра, а также доступны в меню <b>Вид</b>.</p>
+      <ul xmlns=""><li class="unordered">
+          Представление действия<br /><br />
+        </li><li class="unordered">
+          Представление проекта<br /><br />
+        </li><li class="unordered">
+          Представление сообщения<br /><br />
+        </li><li class="unordered">
+          Представление графика<br /><br />
+        </li></ul>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Представление действия</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">После импорта файлов трассировки содержимое этих файлов группируется в действия и отображается в окне <b>Действие</b> на панели слева.</p>
+          <p xmlns="">В окне отображаются имена действий, количество трассировок в действии, продолжительность работы, а также время начала и завершения работы.</p>
+          <p xmlns="">При щелчке на любом из перечисленных действий на панели трассировок справа отображаются трассировки этого действия. После этого можно выбрать трассировку, чтобы просмотреть детальные сведения о ней.</p>
+          <p xmlns="">Можно выбирать несколько действий путем нажатия клавиш <b>CTRL</b> или <b>SHIFT</b> и выбора нужных действий. Панель трассировок отображает все трассировки выбранных действий.</p>
+          <p xmlns="">Чтобы отобразить действие в представлении графика, следует дважды щелкнуть на этом действии. Другой способ: выделите действие и перейдите в представление графика. </p>
+          <div class="alert" xmlns=""><table width="100%" cellspacing="0" cellpadding="0"><tr><th align="left"><img class="note" src="../local/note.gif"></img>Примечание  </th></tr><tr><td>
+            Действие «000000000000» — это специальное действие, которое нельзя отобразить в представлении графика. Поскольку все остальные действия привязаны к нему, отображение данного действия может сильно повлиять на производительность.<p></p>
+          </td></tr></table><p></p></div>
+          <p xmlns="">Чтобы выполнить сортировку списка действий, щелкните заголовок столбца. Действия, содержащие трассировки с предупреждениями, имеют желтый фон, а действия, содержащие трассировки с исключениями, отображаются на красном фоне.</p>
+          <p xmlns="">Существуют различные типы действий, и каждому типу соответствует значок, расположенный слева от каждого действия. Обратитесь к разделу «Понимание значков трассировок», чтобы получить информацию об их значении.</p>
+        </content></div>
+      <h3 class="subHeading" xmlns="">Представление проекта</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Это представление позволяет управлять файлами трассировки текущего проекта. Дополнительные сведения см. в разделе «Управление проектом».</p>
+        </content></div>
+      <h3 class="subHeading" xmlns="">Представление графика</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Одной из самых мощных функциональных возможностей программы Service Trace Viewer является представление <b>Графика</b>, в котором данные трассировки для заданного действия отображаются в виде диаграммы. Форма диаграммы позволяет просматривать поэтапное выполнение событий и взаимодействие между множеством файлов трассировки при перемещении данных между ними.</p>
+          <p xmlns="">Чтобы перейти в представление <b>Графика</b>, выберите действие в представлении <b>Действие</b> и щелкните вкладку <b>Действие</b> или трассировку журнала сообщений в представлении сообщения. Если загружено множество файлов трассировки, и действие включает в себя трассировки из более чем одного файла, то в представлении <b>Графика</b> отображаются все соответствующие трассировки. Двойной щелчок левой кнопкой мыши на действии или трассировках журналов сообщений также приводит к открытию представления <b>Графика</b>.</p>
+          <p xmlns="">В представлении <b>Графика</b>каждый вертикальный столбец обозначает действие, а каждый блок в столбце представляет трассировку. Действия группируются в процессы (или потоки). Небольшие стрелки между действиями обозначают перенаправление. Большие стрелки между процессами обозначают обмен сообщениями. Выбранное действие всегда обозначается желтым цветом.</p>
+          <h4 class="subHeading" xmlns=""><b>Выбор трассировок на графике</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                  <p xmlns="">Щелкните блок на графике.</p>
+                </content>
+              </li><li>
+                <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                  <p xmlns="">Используйте стрелки вверх и вниз для выбора соседних трассировок.</p>
+                </content>
+              </li><li>
+                <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                  <p xmlns="">Просматривайте данные трассировки на панели трассировки и в области сведений.</p>
+                </content>
+              </li></ol></ddue:steps></div>
+        </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <h4 class="subHeading" xmlns="">Развертывание и свертывание перенаправлений действий</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Можно развернуть перенаправление действия, если выбранное действие перенаправляется на другое действие. Это позволяет следить за перенаправлениями. Эта функция похожа на «Слежение за перенаправлениями» в меню <b>Действие</b> (см. раздел «Навигация»). </p>
+              <h4 class="subHeading" xmlns=""><b>Развертывание и свертывание перенаправлений действий</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Найдите трассировку перенаправления со знаком плюс «+» слева от значка перенаправления.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Щелкните значок «+» или нажмите <b>CTRL</b> и «+» на клавиатуре.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">На графике отобразится следующее действие.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Слева от значка перенаправления появится знак «-». Щелкните значок «-» или нажмите клавиши «CTRL» и «-», чтобы свернуть перенаправление действия.</p>
+                    </content>
+                  </li></ol></ddue:steps><conclusion xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                  <content>
+                    <p xmlns="">
+                      <b>Замечание</b>   Если к одному действию выполняется множество перенаправлений, и вы откроете одно из перенаправлений, то будут отображены действия, ведущие к новому действию из корня. Эти новые действия отобразятся в свернутом виде. Если необходимо просмотреть подробные сведения об этих действиях, разверните их по вертикали, щелкнув значок развертывания в заголовке графика.</p>
+                  </content>
+                </conclusion></div>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Вертикальное развертывание и свертывание действий</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">Viewer скрывает ненужные сведения на графике действия путем свертывания действий. В свернутом действии отдельные трассировки не отображаются. Отображаются только важные перенаправления трассировок. Если нужно просмотреть все трассировки в действии, разверните действие вертикально, щелкнув значок развертывания действия в заголовке графика:</p>
+              <h4 class="subHeading" xmlns=""><b>Вертикальное развертывание и свертывание действий</b></h4><div class="subSection" xmlns=""><ddue:steps xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5"><ol class="ordered" xmlns=""><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Щелкните значок «-» в заголовке действия, чтобы свернуть действие по вертикали.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Обратите внимание, что в действии отображаются только важные трассировки перенаправлений, журналов сообщений, предупреждений и исключений.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Щелкните значок «+» в заголовке действия, чтобы развернуть действие по вертикали.</p>
+                    </content>
+                  </li><li>
+                    <content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+                      <p xmlns="">Обратите внимание, что на графике отображаются все трассировки.</p>
+                    </content>
+                  </li></ol></ddue:steps></div>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Параметры</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">В представлении графика можно выбрать два параметра в меню <b>Параметры</b>.</p>
+              <ul xmlns=""><li class="unordered">
+                  
+                    <b>Показать трассировки границ процесса</b>. Если этот параметр отключен, то трассировки границ процесса на графике игнорируются.<br /><br />
+                </li><li class="unordered">
+                  Показать подробные трассировки, не относящиеся к сообщениям. Если этот параметр отключен, то игнорируются все подробные трассировки, за исключением трассировок сообщений. В большинстве случаев подробные трассировки не очень важны для анализа. Этот параметр полезен, если не требуется анализировать подробные трассировки, и необходимо сосредоточиться на более важных трассировках.<br /><br />
+                </li></ul>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Режим макета</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">В программе Viewer предусмотрены два режима макета: <b>Процесс</b> и <b>Поток</b>. Этот параметр определяет самый большой элемент организации. По умолчанию используется режим макета <b>Процесс</b>, что означает, что действия на графике группируются в процессы. </p>
+            </content></div>
+          <h4 class="subHeading" xmlns="">Список выполнения</h4><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+              <p xmlns="">В раскрывающемся списке можно выбрать процесс или поток для отображения на графике. Например, если есть два файла трассировки двух клиентов (А и Б) и открыта одна служба, и необходимо, чтобы на графике отображались только служба и клиент А, то можно снять выделение с клиента Б в списке.</p>
+            </content></div>
+        </sections></div>
+    </sections></div><h2 class="heading">Просмотр сведений трассировки</h2><div id="sectionSection1" class="section"><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <p xmlns="">Для просмотра сведений трассировки выберите трассировку на панели трассировки. Подробные сведения отобразятся в области сведений. </p>
+      <p xmlns="">Также можно обратиться к разделу <a href="http://go.microsoft.com/fwlink/?LinkId=70880" alt="" target="_blank"><linkText xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">Trace Viewer Tool</linkText></a>, где перечислены все используемые в средстве Trace Viewer значки и их значения.</p>
+    </content><sections xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+      <h3 class="subHeading" xmlns="">Панель трассировки</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Область, расположенная справа вверху в представлении, — это панель трассировки. На ней отображаются трассировки, существующие в выбранном действии, с дополнительной информацией, такой как описание, уровень трассировки, идентификатор потока, имя процесса и др.</p>
+          <p xmlns="">Необработанные данные XML трассировки можно скопировать в буфер обмена, щелкнув правой кнопкой мыши на трассировке и выбрав «Скопировать трассировку в буфер обмена».</p>
+        </content></div>
+      <h3 class="subHeading" xmlns="">Область сведений</h3><div class="subSection" xmlns=""><content xmlns="http://ddue.schemas.microsoft.com/authoring/2003/5">
+          <p xmlns="">Панель в представлении, расположенная справа внизу, — это область сведений. Она содержит три вкладки для просмотра сведений трассировок.</p>
+          <p xmlns="">Представление <b>Форматированное</b> отображает информацию в более структурированном виде. Оно отображает все известные элементы XML в таблицах и деревьях, что облегчает чтение и восприятие информации.</p>
+          <p xmlns="">Представление <b>XML</b> отображает код XML для выбранной трассировки. Это представление поддерживает выделение цветом фона и шрифта. При использовании <b>Поиска</b> результаты выделяются цветом.</p>
+          <p xmlns="">Представление <b>Сообщение</b> отображает часть данных XML, связанную с сообщениями, в трассировках журналов сообщений. Эти данные скрыты при выборе трассировок, не связанных с сообщениями.</p>
+        </content></div>
+    </sections></div><!--[if gte IE 5]>
+			<tool:tip element="languageFilterToolTip" avoidmouse="false"/>
+		<![endif]--></div><div id="footer">
+    <p />
+    <hr />
+    <a href="mailto:sdkfdbk@microsoft.com?subject=Отзыв по документации: Просмотр данных трассировки - 9A1350B1-C8BB-41B0-8D19-87537DF7D554">
+      
+      Отправить комментарии к этому разделу в корпорацию Майкрософт.
+    </a>
+    <br /> <br /> 
+  2010-02-23</div></div></body></html>
