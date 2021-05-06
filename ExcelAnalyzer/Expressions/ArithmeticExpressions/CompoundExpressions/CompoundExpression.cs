@@ -5,15 +5,51 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
     /// <summary>
     /// Составное алгебраическое выражение (Например, сложение, вычитание, умножение и т.д.)
     /// </summary>
-    abstract class ExpressionBase : ArithmeticExpressions.ExpressionBase
+    abstract class CompoundExpression : ExpressionBase
     {
-        private ArithmeticExpressions.ExpressionBase _leftExpression;
-        private ArithmeticExpressions.ExpressionBase _rightExpression;
+        private ExpressionBase _leftExpression;
+        private ExpressionBase _rightExpression;
 
-        protected ExpressionBase(ref Dictionary<string, ICell> cells, UnitCollection left, UnitCollection right)
+        protected CompoundExpression(ref Dictionary<string, ICell> cells, UnitCollection left, UnitCollection right)
         {
-            this._leftExpression = ArithmeticExpressions.Expression.Create(ref cells, left);
-            this._rightExpression = ArithmeticExpressions.Expression.Create(ref cells, right);
+            this._leftExpression = Expression.Create(ref cells, left);
+            this._rightExpression = Expression.Create(ref cells, right);
+        }
+
+        protected string GetLeftFormula()
+        {
+            if (this.LeftExpression.IsError)
+            {
+                return this.LeftExpression.ToString();
+            }
+            else { return this.LeftExpression.Value.ToString(); }
+        }
+
+        protected string GetLeftFormula(string format)
+        {
+            if (this.LeftExpression.IsError)
+            {
+                return this.LeftExpression.ToString(format: format);
+            }
+            else { return this.LeftExpression.Value.ToString(format: format); }
+        }
+
+        protected string GetRightFormula(string format)
+        {
+            if (this.RightExpression.IsError)
+            {
+                return this.RightExpression.Formula();
+            }
+            else { return this.RightExpression.Value.ToString(format: format); }
+        }
+
+        protected string GetRightFormula()
+        {
+            if (this.RightExpression.IsError)
+            {
+                return this.RightExpression.Formula();
+            }
+            else { return this.RightExpression.Value.ToString(); }
         }
 
         /// <summary>
@@ -27,7 +63,7 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
         /// <summary>
         /// Левая часть алгебраического выражения.
         /// </summary>
-        public ArithmeticExpressions.ExpressionBase LeftExpression
+        public ExpressionBase LeftExpression
         {
             get { return this._leftExpression; }
         }
@@ -35,12 +71,12 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
         /// <summary>
         /// Правая часть алгебраического выражения.
         /// </summary>
-        public ArithmeticExpressions.ExpressionBase RightExpression
+        public ExpressionBase RightExpression
         {
             get { return this._rightExpression; }
         }
 
-        public static ArithmeticExpressions.ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
+        public static ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
         {
             int i = array.GetLastIndex();
             if (i > 0)
@@ -64,8 +100,8 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
                     case UnitCollection.MatchType.Sqrt:
                         return SqrtExpression.Create(ref cells, UnitCollection.Create(array, 0, i), UnitCollection.Create(array, i + 1));
                     default:
-                            return ErrorExpression.Create(array);
-                   }
+                        return ErrorExpression.Create(array);
+                }
             }
             else if (i == 0)
             {
@@ -83,7 +119,11 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
                 }
                 else { return ErrorExpression.Create(array); }
             }
-            else { return ArithmeticExpressions.Expression.Create(ref cells, array); }
+            else if (i < 0)
+            {
+                return ErrorExpression.Create(array);
+            }
+            else { return Expression.Create(ref cells, array); }
         }
     }
 }

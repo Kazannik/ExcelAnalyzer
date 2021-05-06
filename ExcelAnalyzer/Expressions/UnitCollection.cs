@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ExcelAnalyzer.Expressions
@@ -60,12 +61,12 @@ namespace ExcelAnalyzer.Expressions
 
         public BaseUnit First
         {
-            get { return this.List[0]; }
+            get { return this.List.First(); }
         }
 
         public BaseUnit Last
         {
-            get { return this.List[this.List.Count - 1]; }
+            get { return this.List.Last(); }
         }
 
         public BaseUnit this[int index]
@@ -74,10 +75,74 @@ namespace ExcelAnalyzer.Expressions
         }
 
         /// <summary>
+        /// Выражение содержит ошибку.
+        /// </summary>
+        public bool IsError
+        {
+            get
+            {
+                bool first = IsFirstError();
+                if (first) { return true; }
+                bool last = IsLastError();
+                if (last) { return true; }
+                return false;
+            }
+        }
+
+        public bool IsContainsError()
+        {
+            bool containsErr = (this.List.Count(x => x.Action < 0)) > 0;
+            return containsErr;
+        }
+        public bool IsFirstError()
+        {
+            bool firstErr = this.List.Count > 0 && this.First.IsArithmetic || this.First.IsBoolean || this.First.IsLogic;
+            return firstErr;
+        }
+        public bool IsLastError()
+        {
+            bool lastErr = this.List.Count > 0 && this.Last.IsArithmetic || this.Last.IsBoolean || this.Last.IsLogic;
+            return lastErr;
+        }
+
+        /// <summary>
+        /// Алгебраическое выражение.
+        /// </summary>
+        public bool IsArithmetic
+        {
+            get
+            {
+                return !IsLogic && (this.List.Count(x => x.Action >= 1 && x.Action <= 6)) > 0;
+            }
+        }
+
+        /// <summary>
+        /// Логическое выражение.
+        /// </summary>
+        public bool IsLogic
+        {
+            get
+            {
+                return !IsBoolean && (this.List.Count(x => x.Action >= 7 && x.Action <= 12)) > 0;
+            }
+        }
+
+        /// <summary>
+        /// Булевое логическое выражение.
+        /// </summary>
+        public bool IsBoolean
+        {
+            get
+            {
+                return (this.List.Count(x => x.Action >= 13 && x.Action <= 16)) > 0;
+            }
+        }
+
+        /// <summary>
         /// Выражение целиком заключено в скобки (X+Y).
         /// </summary>
         public bool IsAssociation
-        {
+        { // Значение 0 указывает на то, что открывающаяся скобка имеет нулевую позицию, а значит все выражение заключено в скобки.
             get { return OpenIndex() == 0; }
         }
 
@@ -90,11 +155,35 @@ namespace ExcelAnalyzer.Expressions
         }
 
         /// <summary>
+        /// Орицательное выражение заключенное в скобки Not(... )
+        /// </summary>
+        public bool IsNotAssociation
+        {
+            get { return OpenIndex() == 1 && First.UnitType == MatchType.Not; }
+        }
+
+        /// <summary>
         /// Положительное выражение заключенное в скобки +(X+Y)
         /// </summary>
         public bool IsPositiveAssociation
         {
             get { return OpenIndex() == 1 && First.UnitType == MatchType.Addition; }
+        }
+
+        public bool IsAssociationError
+        {
+            get
+            {
+                int A = 0;
+                bool association = false;
+                for (int i = this.List.Count - 1; i >= 0; i--)
+                {
+                    if (this.List[i].UnitType == MatchType.Close) { A--; }
+                    if (this.List[i].UnitType == MatchType.Open) { A++; }
+                    if (A == 0) { association = true; }
+                }
+                return association & (A!=0);
+            }          
         }
 
         public int Count
@@ -120,27 +209,30 @@ namespace ExcelAnalyzer.Expressions
 
         public int GetLastIndex()
         {
-            for (int i = 0; i <= 16; i++)
+            IEnumerable<int> array = from BaseUnit U in this.List where U.Action > 0 orderby U.Action descending group U by U.Action into G select G.First().Action;
+            bool association = false;
+            foreach (int i in array)
             {
                 int F = GetLastIndex(i);
+                if (F == -2) { association = true; }
                 if (F >= 0) { return F; }
             }
-            return -1;
+            if (association) { return -2; }
+            else { return -1; }
         }
 
         public int GetLastIndex(int action)
         {
             int A = 0;
+            bool association = false;
             for (int i = this.Count - 1; i >= 0; i--)
             {
-                if (this.List[i].UnitType == MatchType.Close) { A--; }
-                if (this.List[i].UnitType == MatchType.Open) { A++; }
-                if (A == 0 && this.List[i].Action == action)
-                {
-                    return i;
-                }
+                if (this.List[i].UnitType == MatchType.Close) { A--; association = true;}
+                if (this.List[i].UnitType == MatchType.Open) { A++; association = true; }
+                if (A == 0 && this.List[i].Action == action) { return i; }
             }
-            return -1;
+            if (association) { return -2; }
+            else { return -1; }
         }
 
         IEnumerator<BaseUnit> IEnumerable<UnitCollection.BaseUnit>.GetEnumerator()
@@ -159,21 +251,30 @@ namespace ExcelAnalyzer.Expressions
         public abstract class BaseUnit
         {
             private UnitCollection parent;
-
             /// <summary>
             /// Тип элемента.
             /// </summary>
-            public abstract MatchType UnitType { get; }
+            public MatchType UnitType { get; }
             /// <summary>
             /// Приоритет математического действия.
             /// </summary>
-            public abstract int Action { get; }
-
+            public int Action { get; }
+            /// <summary>
+            /// Признак оператора арифметического выражения.
+            /// </summary>
+            public bool IsArithmetic { get; }
+            /// <summary>
+            /// Признак оператора булевого выражения.
+            /// </summary>
+            public bool IsBoolean { get; }
+            /// <summary>
+            /// Признак оператора логического выражения.
+            /// </summary>
+            public bool IsLogic { get; }            
             /// <summary>
             /// Строковое значение элемента.
             /// </summary>
             public string Value { get; }
-
             /// <summary>
             /// Индекс элемента в родительской коллекции.
             /// </summary>
@@ -182,661 +283,396 @@ namespace ExcelAnalyzer.Expressions
                 get { return this.parent.List.IndexOf(this); }
             }
 
-            protected BaseUnit(UnitCollection parent, string value)
+            protected BaseUnit(UnitCollection parent, string value, MatchType type, int action, bool arithmetic, bool boolean, bool logic)
             {
                 this.parent = parent;
                 this.Value = value;
+                this.UnitType = type;
+                this.Action = action;
+                this.IsArithmetic = arithmetic;
+                this.IsBoolean = boolean;
+                this.IsLogic = logic;
             }
 
             public static BaseUnit Create(UnitCollection parent, BaseUnit unit)
             {
-                BaseUnit result;
                 switch (unit.UnitType)
                 {
                     case MatchType.Addition:
-                        result = new AdditionUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new AdditionUnit(parent: parent, value: unit.Value);
                     case MatchType.And:
-                        result = new AndUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new AndUnit(parent: parent, value: unit.Value);
                     case MatchType.Cell:
-                        result = new CellUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new CellUnit(parent: parent, value: unit.Value);
                     case MatchType.Close:
-                        result = new CloseUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new CloseUnit(parent: parent, value: unit.Value);
                     case MatchType.Decimal:
-                        result = new DecimalUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new DecimalUnit(parent: parent, value: unit.Value);
                     case MatchType.Division:
-                        result = new DivisionUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new DivisionUnit(parent: parent, value: unit.Value);
                     case MatchType.Equal:
-                        result = new EqualUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new EqualUnit(parent: parent, value: unit.Value);
+                    case MatchType.False:
+                        return new FalseUnit(parent: parent, value: unit.Value);
                     case MatchType.Fix:
-                        result = new FixUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new FixUnit(parent: parent, value: unit.Value);
                     case MatchType.Less:
-                        result = new LessUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new LessUnit(parent: parent, value: unit.Value);
                     case MatchType.LessOrEqual:
-                        result = new LessOrEqualUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new LessOrEqualUnit(parent: parent, value: unit.Value);
                     case MatchType.Mod:
-                        result = new ModUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new ModUnit(parent: parent, value: unit.Value);
                     case MatchType.More:
-                        result = new MoreUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new MoreUnit(parent: parent, value: unit.Value);
                     case MatchType.MoreOrEqual:
-                        result = new MoreOrEqualUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new MoreOrEqualUnit(parent: parent, value: unit.Value);
                     case MatchType.Multiplication:
-                        result = new MultiplicationUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new MultiplicationUnit(parent: parent, value: unit.Value);
                     case MatchType.Negative:
-                        result = new NegativeUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new NegativeUnit(parent: parent, value: unit.Value);
                     case MatchType.Not:
-                        result = new NotUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new NotUnit(parent: parent, value: unit.Value);
                     case MatchType.NotEqual:
-                        result = new NotEqualUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new NotEqualUnit(parent: parent, value: unit.Value);
                     case MatchType.Open:
-                        result = new OpenUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new OpenUnit(parent: parent, value: unit.Value);
                     case MatchType.Or:
-                        result = new OrUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new OrUnit(parent: parent, value: unit.Value);
                     case MatchType.Power:
-                        result = new PowerUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new PowerUnit(parent: parent, value: unit.Value);
                     case MatchType.Sqrt:
-                        result = new SqrtUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new SqrtUnit(parent: parent, value: unit.Value);
                     case MatchType.Subtracting:
-                        result = new SubtractingUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new SubtractingUnit(parent: parent, value: unit.Value);
+                    case MatchType.True:
+                        return new TrueUnit(parent: parent, value: unit.Value);
                     case MatchType.Xor:
-                        result = new XorUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new XorUnit(parent: parent, value: unit.Value);
                     default:
-                        result = new DecimalUnit(parent: parent, value: unit.Value);
-                        break;
+                        return new DecimalUnit(parent: parent, value: unit.Value);
                 }
-                return result;
             }
 
             public static BaseUnit Create(UnitCollection parent, Match match)
             {
                 MatchType t = GetMatchType(match);
-                BaseUnit result;
                 switch (t)
                 {
                     case MatchType.Addition:
-                        result = new AdditionUnit(parent: parent, value: match.Value);
-                        break;
+                        return new AdditionUnit(parent: parent, value: match.Value);
                     case MatchType.And:
-                        result = new AndUnit(parent: parent, value: match.Value);
-                        break;
+                        return new AndUnit(parent: parent, value: match.Value);
                     case MatchType.Cell:
-                        result = new CellUnit(parent: parent, value: match.Value);
-                        break;
+                        return new CellUnit(parent: parent, value: match.Value);
                     case MatchType.Close:
-                        result = new CloseUnit(parent: parent, value: match.Value);
-                        break;
+                        return new CloseUnit(parent: parent, value: match.Value);
                     case MatchType.Decimal:
-                        result = new DecimalUnit(parent: parent, value: match.Value);
-                        break;
+                        return new DecimalUnit(parent: parent, value: match.Value);
                     case MatchType.Division:
-                        result = new DivisionUnit(parent: parent, value: match.Value);
-                        break;
+                        return new DivisionUnit(parent: parent, value: match.Value);
                     case MatchType.Equal:
-                        result = new EqualUnit(parent: parent, value: match.Value);
-                        break;
+                        return new EqualUnit(parent: parent, value: match.Value);
+                    case MatchType.False:
+                        return new FalseUnit(parent: parent, value: match.Value);
                     case MatchType.Fix:
-                        result = new FixUnit(parent: parent, value: match.Value);
-                        break;
+                        return new FixUnit(parent: parent, value: match.Value);
                     case MatchType.Less:
-                        result = new LessUnit(parent: parent, value: match.Value);
-                        break;
+                        return new LessUnit(parent: parent, value: match.Value);
                     case MatchType.LessOrEqual:
-                        result = new LessOrEqualUnit(parent: parent, value: match.Value);
-                        break;
+                        return new LessOrEqualUnit(parent: parent, value: match.Value);
                     case MatchType.Mod:
-                        result = new ModUnit(parent: parent, value: match.Value);
-                        break;
+                        return new ModUnit(parent: parent, value: match.Value);
                     case MatchType.More:
-                        result = new MoreUnit(parent: parent, value: match.Value);
-                        break;
+                        return new MoreUnit(parent: parent, value: match.Value);
                     case MatchType.MoreOrEqual:
-                        result = new MoreOrEqualUnit(parent: parent, value: match.Value);
-                        break;
+                        return new MoreOrEqualUnit(parent: parent, value: match.Value);
                     case MatchType.Multiplication:
-                        result = new MultiplicationUnit(parent: parent, value: match.Value);
-                        break;
+                        return new MultiplicationUnit(parent: parent, value: match.Value);
                     case MatchType.Negative:
-                        result = new NegativeUnit(parent: parent, value: match.Value);
-                        break;
+                        return new NegativeUnit(parent: parent, value: match.Value);
                     case MatchType.Not:
-                        result = new NotUnit(parent: parent, value: match.Value);
-                        break;
+                        return new NotUnit(parent: parent, value: match.Value);
                     case MatchType.NotEqual:
-                        result = new NotEqualUnit(parent: parent, value: match.Value);
-                        break;
+                        return new NotEqualUnit(parent: parent, value: match.Value);
                     case MatchType.Open:
-                        result = new OpenUnit(parent: parent, value: match.Value);
-                        break;
+                        return new OpenUnit(parent: parent, value: match.Value);
                     case MatchType.Or:
-                        result = new OrUnit(parent: parent, value: match.Value);
-                        break;
+                        return new OrUnit(parent: parent, value: match.Value);
                     case MatchType.Power:
-                        result = new PowerUnit(parent: parent, value: match.Value);
-                        break;
+                        return new PowerUnit(parent: parent, value: match.Value);
                     case MatchType.Sqrt:
-                        result = new SqrtUnit(parent: parent, value: match.Value);
-                        break;
+                        return new SqrtUnit(parent: parent, value: match.Value);
                     case MatchType.Subtracting:
-                        result = new SubtractingUnit(parent: parent, value: match.Value);
-                        break;
+                        return new SubtractingUnit(parent: parent, value: match.Value);
+                    case MatchType.True:
+                        return new TrueUnit(parent: parent, value: match.Value);
                     case MatchType.Xor:
-                        result = new XorUnit(parent: parent, value: match.Value);
-                        break;
+                        return new XorUnit(parent: parent, value: match.Value);
                     default:
-                        result = new DecimalUnit(parent: parent, value: match.Value);
-                        break;
+                        return new ErrorUnit(parent: parent, value: match.Value);
                 }
-                return result;
             }
         }
 
         /// <summary>
-        /// Ссылка на ячейку.
+        /// Ошибочный знак.(-1)
+        /// </summary>
+        class ErrorUnit : BaseUnit
+        {
+            public ErrorUnit(UnitCollection parent, string value) : 
+                base(parent: parent, value: value, 
+                    type: MatchType.Error, action:-1, arithmetic: false, boolean:false, logic: false)
+            { }
+        }
+        /// <summary>
+        /// Ссылка на ячейку.(0)
         /// </summary>
         class CellUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Cell; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 0; }
-            }
-
-            public CellUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public CellUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Cell, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Числовой показатель.
+        /// Числовой показатель.(0)
         /// </summary>
         class DecimalUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Decimal; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 0; }
-            }
-
-            public DecimalUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public DecimalUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Decimal, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Закрывающаяся скобка.
+        /// Закрывающаяся скобка.(0)
         /// </summary>
         class CloseUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Close; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 0; }
-            }
-
-            public CloseUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public CloseUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Close, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Открывающаяся скобка.
+        /// Открывающаяся скобка.(0)
         /// </summary>
         class OpenUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Open; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 0; }
-            }
-            public OpenUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public OpenUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Open, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак степени числа.
+        /// Знак степени числа.(1)
         /// </summary>
         class PowerUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Power; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 1; }
-            }
-            public PowerUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public PowerUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Power, action: 1, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак корня числа.
+        /// Знак корня числа.(1)
         /// </summary>
         class SqrtUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Sqrt; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 1; }
-            }
-            public SqrtUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public SqrtUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Sqrt, action: 1, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак отрицательного числа.
+        /// Знак отрицательного числа.(2)
         /// </summary>
         class NegativeUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Negative; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 2; }
-            }
-            public NegativeUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public NegativeUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Negative, action: 2, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак умножения.
+        /// Знак умножения.(3)
         /// </summary>
         class MultiplicationUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Multiplication; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 3; }
-            }
-            public MultiplicationUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public MultiplicationUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Multiplication, action: 3, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак деления.
+        /// Знак деления.(3)
         /// </summary>
         class DivisionUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Division; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 3; }
-            }
-            public DivisionUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public DivisionUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Division, action: 3, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Вычисление целой части от деления.
+        /// Вычисление целой части от деления.(4)
         /// </summary>
         class FixUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Fix; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 4; }
-            }
-            public FixUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public FixUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Fix, action: 4, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Вычисление остатка от деления.
+        /// Вычисление остатка от деления.(5)
         /// </summary>
         class ModUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Mod; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 5; }
-            }
-            public ModUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public ModUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Mod, action: 5, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак сложения.
+        /// Знак сложения.(6)
         /// </summary>
         class AdditionUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Addition; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 6; }
-            }
-            public AdditionUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public AdditionUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Addition, action: 6, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак вычитания.
+        /// Знак вычитания.(6)
         /// </summary>
         class SubtractingUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Subtracting; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 6; }
-            }
-            public SubtractingUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public SubtractingUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Subtracting, action: 6, arithmetic: true, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак равно.
+        /// Знак равно.(7)
         /// </summary>
         class EqualUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Equal; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 7; }
-            }
-            public EqualUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public EqualUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Equal, action: 7, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак не равно (!=).
+        /// Знак не равно (!=).(8)
         /// </summary>
         class NotEqualUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.NotEqual; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 8; }
-            }
-            public NotEqualUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public NotEqualUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.NotEqual, action: 8, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак меньше (&lt;).
+        /// Знак меньше (&lt;).(9)
         /// </summary>
         class LessUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Less; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 9; }
-            }
-            public LessUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public LessUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Less, action: 9, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак больше (>).
+        /// Знак больше (>).(10)
         /// </summary>
         class MoreUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.More; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 10; }
-            }
-            public MoreUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public MoreUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.More, action: 10, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак меньше или равно (&lt;=).
+        /// Знак меньше или равно (&lt;=).(11)
         /// </summary>
         class LessOrEqualUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.LessOrEqual; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 11; }
-            }
-            public LessOrEqualUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public LessOrEqualUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.LessOrEqual, action: 11, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак больше или равно (>=).
+        /// Знак больше или равно (>=).(12)
         /// </summary>
         class MoreOrEqualUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.MoreOrEqual; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 12; }
-            }
-            public MoreOrEqualUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public MoreOrEqualUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.MoreOrEqual, action: 12, arithmetic: false, boolean: false, logic: true)
+            { }
         }
         /// <summary>
-        /// Знак логического отрицания (NOT).
+        /// Знак положительного логического выражения (True).(0)
+        /// </summary>
+        class TrueUnit : BaseUnit
+        {
+            public TrueUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.True, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
+        }
+        /// <summary>
+        /// Знак отрицательного логического выражения (False).(0)
+        /// </summary>
+        class FalseUnit : BaseUnit
+        {
+            public FalseUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.False, action: 0, arithmetic: false, boolean: false, logic: false)
+            { }
+        }
+        /// <summary>
+        /// Знак логического отрицания (NOT).(13)
         /// </summary>
         class NotUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Not; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 13; }
-            }
-            public NotUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public NotUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Not, action: 13, arithmetic: false, boolean: false, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак логического сложения (AND).
+        /// Знак логического сложения (AND).(14)
         /// </summary>
         class AndUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.And; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 14; }
-            }
-            public AndUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public AndUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.And, action: 14, arithmetic: false, boolean: true, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак логического ИЛИ (OR).
+        /// Знак логического ИЛИ (OR).(15)
         /// </summary>
         class OrUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Or; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 15; }
-            }
-            public OrUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public OrUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Or, action: 15, arithmetic: false, boolean: true, logic: false)
+            { }
         }
         /// <summary>
-        /// Знак исключающегося ИЛИ (XOR).
+        /// Знак исключающегося ИЛИ (XOR).(16)
         /// </summary>
         class XorUnit : BaseUnit
         {
-            /// <summary>
-            /// Тип элемента.
-            /// </summary>
-            public override MatchType UnitType
-            {
-                get { return MatchType.Xor; }
-            }
-            /// <summary>
-            /// Приоритет математического действия.
-            /// </summary>
-            public override int Action
-            {
-                get { return 16; }
-            }
-            public XorUnit(UnitCollection parent, string value) : base(parent: parent, value: value) { }
+            public XorUnit(UnitCollection parent, string value) :
+                base(parent: parent, value: value,
+                    type: MatchType.Xor, action: 16, arithmetic: false, boolean: true, logic: false)
+            { }
         }
 
         /// <summary>
@@ -848,6 +684,54 @@ namespace ExcelAnalyzer.Expressions
             if (ArithmeticExpression.regexCell != null && ArithmeticExpression.regexCell.IsMatch(match.Value))
             {
                 return MatchType.Cell;
+            }
+            else if (BooleanExpression.regexTrue.IsMatch(match.Value))
+            {
+                return MatchType.True;
+            }
+            else if (BooleanExpression.regexFalse.IsMatch(match.Value))
+            {
+                return MatchType.False;
+            }
+            else if (BooleanExpression.regexAnd.IsMatch(match.Value))
+            {
+                return MatchType.And;
+            }
+            else if (BooleanExpression.regexXor.IsMatch(match.Value))
+            {
+                return MatchType.Xor;
+            }
+            else if (BooleanExpression.regexOr.IsMatch(match.Value))
+            {
+                return MatchType.Or;
+            }
+            else if (LogicExpression.regexLessOrEqual.IsMatch(match.Value))
+            {
+                return MatchType.LessOrEqual;
+            }
+            else if (LogicExpression.regexMoreOrEqual.IsMatch(match.Value))
+            {
+                return MatchType.MoreOrEqual;
+            }
+            else if (LogicExpression.regexNotEqual.IsMatch(match.Value))
+            {
+                return MatchType.NotEqual;
+            }
+            else if (LogicExpression.regexEqual.IsMatch(match.Value))
+            {
+                return MatchType.Equal;
+            }
+            else if (LogicExpression.regexLess.IsMatch(match.Value))
+            {
+                return MatchType.Less;
+            }
+            else if (LogicExpression.regexMore.IsMatch(match.Value))
+            {
+                return MatchType.More;
+            }
+            else if (BooleanExpression.regexNot.IsMatch(match.Value))
+            {
+                return MatchType.Not;
             }
             else if (ArithmeticExpression.regexDecimal.IsMatch(match.Value))
             {
@@ -892,50 +776,10 @@ namespace ExcelAnalyzer.Expressions
             else if (ArithmeticExpression.regexSqrt.IsMatch(match.Value))
             {
                 return MatchType.Sqrt;
-            }
-            //else if (LogicExpression.regexAnd.IsMatch(match.Value))
-            //{
-            //    return MatchType.And;
-            //}
-            //else if (LogicExpression.regexEqual.IsMatch(match.Value))
-            //{
-            //    return MatchType.Equal;
-            //}
-            //else if (LogicExpression.regexLess.IsMatch(match.Value))
-            //{
-            //    return MatchType.Less;
-            //}
-            //else if (LogicExpression.regexLessOrEqual.IsMatch(match.Value))
-            //{
-            //    return MatchType.LessOrEqual;
-            //}
-            //else if (LogicExpression.regexMore.IsMatch(match.Value))
-            //{
-            //    return MatchType.More;
-            //}
-            //else if (LogicExpression.regexMoreOrEqual.IsMatch(match.Value))
-            //{
-            //    return MatchType.MoreOrEqual;
-            //}
-            //else if (LogicExpression.regexNot.IsMatch(match.Value))
-            //{
-            //    return MatchType.Not;
-            //}
-            //else if (LogicExpression.regexNotEqual.IsMatch(match.Value))
-            //{
-            //    return MatchType.NotEqual;
-            //}
-            //else if (LogicExpression.regexOr.IsMatch(match.Value))
-            //{
-            //    return MatchType.Or;
-            //}
-            //else if (LogicExpression.regexXor.IsMatch(match.Value))
-            //{
-            //    return MatchType.Xor;
-            //}
+            }            
             else
             {
-                return MatchType.Decimal;
+                return MatchType.Error;
             }
         }
 
@@ -944,6 +788,10 @@ namespace ExcelAnalyzer.Expressions
         /// </summary>
         public enum MatchType : int
         {
+            /// <summary>
+            /// Значение, содержащее ошибку.
+            /// </summary>
+            Error = -1,
             /// <summary>
             /// Ссылка на ячейку.
             /// </summary>
@@ -1021,21 +869,29 @@ namespace ExcelAnalyzer.Expressions
             /// </summary>
             MoreOrEqual = 18,
             /// <summary>
+            /// Положительное логическое выражение.
+            /// </summary>
+            True = 19,
+            /// <summary>
+            /// Отрицательное логическое выражение.
+            /// </summary>
+            False = 20,
+            /// <summary>
             /// Логическое отрицание [not].
             /// </summary>
-            Not = 19,
+            Not = 21,
             /// <summary>
             /// Логическое сложение [and].
             /// </summary>
-            And = 20,
+            And = 22,
             /// <summary>
             /// Логическое ИЛИ [or].
             /// </summary>
-            Or = 21,
+            Or = 23,
             /// <summary>
             /// Исключающее ИЛИ [xor].
             /// </summary>
-            Xor = 22
+            Xor = 24
         }
     }
 }

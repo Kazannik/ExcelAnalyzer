@@ -7,21 +7,13 @@ using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Expressions
 {
-    public class BooleanExpression : ExpressionBase
+    public class BooleanExpression : BooleanExpressions.ExpressionBase
     {
-        private ExpressionBase _expression;
+        private LogicExpressions.ILogicExpression _expression;
         private Dictionary<string, ArithmeticExpressions.ICell> _collection;
 
         #region РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ
 
-        /// <summary>
-        /// Равно [=].
-        /// </summary>
-        private const string csEqual = @"\x3d"; // "="
-        /// <summary>
-        /// Не равно [&lt;>],[!=].
-        /// </summary>
-        private const string csNotEqual = @"((\x3c\x3e)|(\x21\x3d))"; // "<>" / "!=" 
         /// <summary>
         /// Логическое отрицание (NOT).
         /// </summary>
@@ -37,26 +29,28 @@ namespace ExcelAnalyzer.Expressions
         /// <summary>
         /// Исключающее ИЛИ (XOR).
         /// </summary>
-        private const string csXor = @"xor"; // "xor"
+        private const string csXor = @"(xor)"; // "xor"
+
+        /// <summary>
+        /// Положительное выражение (True).
+        /// </summary>
+        private const string csTrue = @"(true)"; // "true"
+
+        /// <summary>
+        /// Отрицательное выражение (False).
+        /// </summary>
+        private const string csFalse = @"(false)"; // "false"
+
 
         /// <summary>
         /// Коллекция логических знаков.
         /// </summary>
-        private const string csLogic = csAnd + @"|" + csEqual + @"|" + csNot + @"|" + csNotEqual + @"|" + csOr + @"|" + csXor;
+        private const string csBoolean = csAnd + @"|" + csNot + @"|" + csOr + @"|" + csXor + @"|" + csTrue + @"|" + csFalse;
 
         /// <summary>
         /// Регулярное выражение для поиска всех компонентов, включая ячейки.
         /// </summary>
         private static Regex regexAll;
-
-        /// <summary>
-        /// Регулярное выражение для поиска знака равно [=].
-        /// </summary>
-        internal static Regex regexEqual = new Regex(csEqual, ArithmeticExpression.options); // "="
-        /// <summary>
-        /// Регулярное выражение для поиска знака не равно [&lt;>].
-        /// </summary>
-        internal static Regex regexNotEqual = new Regex(csNotEqual, ArithmeticExpression.options); // "<>" / "!="
         /// <summary>
         /// Регулярное выражение для поиска знака логического отрицания [NOT].
         /// </summary>
@@ -73,8 +67,49 @@ namespace ExcelAnalyzer.Expressions
         /// Регулярное выражение для поиска знака исключающего или [XOR].
         /// </summary>
         internal static Regex regexXor = new Regex(csXor, ArithmeticExpression.options); // "xor"
-
+        /// <summary>
+        /// Регулярное выражение для поиска знака положительного выражения [True].
+        /// </summary>
+        internal static Regex regexTrue = new Regex(csTrue, ArithmeticExpression.options); // "true"
+        /// <summary>
+        /// Регулярное выражение для поиска знака отрицательного выражения [False].
+        /// </summary>
+        internal static Regex regexFalse = new Regex(csFalse, ArithmeticExpression.options); // "false"
+        
         #endregion
+
+        /// <summary>
+        /// Начало сообщение об ошибке "[Error:".
+        /// </summary>
+        public static string SymbolStartError { get; set; }
+        /// <summary>
+        /// Окончание сообщения об ошибке "]".
+        /// </summary>
+        public static string SymbolEndError { get; set; }
+        /// <summary>
+        /// AND.
+        /// </summary>
+        public static string SymbolAnd { get; set; }
+        /// <summary>
+        /// OR.
+        /// </summary>
+        public static string SymbolOr { get; set; }
+        /// <summary>
+        /// XOR.
+        /// </summary>
+        public static string SymbolXor { get; set; }
+        /// <summary>
+        /// NOT.
+        /// </summary>
+        public static string SymbolNot { get; set; }
+        /// <summary>
+        /// True.
+        /// </summary>
+        public static string SymbolTrue { get; set; }
+        /// <summary>
+        /// False.
+        /// </summary>
+        public static string SymbolFalse { get; set; }
 
         /// <summary>
         /// Значение логического выражения.
@@ -100,35 +135,79 @@ namespace ExcelAnalyzer.Expressions
             return this._expression.Formula();
         }
 
+        /// <summary>
+        /// Короткое строковое представление логического выражения.
+        /// </summary>
+        /// <param name="format">Формат отображения результата алгебраического выражения.</param>
+        public override string ToString(string format)
+        {
+            return this._expression.ToString(format: format);
+        }
+
+        public bool Contains(string key)
+        {
+            return this._collection.ContainsKey(key);
+        }
+
+        public string[] Keys
+        {
+            get { return this._collection.Keys.ToArray(); }
+        }
+
+        public ArithmeticExpressions.ICell this[string key]
+        {
+            get { return this._collection[key]; }
+        }
+
+        public int Count
+        {
+            get { return this._collection.Count; }
+        }
+        
         private BooleanExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = cells;
-            this._expression = ExpressionBase.Create(ref this._collection, array);
+            this._expression = BooleanExpressions.Expression.Create(ref this._collection, array);
         }
 
         private BooleanExpression(UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
-            this._expression = LogicExpressions.Expression.Create(ref this._collection, array);
+            this._expression = BooleanExpressions.Expression.Create(ref this._collection, array);
         }
 
-        public static LogicExpression Create(string text)
+        internal static void InitializeSymbols()
+        {
+            LogicExpression.InitializeSymbols();
+
+            SymbolStartError = ArithmeticExpression.SymbolStartError;
+            SymbolEndError = ArithmeticExpression.SymbolEndError;
+
+            SymbolAnd = @"AND";
+            SymbolOr = @"OR";
+            SymbolXor = @"XOR";
+            SymbolNot = @"NOT";
+            SymbolTrue = "TRUE";
+            SymbolFalse = @"FALSE";
+        }
+
+        public static BooleanExpression Create(string text)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"(" + csLogic + ArithmeticExpression.csArithmetic + @"|" + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose + @")", ArithmeticExpression.options);
+            regexAll = new Regex(LogicExpression.csLogic + @"|" + csBoolean + @"|" + ArithmeticExpression.csArithmetic + @"|"  +  ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose, ArithmeticExpression.options);
             UnitCollection collection = UnitCollection.Create(ArithmeticExpression.regexAll.Matches(text));
-
-            return new ArithmeticExpression(collection);
+            return new BooleanExpression(collection);
         }
 
-        public static LogicExpression Create(string text, string cellpattern)
+        public static BooleanExpression Create(string text, string cellpattern)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"((" + cellpattern + @")|" + csLogic + ArithmeticExpression.csArithmetic + @"|" + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose + @")", ArithmeticExpression.options);
+            regexAll = new Regex(@"(" + cellpattern + @")|" + LogicExpression.csLogic + @"|" + csBoolean + @"|" + ArithmeticExpression.csArithmetic + @"|" + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose, ArithmeticExpression.options);
             ArithmeticExpression.regexCell = new Regex(@"(" + cellpattern + @")", ArithmeticExpression.options);
             UnitCollection collection = UnitCollection.Create(regexAll.Matches(text));
-
-            return new ArithmeticExpression(collection);
+            return new BooleanExpression(collection);
         }
     }
 }

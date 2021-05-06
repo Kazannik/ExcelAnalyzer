@@ -6,7 +6,7 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
     /// <summary>
     /// Число, возведенное в степень.
     /// </summary>
-    class PowerExpression : ExpressionBase
+    class PowerExpression : CompoundExpression
     {
         private PowerExpression(ref Dictionary<string, ICell> cells, UnitCollection left, UnitCollection right) : base(ref cells, left, right) { }
 
@@ -23,7 +23,23 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions.CompoundExpressions
         /// </summary>
         public override string Formula()
         {
-            return this.LeftExpression.Formula() + " pow " + this.RightExpression.Formula();
+            return this.LeftExpression.Formula() + " " + ArithmeticExpression.SymbolPower + " " + this.RightExpression.Formula();
+        }
+
+        /// <summary>
+        /// Короткое строковое представление выражения.
+        /// </summary>
+        /// <param name="format">Формат отображения результата алгебраического выражения.</param>
+        public override string ToString(string format)
+        {
+            if (IsFormat(format: format))
+            {
+                return GetLeftFormula(format: format) + @" " + ArithmeticExpression.SymbolPower + @" " + GetRightFormula(format: format);
+            }
+            else
+            {
+                return GetLeftFormula() + @" " + ArithmeticExpression.SymbolPower + @" " + GetRightFormula();
+            }
         }
 
         public static PowerExpression Create(ref Dictionary<string, ICell> cells, UnitCollection left, UnitCollection right)

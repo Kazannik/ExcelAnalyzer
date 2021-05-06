@@ -9,7 +9,7 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions
     {
         public static ExpressionBase Create(ref Dictionary<string, ICell> cells, UnitCollection array)
         {
-            if (array.Count == 0)
+            if (array.Count == 0 || array.IsError)
             { // Элементы отсуствуют.
                 return ErrorExpression.Create(array);
             }
@@ -64,72 +64,8 @@ namespace ExcelAnalyzer.Expressions.ArithmeticExpressions
             }
             else
             { // Составное выражение.
-                return CompoundExpressions.ExpressionBase.Create(ref cells, array);
+                return CompoundExpressions.CompoundExpression.Create(ref cells, array);
             }
-        }
-
-        /// <summary>
-        /// Определение вида алгебраического действия.
-        /// </summary>
-        /// <param name="value">Строковое значение.</param>
-        protected static MixType GetMixType(string value)
-        {
-            if (ArithmeticExpression.regexAddition.IsMatch(value))
-            { return MixType.Addition; }
-            else if (ArithmeticExpression.regexDivision.IsMatch(value))
-            { return MixType.Division; }
-            else if (ArithmeticExpression.regexMultiplication.IsMatch(value))
-            { return MixType.Multiplication; }
-            else if (ArithmeticExpression.regexSubtracting.IsMatch(value))
-            { return MixType.Subtracting; }
-            else if (ArithmeticExpression.regexFix.IsMatch(value))
-            { return MixType.Fix; }
-            else if (ArithmeticExpression.regexMod.IsMatch(value))
-            { return MixType.Mod; }
-            else { return MixType.Default; }
-        }
-
-        /// <summary>
-        /// Вид алгебраического действия.
-        /// </summary>
-        public enum MixType : int
-        {
-            /// <summary>
-            /// Действие не определено.
-            /// </summary>
-            Default = -1,
-            /// <summary>
-            /// Сложение.
-            /// </summary>
-            Addition = 2,
-            /// <summary>
-            /// Вычитание.
-            /// </summary>
-            Subtracting = 3,
-            /// <summary>
-            /// Умножение.
-            /// </summary>
-            Multiplication = 4,
-            /// <summary>
-            /// Деление.
-            /// </summary>    
-            Division = 5,
-            /// <summary>
-            /// Целая часть в результате деления.
-            /// </summary>    
-            Fix = 6,
-            /// <summary>
-            /// Остаток от деления.
-            /// </summary>    
-            Mod = 7,
-            /// <summary>
-            /// Возведение в степень.
-            /// </summary>    
-            Power = 8,
-            /// <summary>
-            /// Извлечение корня.
-            /// </summary>    
-            Sqrt = 9
         }
     }
 }

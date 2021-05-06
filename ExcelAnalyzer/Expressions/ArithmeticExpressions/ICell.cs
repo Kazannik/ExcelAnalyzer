@@ -6,6 +6,16 @@
     public interface ICell
     {
         /// <summary>
+        /// Формат отображения формулы числа.
+        /// </summary>
+        string Format { get; set; }
+
+        /// <summary>
+        /// Формат отображения формулы ячейки.
+        /// </summary>
+        string FormulaFormat { get; set; }
+
+        /// <summary>
         /// Строковое представление алгебраического выражения.
         /// </summary>
         string Formula();

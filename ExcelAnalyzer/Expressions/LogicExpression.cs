@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ExcelAnalyzer.Expressions
@@ -6,13 +7,13 @@ namespace ExcelAnalyzer.Expressions
     /// <summary>
     /// Логическое выражение.
     /// </summary>
-    public class LogicExpression : LogicExpressions.Expression
+    public class LogicExpression : LogicExpressions.ExpressionBase
     {
-        private Expression _expression;
+        private LogicExpressions.ExpressionBase _expression;
         private Dictionary<string, ArithmeticExpressions.ICell> _collection;
 
         #region РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ
-
+                
         /// <summary>
         /// Равно [=].
         /// </summary>
@@ -41,13 +42,13 @@ namespace ExcelAnalyzer.Expressions
         /// <summary>
         /// Коллекция логических знаков.
         /// </summary>
-        internal const string csLogic = csEqual + @"|" + csLess + @"|" + csLessOrEqual + @"|" + csMore + @"|" + csMoreOrEqual + @"|" + csNotEqual;
+        internal const string csLogic = csLessOrEqual + @"|" + csMoreOrEqual + @"|" + csNotEqual + @"|" + csEqual + @"|" + csLess  + @"|" + csMore ;
 
         /// <summary>
         /// Регулярное выражение для поиска всех компонентов, включая ячейки.
         /// </summary>
         internal static Regex regexAll;
-
+         
         /// <summary>
         /// Регулярное выражение для поиска знака равно [=].
         /// </summary>
@@ -72,8 +73,41 @@ namespace ExcelAnalyzer.Expressions
         /// Регулярное выражение для поиска знака больше или равно [>=].
         /// </summary>
         internal static Regex regexMoreOrEqual = new Regex(csMoreOrEqual, ArithmeticExpression.options); // ">="
- 
+
         #endregion
+
+        /// <summary>
+        /// Начало сообщение об ошибке "[Error:".
+        /// </summary>
+        public static string SymbolStartError { get; set; }
+        /// <summary>
+        /// Окончание сообщения об ошибке "]".
+        /// </summary>
+        public static string SymbolEndError { get; set; }
+        /// <summary>
+        /// Равно.
+        /// </summary>
+        public static string SymbolEqual { get; set; }
+        /// <summary>
+        /// Не равно.
+        /// </summary>
+        public static string SymbolNotEqual { get; set; }
+        /// <summary>
+        /// Меньше.
+        /// </summary>
+        public static string SymbolLess { get; set; }
+        /// <summary>
+        /// Больше.
+        /// </summary>
+        public static string SymbolMore { get; set; }
+        /// <summary>
+        /// Меньше или равно.
+        /// </summary>
+        public static string SymbolLessOrEqual { get; set; }
+        /// <summary>
+        /// Больше или равно.
+        /// </summary>
+        public static string SymbolMoreOrEqual { get; set; }
 
         /// <summary>
         /// Значение логического выражения.
@@ -99,35 +133,79 @@ namespace ExcelAnalyzer.Expressions
             return this._expression.Formula();
         }
 
+        /// <summary>
+        /// Короткое строковое представление логического выражения.
+        /// </summary>
+        /// <param name="format">Формат отображения результата алгебраического выражения.</param>
+        public override string ToString(string format)
+        {
+            return this._expression.ToString(format: format);
+        }
+
+        public bool Contains(string key)
+        {
+            return this._collection.ContainsKey(key);
+        }
+
+        public string[] Keys
+        {
+            get { return this._collection.Keys.ToArray(); }
+        }
+
+        public ArithmeticExpressions.ICell this[string key]
+        {
+            get { return this._collection[key]; }
+        }
+
+        public int Count
+        {
+            get { return this._collection.Count; }
+        }
+
         private LogicExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = cells;
-            this._expression = ExpressionBase.Create(ref this._collection, array);
+            this._expression = LogicExpressions.Expression.Create(ref this._collection, array);
         }
 
         private LogicExpression(UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
             this._expression = LogicExpressions.Expression.Create(ref this._collection, array);
+        }
+
+        internal static void InitializeSymbols()
+        {
+            ArithmeticExpression.InitializeSymbols();
+
+            SymbolStartError = ArithmeticExpression.SymbolStartError;
+            SymbolEndError = ArithmeticExpression.SymbolEndError;
+
+            SymbolEqual = @"=";
+            SymbolNotEqual = @"<>";
+            SymbolLess = @"<";
+            SymbolMore = @">";
+            SymbolLessOrEqual = "<=";
+            SymbolMoreOrEqual = @">=";
         }
 
         public static LogicExpression Create(string text)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"(" + csLogic + ArithmeticExpression.csArithmetic + @"|" + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose + @")", ArithmeticExpression.options);
+            regexAll = new Regex(csLogic + @"|" + ArithmeticExpression.csArithmetic + @"|" +  ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose, ArithmeticExpression.options);
             UnitCollection collection = UnitCollection.Create(ArithmeticExpression.regexAll.Matches(text));
-
-            return new ArithmeticExpression(collection);
+            return new LogicExpression(collection);
         }
 
         public static LogicExpression Create(string text, string cellpattern)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"((" + cellpattern + @")|" + csLogic + ArithmeticExpression.csArithmetic + @"|" + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose + @")", ArithmeticExpression.options);
+            regexAll = new Regex(@"(" + cellpattern + @")|" + csLogic + @"|" + ArithmeticExpression.csArithmetic + @"|"  + ArithmeticExpression.csOpen + @"|" + ArithmeticExpression.csClose, ArithmeticExpression.options);
             ArithmeticExpression.regexCell = new Regex(@"(" + cellpattern + @")", ArithmeticExpression.options);
             UnitCollection collection = UnitCollection.Create(regexAll.Matches(text));
-
-            return new ArithmeticExpression(collection);
+            return new LogicExpression(collection);
         }
     }
 }

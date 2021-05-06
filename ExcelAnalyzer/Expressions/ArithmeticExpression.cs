@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Expressions
 {
     /// <summary>
     /// Алгебраическое выражение.
     /// </summary>
-    public class ArithmeticExpression: ArithmeticExpressions.ExpressionBase
+    public class ArithmeticExpression : ArithmeticExpressions.ExpressionBase
     {
         #region РЕГУЛЯРНЫЕ ВЫРАЖЕНИЯ
 
@@ -25,15 +22,15 @@ namespace ExcelAnalyzer.Expressions
         /// <summary>
         /// Корень [sqrt].
         /// </summary>
-        internal const string csSqrt = @"sqrt"; // "sqrt"
+        internal const string csSqrt = @"((\u221a)|(sqrt))"; // "sqrt" / "√"
         /// <summary>
         /// Умножение [*].
         /// </summary>
-        internal const string csMultiplication = @"\x2a"; // "*"
+        internal const string csMultiplication = @"((\x78)|(\x2a))"; // "*" / "x"
         /// <summary>
         /// Деление [/].
         /// </summary>
-        internal const string csDivision = @"\x2f"; // "/"
+        internal const string csDivision = @"(\x2f)"; // "/"
         /// <summary>
         /// Целочисленное деление [fix],[\].
         /// </summary>
@@ -45,19 +42,27 @@ namespace ExcelAnalyzer.Expressions
         /// <summary>
         /// Сложение [+].
         /// </summary>
-        internal const string csAddition = @"\x2b"; // "+"
+        internal const string csAddition = @"(\x2b)"; // "+"
         /// <summary>
         /// Вычитание [-].
         /// </summary>
-        internal const string csSubtracting = @"\x2d"; // "-"
+        internal const string csSubtracting = @"(\x2d)"; // "-"
         /// <summary>
         /// Открывающаяся скобка [(].
         /// </summary>
-        internal const string csOpen = @"\x28"; // "("
+        internal const string csOpen = @"(\x28)"; // "("
         /// <summary>
         /// Закрывающаяся скобка [)].
         /// </summary>
-        internal const string csClose = @"\x29"; // ")"
+        internal const string csClose = @"(\x29)"; // ")"        
+        /// <summary>
+        /// Ключ ячейки в формате формулы.
+        /// </summary>
+        private const string csCellKey = @"\x7b(key)\x7d"; // "{key}"
+        /// <summary>
+        /// Значение ячейки в формате формулы.
+        /// </summary>
+        private const string csCellValue = @"\x7b(value)\x7d"; // "{value}"
 
         /// <summary>
         /// Коллекция арифметических знаков.
@@ -85,7 +90,7 @@ namespace ExcelAnalyzer.Expressions
         /// <summary>
         /// Регулярное выражение для поиска знака sqrt (корень).
         /// </summary>
-        internal static Regex regexSqrt = new Regex(csSqrt, options); // "sqrt"
+        internal static Regex regexSqrt = new Regex(csSqrt, options); // "sqrt / "√"
         /// <summary>
         /// Регулярное выражение для поиска знака умножения [*].
         /// </summary>
@@ -118,10 +123,60 @@ namespace ExcelAnalyzer.Expressions
         /// Регулярное выражение для поиска знака закрывающейся скобки [)].
         /// </summary>
         internal static Regex regexClose = new Regex(csClose, options); // ")"
+        /// <summary>
+        /// Ключ ячейки в формате формулы.
+        /// </summary>
+        internal static Regex regexCellKey = new Regex(csCellKey, options); // "{key}"
+        /// <summary>
+        /// Значение ячейки в формате формулы.
+        /// </summary>
+        internal static Regex regexCellValue = new Regex(csCellValue, options); // "{value}"
         #endregion
 
         private ArithmeticExpressions.ExpressionBase _expression;
         private Dictionary<string, ArithmeticExpressions.ICell> _collection;
+
+        /// <summary>
+        /// Начало сообщение об ошибке "[Error:".
+        /// </summary>
+        public static string SymbolStartError { get; set; }
+        /// <summary>
+        /// Окончание сообщения об ошибке "]".
+        /// </summary>
+        public static string SymbolEndError { get; set; }
+
+        /// <summary>
+        /// Сложение.
+        /// </summary>
+        public static string SymbolAddition { get; set; }
+        /// <summary>
+        /// Вычитание.
+        /// </summary>
+        public static string SymbolSubtracting { get; set; }
+        /// <summary>
+        /// Умножение.
+        /// </summary>
+        public static string SymbolMultiplication { get; set; }
+        /// <summary>
+        /// Деление.
+        /// </summary>    
+        public static string SymbolDivision { get; set; }
+        /// <summary>
+        /// Целая часть в результате деления.
+        /// </summary>    
+        public static string SymbolFix { get; set; }
+        /// <summary>
+        /// Остаток от деления.
+        /// </summary>    
+        public static string SymbolMod { get; set; }
+        /// <summary>
+        /// Возведение в степень.
+        /// </summary>    
+        public static string SymbolPower { get; set; }
+        /// <summary>
+        /// Извлечение корня.
+        /// </summary>  
+        public static string SymbolSqrt { get; set; }
 
         /// <summary>
         /// Значение алгебраического выражения.
@@ -147,22 +202,59 @@ namespace ExcelAnalyzer.Expressions
             return this._expression.Formula();
         }
 
+        public bool Contains(string key)
+        {
+            return this._collection.ContainsKey(key); 
+        }
+
+        public string[] Keys
+        {
+            get { return this._collection.Keys.ToArray(); }
+        }
+
+        public ArithmeticExpressions.ICell this[string key]
+        {
+            get { return this._collection[key]; }
+        }
+        
+        public int Count
+        {
+            get { return this._collection.Count; }
+        }
+        
         private ArithmeticExpression(ref Dictionary<string, ArithmeticExpressions.ICell> cells, UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = cells;
             this._expression = ArithmeticExpressions.Expression.Create(ref this._collection, array);
         }
 
         private ArithmeticExpression(UnitCollection array)
         {
+            InitializeSymbols();
             this._collection = new Dictionary<string, ArithmeticExpressions.ICell>();
             this._expression = ArithmeticExpressions.Expression.Create(ref this._collection, array);
         }
 
+        internal static void InitializeSymbols()
+        {
+            SymbolStartError = @"[Error:";
+            SymbolEndError = @"]";
+
+            SymbolAddition = @"+";
+            SymbolDivision = @"/";
+            SymbolFix = @"\";
+            SymbolMod = @"%";
+            SymbolMultiplication = "x";
+            SymbolPower = @"^";
+            SymbolSqrt = @"√";
+            SymbolSubtracting = @"-";
+        }
+        
         public static ArithmeticExpression Create(string text)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"(" + csArithmetic + @"|" + csOpen + @"|" + csClose + @")", options);
+            regexAll = new Regex(csArithmetic + @"|" + csOpen + @"|" + csClose, options);
             UnitCollection collection = UnitCollection.Create(regexAll.Matches(text));
             return new ArithmeticExpression(collection);
         }
@@ -170,7 +262,7 @@ namespace ExcelAnalyzer.Expressions
         public static ArithmeticExpression Create(string text, string cellpattern)
         {
             string context = text.Replace(" ", "");
-            regexAll = new Regex(@"((" + cellpattern + @")|" + csArithmetic + @"|" + csOpen + @"|" + csClose + @")", options);
+            regexAll = new Regex(@"(" + cellpattern + @")|" + csArithmetic + @"|" + csOpen + @"|" + csClose, options);
             regexCell = new Regex(@"(" + cellpattern + @")", options);
             UnitCollection collection = UnitCollection.Create(regexAll.Matches(text));
             return new ArithmeticExpression(collection);

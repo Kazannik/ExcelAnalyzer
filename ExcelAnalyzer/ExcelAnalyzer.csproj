@@ -219,11 +219,24 @@
       <DependentUpon>ExcelAnalyzerRibbon.cs</DependentUpon>
     </Compile>
     <Compile Include="Expressions\ArithmeticExpression.cs" />
+    <Compile Include="Expressions\BooleanExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\CompoundExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\AndExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\OrExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\XorExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\ErrorExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\Expression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\BooleanExpressions\AssociationExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\FalseExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\NotExpression.cs" />
+    <Compile Include="Expressions\BooleanExpressions\TrueExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\CompoundExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\Expression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\AssociationExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\CellExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\AdditionExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\CompoundExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\DivisionExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\FixExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\ModExpression.cs" />
@@ -238,6 +251,17 @@
     <Compile Include="Expressions\ArithmeticExpressions\ValueExpression.cs" />
     <Compile Include="Expressions\ArithmeticExpressions\ExpressionBase.cs" />
     <Compile Include="Expressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\LogicExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\ErrorExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\Expression.cs" />
+    <Compile Include="Expressions\LogicExpressions\ExpressionBase.cs" />
+    <Compile Include="Expressions\LogicExpressions\EqualExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\ILogicExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LessExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\LessOrEqualExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\MoreExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\MoreOrEqualExpression.cs" />
+    <Compile Include="Expressions\LogicExpressions\NotEqualExpression.cs" />
     <Compile Include="Expressions\UnitCollection.cs" />
     <Compile Include="Gdi32.cs" />
     <Compile Include="Panes\ArmDataAnalyzerPane.cs">
