@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
@@ -23,7 +19,7 @@ namespace ExcelAnalyzer.Controls
             popupForm.BorderStyle = BorderStyle.None;
             controlHost = new ToolStripControlHost(popupForm);
 
-            popupForm.ValueChanged += new System.EventHandler<ExcelAnalyzer.Arm.PeriodEventArgs>(this.PopupMenu_PeriodBox_ValueChanged);
+            popupForm.ValueChanged += new EventHandler<Arm.PeriodEventArgs>(this.PopupMenu_PeriodBox_ValueChanged);
 
             dropDown = new ToolStripDropDown();
             dropDown.Items.Add(controlHost);

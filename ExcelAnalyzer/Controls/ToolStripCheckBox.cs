@@ -9,21 +9,21 @@ namespace ExcelAnalyzer.Controls
     {
         public ToolStripCheckBox():base(new CheckBox())
         {
-            this.CheckBoxControl.CheckedChanged += new System.EventHandler(CheckBox_CheckedChanged);
-            this.CheckBoxControl.CheckStateChanged += new System.EventHandler(CheckBox_CheckStateChanged);
+            CheckBoxControl.CheckedChanged += new EventHandler(CheckBox_CheckedChanged);
+            CheckBoxControl.CheckStateChanged += new EventHandler(CheckBox_CheckStateChanged);
         }
 
         public CheckBox CheckBoxControl
         {
-            get { return (CheckBox)base.Control; }
+            get { return (CheckBox)Control; }
         }
 
         #region CheckedChanged
 
         public bool Checked
         {
-            get { return this.CheckBoxControl.Checked; }
-            set { this.CheckBoxControl.Checked = value; }
+            get { return CheckBoxControl.Checked; }
+            set { CheckBoxControl.Checked = value; }
         }
         
         public event EventHandler CheckedChanged;
@@ -32,21 +32,17 @@ namespace ExcelAnalyzer.Controls
         {
             //...
 
-            this.OnCheckedChanged(new EventArgs());
+            OnCheckedChanged(new EventArgs());
         }
 
         protected virtual void OnCheckedChanged(EventArgs e)
         {
-            EventHandler CheckedChangedEvent = CheckedChanged;
-            if (CheckedChangedEvent != null)
-            {
-                CheckedChangedEvent(this, e);
-            }
+            CheckedChanged?.Invoke(this, e);
         }
 
-        private void CheckBox_CheckedChanged(Object sender, EventArgs e)
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            this.DoCheckedChanged();
+            DoCheckedChanged();
         }
 
         #endregion
@@ -55,8 +51,8 @@ namespace ExcelAnalyzer.Controls
 
         public CheckState CheckState
         {
-            get { return this.CheckBoxControl.CheckState; }
-            set { this.CheckBoxControl.CheckState = value; }
+            get { return CheckBoxControl.CheckState; }
+            set { CheckBoxControl.CheckState = value; }
         }
 
         public event EventHandler CheckStateChanged;
@@ -65,21 +61,17 @@ namespace ExcelAnalyzer.Controls
         {
             //...
 
-            this.OnCheckStateChanged(new EventArgs());
+            OnCheckStateChanged(new EventArgs());
         }
 
         protected virtual void OnCheckStateChanged(EventArgs e)
         {
-            EventHandler CheckStateChangedEvent = CheckStateChanged;
-            if (CheckStateChangedEvent != null)
-            {
-                CheckStateChangedEvent(this, e);
-            }
+            CheckStateChanged?.Invoke(this, e);
         }
 
-        private void CheckBox_CheckStateChanged(Object sender, EventArgs e)
+        private void CheckBox_CheckStateChanged(object sender, EventArgs e)
         {
-            this.DoCheckStateChanged();
+            DoCheckStateChanged();
         }
 
         #endregion

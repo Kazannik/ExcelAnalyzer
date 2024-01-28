@@ -10,65 +10,108 @@ namespace ExcelAnalyzer.Arm
 
         private Period(int year, int month)
         {
-            this.Month = month;
-            this.Year = year;
+            Month = month;
+            Year = year;
         }
         
         public static Period Create(int year, int month)
         {
             if (month > 12)
-            { month = 12; }
+                throw new ArgumentOutOfRangeException("Номер месяца не может быть больше 12");
             else if (month < 0)
-            { month = 0; }
+                throw new ArgumentOutOfRangeException("Номер месяца не может быть меньше нуля");
+
             return new Period (year: year, month: month);
         }
 
         public static Period Create(DateTime date)
         {
-            return Period.Create(year: date.Year, month: date.Month);            
+            return Create(year: date.Year, month: date.Month);            
         }
 
         public static Period Create(int year)
         {
-            return Period.Create(year: year, month: 0);
+            return Create(year: year, month: 0);
         }
 
         public static Period Today()
         {
-            return Period.Create(DateTime.Today);
+            return Create(DateTime.Today);
         }
 
         public static Period Now()
         {
-            return Period.Create(DateTime.Now);
+            return Create(DateTime.Now);
         }
 
         public static Period MaxValue
         {
-            get { return Period.Create(year:2199, month:12); }
+            get { return Create(year:2199, month:12); }
         }
+
         public static Period MinValue
         {
-            get { return Period.Create(year:1900, month:0); }
+            get { return Create(year:1900, month:0); }
         }
-        
+
+        public static bool ParseTry(string s, out Period result)
+        {
+            if (string.IsNullOrWhiteSpace(s) || s.Length != 6)
+            {
+                result = null;
+                return false;
+            }
+            else
+            {
+                int year, month;
+                if (int.TryParse(s.Substring(0, 4), out year) &&
+                    int.TryParse(s.Substring(4), out month))
+                {
+                    result = Create(year: year, month: month);
+                    return true;
+                }
+                else
+                {
+                    result = null;
+                    return false;
+                }
+            }            
+        }
+
+        public static Period Parse(string s)
+        {
+            Period result;
+            if (string.IsNullOrWhiteSpace(s))
+                throw new ArgumentNullException("Строка не может быть пустой, либо содержать только пробельные символы");
+            else if (s.Length != 6)
+                throw new ArgumentException("Число знаков в строке должно равняться 6");
+            else if (!ParseTry(s, out result))
+            {
+                throw new ArgumentException("Строка не соотвествует формату");
+            }
+            else
+            {
+                return result;
+            }           
+        } 
+
         public int Month { get; }
 
         public int Year { get; }
         
         public Period ZeroMonth
         {
-            get { return new Period (year: this.Year, month:0); }
+            get { return new Period (year: Year, month: 0); }
         }
 
         public Period FirstMonth
         {
-            get { return new Period(year: this.Year, month: 1); }
+            get { return new Period(year: Year, month: 1); }
         }
 
         public Period LastMonth
         {
-            get { return new Period(year: this.Year, month: 12); }
+            get { return new Period(year: Year, month: 12); }
         }
 
         public Period PreviouseMonth
@@ -76,9 +119,9 @@ namespace ExcelAnalyzer.Arm
             get
             {
                 if (this.Month <= 1)
-                { return new Period(year: this.Year - 1, month: 12); }
+                    return new Period(year: this.Year - 1, month: 12); 
                 else
-                { return new Period(year: this.Year, month: this.Month - 1); }
+                    return new Period(year: this.Year, month: this.Month - 1); 
             }
         }
         public Period NextMonth
@@ -86,41 +129,42 @@ namespace ExcelAnalyzer.Arm
             get
             {
                 if (this.Month == 12)
-                { return new Period(year: this.Year + 1, month: 1); }
+                    return new Period(year: this.Year + 1, month: 1); 
                 else
-                { return new Period(year: this.Year, month: this.Month + 1); }
+                    return new Period(year: this.Year, month: this.Month + 1); 
             }
         }
 
         public Period PreviouseYear
         {
-            get {  return new Period(year: this.Year-1, month: this.Month); }
+            get {  return new Period(year: Year - 1, month: Month); }
         }
 
         public Period NextYear
         {
-            get { return new Period(year: this.Year + 1, month: this.Month); }
+            get { return new Period(year: Year + 1, month: Month); }
         }
         
         public string ToShortDateString()
         {
-            string monthName = FormatInfo.GetMonthName(this.Month).ToString();
-            if (this.Month > 0)
-            { return monthName + " " + this.Year.ToString("0000"); }
-            else { return this.Year.ToString("0000"); }
+            string monthName = FormatInfo.GetMonthName(Month).ToString();
+            if (Month > 0)
+                return monthName + " " + Year.ToString("0000");
+            else
+                return Year.ToString("0000"); 
         }
 
         public DateTime ToDate()
         {
             if (this.Month > 0)
-            { return new DateTime(year: this.Year, month: this.Month, day: 1); }
+            { return new DateTime(year: Year, month: Month, day: 1); }
             else
-            { return new DateTime(year: this.Year, month: 1, day: 1); }
+            { return new DateTime(year: Year, month: 1, day: 1); }
         }
         
         public override string ToString()
         {
-            return this.Year.ToString("0000") + this.Month.ToString("00");
+            return Year.ToString("0000") + Month.ToString("00");
         }
         
         public static implicit operator Period(int year)
@@ -145,22 +189,24 @@ namespace ExcelAnalyzer.Arm
         
         public override bool Equals(Object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            { return false; }
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
             else
             {
                 Period p = (Period)obj;
-                return (this.Year == p.Year) && (this.Month == p.Month);
+                return (Year == p.Year) && (Month == p.Month);
             }
         }
 
         public override int GetHashCode()
         {
-            int sum = this.Year * 12 + this.Month;
+            int sum = Year * 12 + Month;
             return sum.GetHashCode();
         }
 
-        public static Period operator +(Period a, Period b)
+        public static Period operator + (Period a, Period b)
         {
             decimal sum  = a.Year * 12 + a.Month + b.Year * 12 + b.Month;
             decimal year = Math.Truncate(sum / 12);
@@ -168,7 +214,7 @@ namespace ExcelAnalyzer.Arm
             return new Period( year: (int) year, month: (int) month);            
         }
 
-        public static Period operator -(Period a, Period b)
+        public static Period operator - (Period a, Period b)
         {
             decimal sum = a.Year * 12 + a.Month - b.Year * 12 - b.Month;
             decimal year = Math.Truncate(sum / 12);
@@ -176,7 +222,7 @@ namespace ExcelAnalyzer.Arm
             return new Period (year: (int)year, month: (int)month);
         }
 
-        public static Period operator +(Period t, int m)
+        public static Period operator + (Period t, int m)
         {
             decimal sum = t.Year * 12 + t.Month + m;
             decimal year = Math.Truncate(sum / 12);
@@ -184,7 +230,7 @@ namespace ExcelAnalyzer.Arm
             return new Period (year:(int)year, month:(int)month);
         }
 
-        public static Period operator -(Period t, int m)
+        public static Period operator - (Period t, int m)
         {
             decimal sum = t.Year * 12 + t.Month - m;
             decimal year = Math.Truncate(sum / 12);
@@ -192,58 +238,58 @@ namespace ExcelAnalyzer.Arm
             return new Period (year: (int)year, month: (int)month);
         }
         
-        public static bool operator ==(Period x, Period y)
+        public static bool operator == (Period x, Period y)
         {
             return Compare(x,y) == 0;                        
         }
 
-        public static bool operator !=(Period x, Period y)
+        public static bool operator != (Period x, Period y)
         {
             return Compare(x, y) != 0;
         }
 
-        public static bool operator >(Period x, Period y)
+        public static bool operator > (Period x, Period y)
         {
             return Compare(x, y) > 0;
         }
-        public static bool operator <(Period x, Period y)
+        public static bool operator < (Period x, Period y)
         {
             return Compare(x, y) < 0;
         }
 
-        public static bool operator >=(Period x, Period y)
+        public static bool operator >= (Period x, Period y)
         {
             return Compare(x, y) >= 0;
         }
-        public static bool operator <=(Period x, Period y)
+        public static bool operator <= (Period x, Period y)
         {
             return Compare(x, y) <= 0;
         }
         
-        public static bool operator ==(Period x, DateTime y)
+        public static bool operator == (Period x, DateTime y)
         {
             return Compare(x, y) == 0;
         }
 
-        public static bool operator !=(Period x, DateTime y)
+        public static bool operator != (Period x, DateTime y)
         {
             return Compare(x, y) != 0;
         }
 
-        public static bool operator >(Period x, DateTime y)
+        public static bool operator > (Period x, DateTime y)
         {
             return Compare(x, y) > 0;
         }
-        public static bool operator <(Period x, DateTime y)
+        public static bool operator < (Period x, DateTime y)
         {
             return Compare(x, y) < 0;
         }
 
-        public static bool operator >=(Period x, DateTime y)
+        public static bool operator >= (Period x, DateTime y)
         {
             return Compare(x, y) >= 0;
         }
-        public static bool operator <=(Period x, DateTime y)
+        public static bool operator <= (Period x, DateTime y)
         {
             return Compare(x, y) <= 0;
         }
@@ -264,8 +310,8 @@ namespace ExcelAnalyzer.Arm
             {
                 try
                 {
-                    int iCompare = Decimal.Compare(x.Year, y.Year);
-                    if (iCompare == 0) { iCompare = Decimal.Compare(x.Month, y.Month); }
+                    int iCompare = decimal.Compare(x.Year, y.Year);
+                    if (iCompare == 0) { iCompare = decimal.Compare(x.Month, y.Month); }
                     return iCompare; 
                 }
                 catch (Exception)
@@ -284,8 +330,8 @@ namespace ExcelAnalyzer.Arm
             {
                 try
                 {
-                    int iCompare = Decimal.Compare(x.Year, y.Year);
-                    if (iCompare == 0) { iCompare = Decimal.Compare(x.Month, y.Month); }
+                    int iCompare = decimal.Compare(x.Year, y.Year);
+                    if (iCompare == 0) { iCompare = decimal.Compare(x.Month, y.Month); }
                     return iCompare;
                 }
                 catch (Exception)

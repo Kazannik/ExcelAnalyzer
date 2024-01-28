@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Arm
 {
     public class Region
     {
-        public Region(int code, string caption, Period start, Period end)
+        public Region(int code, string caption, Period begin, Period end)
         {
             Code = code;
             Caption = caption;
-            Start = start;
+            Begin = begin;
             End = end;
         }
 
-        public Region(int code, string caption) : this(code: code, caption: caption, start: Period.MinValue, end: Period.MaxValue) { }
+        public Region(int code, string caption) : this(code: code, caption: caption, begin: Period.MinValue, end: Period.MaxValue) { }
 
         public Region(int code) : this(code: code, caption: string.Empty) { }
         
@@ -24,13 +21,12 @@ namespace ExcelAnalyzer.Arm
         public string Caption { get; }
         public string Description { get; set; }
         public object Tag { get; set; }
-
-        public Period Start { get; }
+        public Period Begin { get; }
         public Period End { get; }
         
         public override string ToString()
         {
-            return this.Code.ToString("0000");
+            return Code.ToString("0000");
         }
 
         public static implicit operator Region(int code)
@@ -48,14 +44,16 @@ namespace ExcelAnalyzer.Arm
             return region.Caption;
         }
                 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
-            { return false; }
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
+            {
+                return false;
+            }
             else
             {
                 Region p = (Region)obj;
-                return (this.Code == p.Code);
+                return (Code == p.Code);
             }
         }
 
@@ -80,58 +78,61 @@ namespace ExcelAnalyzer.Arm
         //    return new Period(year: (int)year, month: (int)month);
         //}
         
-        public static bool operator ==(Region x, Region y)
+        public static bool operator == (Region x, Region y)
         {
             return Compare(x, y) == 0;
         }
 
-        public static bool operator !=(Region x, Region y)
+        public static bool operator != (Region x, Region y)
         {
             return Compare(x, y) != 0;
         }
 
-        public static bool operator >(Region x, Region y)
+        public static bool operator > (Region x, Region y)
         {
             return Compare(x, y) > 0;
         }
-        public static bool operator <(Region x, Region y)
+        public static bool operator < (Region x, Region y)
         {
             return Compare(x, y) < 0;
         }
 
-        public static bool operator >=(Region x, Region y)
+        public static bool operator >= (Region x, Region y)
         {
             return Compare(x, y) >= 0;
         }
-        public static bool operator <=(Region x, Region y)
+
+        public static bool operator <= (Region x, Region y)
         {
             return Compare(x, y) <= 0;
         }
 
-        public static bool operator ==(Region x, int y)
+        public static bool operator == (Region x, int y)
         {
             return Compare(x, y) == 0;
         }
 
-        public static bool operator !=(Region x, int y)
+        public static bool operator != (Region x, int y)
         {
             return Compare(x, y) != 0;
         }
 
-        public static bool operator >(Region x, int y)
+        public static bool operator > (Region x, int y)
         {
             return Compare(x, y) > 0;
         }
-        public static bool operator <(Region x, int y)
+
+        public static bool operator < (Region x, int y)
         {
             return Compare(x, y) < 0;
         }
 
-        public static bool operator >=(Region x, int y)
+        public static bool operator >= (Region x, int y)
         {
             return Compare(x, y) >= 0;
         }
-        public static bool operator <=(Region x, int y)
+
+        public static bool operator <= (Region x, int y)
         {
             return Compare(x, y) <= 0;
         }
@@ -152,8 +153,8 @@ namespace ExcelAnalyzer.Arm
             {
                 try
                 {
-                    int iCompare = Decimal.Compare(x.Code, y.Code);
-                    if (iCompare == 0) { iCompare = Period.Compare(x.Start, y.Start); }                    
+                    int iCompare = decimal.Compare(x.Code, y.Code);
+                    if (iCompare == 0) { iCompare = Period.Compare(x.Begin, y.Begin); }                    
                     if (iCompare == 0) { iCompare = Period.Compare(x.End, y.End); }
                     if (iCompare == 0) { string.Compare(x.Caption, y.Caption); }
                     return iCompare;
@@ -172,7 +173,7 @@ namespace ExcelAnalyzer.Arm
         {
             if (!Equals(x, null) & !Equals(y, null))
             {
-                return Decimal.Compare(x.Code, y);               
+                return decimal.Compare(x.Code, y);               
             }
             else if (!Equals(x, null) & Equals(y, null))
             { return 1; }

@@ -27,16 +27,39 @@
     <NoStandardLibraries>false</NoStandardLibraries>
     <RootNamespace>ExcelAnalyzer</RootNamespace>
     <AssemblyName>ExcelAnalyzer</AssemblyName>
-    <LoadBehavior>3</LoadBehavior>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <DefineConstants>VSTO40</DefineConstants>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <BootstrapperComponentsLocation>HomeSite</BootstrapperComponentsLocation>
+    <PublishUrl>publish\</PublishUrl>
+    <InstallUrl />
+    <TargetCulture>ru</TargetCulture>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <AutoIncrementApplicationRevision>true</AutoIncrementApplicationRevision>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>days</UpdateIntervalUnits>
+    <IsWebBootstrapper>False</IsWebBootstrapper>
+    <ProductName>ExcelAnalyzer</ProductName>
+    <PublisherName />
+    <SupportUrl />
+    <FriendlyName>ExcelAnalyzer</FriendlyName>
+    <OfficeApplicationDescription />
+    <LoadBehavior>3</LoadBehavior>
   </PropertyGroup>
   <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 и x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.VSTORuntime.4.0">
       <Visible>False</Visible>
-      <ProductName>Microsoft Visual Studio 2010 Tools for Office Runtime %28x86 and x64%29</ProductName>
+      <ProductName>Среда выполнения Microsoft Visual Studio 2010 Tools for Office %28x86 и x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
@@ -218,51 +241,6 @@
     <Compile Include="ExcelAnalyzerRibbon.Designer.cs">
       <DependentUpon>ExcelAnalyzerRibbon.cs</DependentUpon>
     </Compile>
-    <Compile Include="Expressions\ArithmeticExpression.cs" />
-    <Compile Include="Expressions\BooleanExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\CompoundExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\AndExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\OrExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\CompoundExpressions\XorExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\ErrorExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\Expression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\ExpressionBase.cs" />
-    <Compile Include="Expressions\BooleanExpressions\AssociationExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\FalseExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\NotExpression.cs" />
-    <Compile Include="Expressions\BooleanExpressions\TrueExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\CompoundExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\Expression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\AssociationExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CellExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\AdditionExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\CompoundExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\DivisionExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\FixExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\ModExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\MultiplicationExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\PowerExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\SqrtExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\CompoundExpressions\SubtractingExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\ErrorExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\ICell.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\NegativeExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\PositiveExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\ValueExpression.cs" />
-    <Compile Include="Expressions\ArithmeticExpressions\ExpressionBase.cs" />
-    <Compile Include="Expressions\ExpressionBase.cs" />
-    <Compile Include="Expressions\LogicExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\ErrorExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\Expression.cs" />
-    <Compile Include="Expressions\LogicExpressions\ExpressionBase.cs" />
-    <Compile Include="Expressions\LogicExpressions\EqualExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\ILogicExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\LessExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\LessOrEqualExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\MoreExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\MoreOrEqualExpression.cs" />
-    <Compile Include="Expressions\LogicExpressions\NotEqualExpression.cs" />
-    <Compile Include="Expressions\UnitCollection.cs" />
     <Compile Include="Gdi32.cs" />
     <Compile Include="Panes\ArmDataAnalyzerPane.cs">
       <SubType>UserControl</SubType>
@@ -477,7 +455,12 @@
     </Compile>
     <AppDesigner Include="Properties\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\ExpressionsLibrary\ExpressionsLibrary\ExpressionsLibrary.csproj">
+      <Project>{6250e71d-68ee-40c9-991d-cbbfba48b222}</Project>
+      <Name>ExpressionsLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Documentation\html\about.htm" />
     <Content Include="Documentation\html\checkfiles.htm" />
@@ -507,10 +490,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>OpSoftCertificate.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>B2BDFF2F5486FFF8CBEBAED35F5359A3682CE299</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>FD028A23E7ACF29F17916A866E38339B0721C3F9</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

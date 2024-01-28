@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Arm
 {
@@ -13,10 +11,12 @@ namespace ExcelAnalyzer.Arm
 
         private FormCollection(FormCollection collection, Period period) : base()
         {
-            IEnumerable<Form> array = from Form F in collection where F.Start <= period && F.End >= period select F;
+            IEnumerable<Form> array = from Form F in collection
+                                      where F.Begin <= period && F.End >= period
+                                      select F;
             foreach (Form F in array)
             {
-                base.List.Add(F);
+                List.Add(F);
             }
         }
 
@@ -27,30 +27,36 @@ namespace ExcelAnalyzer.Arm
 
         public Form this[int index]
         {
-            get { return (Form)base.List[index]; }
+            get { return (Form)List[index]; }
         }
         
         public IEnumerable<Form> Forms(int code)
         {
-            IEnumerable<Form> array = from Form F in this.List where F.Code == code select F;
+            IEnumerable<Form> array = from Form F in List
+                                      where F.Code == code
+                                      select F;
             return array;
         }
 
         public IEnumerable<Form> Forms(Period period)
         {
-            IEnumerable<Form> array = from Form F in this.List where F.Start <= period && F.End >= period select F;
+            IEnumerable<Form> array = from Form F in List
+                                      where F.Begin <= period && F.End >= period
+                                      select F;
             return array;
         }
 
         public IEnumerable<Form> Forms(int code, Period period)
         {
-            IEnumerable<Form> array = from Form F in this.List where F.Code == code && F.Start <= period && F.End >= period select F;
+            IEnumerable<Form> array = from Form F in List
+                                      where F.Code == code && F.Begin <= period && F.End >= period
+                                      select F;
             return array;
         }
 
         public int Add(Form item)
         {
-            return base.List.Add(item);
+            return List.Add(item);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
@@ -58,28 +64,28 @@ namespace ExcelAnalyzer.Arm
         {
             foreach (Form item in items)
             {
-                this.Add(item);
+                Add(item);
             }
         }
 
         public int IndexOf(Form item)
         {
-            return base.List.IndexOf(item);
+            return List.IndexOf(item);
         }
 
         public void Insert(int index, Form value)
         {
-            base.List.Insert(index, value);
+            List.Insert(index, value);
         }
 
         public void Remove(Form value)
         {
-            base.List.Remove(value);
+            List.Remove(value);
         }
 
         public bool Contains(Form value)
         {
-            return base.List.Contains(value);
+            return List.Contains(value);
         }
 
         protected override void OnValidate(object value)

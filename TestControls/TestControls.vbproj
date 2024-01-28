@@ -119,6 +119,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\ExpressionsLibrary\ExpressionsLibrary\ExpressionsLibrary.csproj">
+      <Project>{6250e71d-68ee-40c9-991d-cbbfba48b222}</Project>
+      <Name>ExpressionsLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ExcelAnalyzer\ExcelAnalyzer.csproj">
       <Project>{09a98ee0-898e-4498-be4b-0239437a28e6}</Project>
       <Name>ExcelAnalyzer</Name>

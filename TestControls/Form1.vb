@@ -1,4 +1,5 @@
-﻿Imports ExcelAnalyzer.Expressions
+﻿
+Imports ExpressionsLibrary
 
 Public Class Form1
     'Private expression As ArithmeticExpression

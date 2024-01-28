@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VBA ADO Client", "VBA ADO C
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestControls", "TestControls\TestControls.vbproj", "{FFE117B2-F338-4874-B1CC-97227C6EE174}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestExcelAnalyzer", "UnitTestExcelAnalyzer\UnitTestExcelAnalyzer.csproj", "{8E1CD672-D4C2-48B4-9691-B381385B7432}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExpressionsLibrary", "..\ExpressionsLibrary\ExpressionsLibrary\ExpressionsLibrary.csproj", "{6250E71D-68EE-40C9-991D-CBBFBA48B222}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -60,6 +64,26 @@ Global
 		{FFE117B2-F338-4874-B1CC-97227C6EE174}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFE117B2-F338-4874-B1CC-97227C6EE174}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{FFE117B2-F338-4874-B1CC-97227C6EE174}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{8E1CD672-D4C2-48B4-9691-B381385B7432}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.CD_ROM|Any CPU.ActiveCfg = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.CD_ROM|Any CPU.Build.0 = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.DVD-5|Any CPU.ActiveCfg = Debug|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.DVD-5|Any CPU.Build.0 = Debug|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
+		{6250E71D-68EE-40C9-991D-CBBFBA48B222}.SingleImage|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

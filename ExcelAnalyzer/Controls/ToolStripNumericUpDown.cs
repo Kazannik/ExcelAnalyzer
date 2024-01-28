@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Windows.Forms.Design;
 
@@ -10,20 +9,20 @@ namespace ExcelAnalyzer.Controls
     {
         public ToolStripNumericUpDown():base(new NumericUpDown())
         {
-            this.NumericUpDownControl.ValueChanged += new System.EventHandler(NumericUpDown_ValueChanged);
+            NumericUpDownControl.ValueChanged += new EventHandler(NumericUpDown_ValueChanged);
         }
 
         public NumericUpDown NumericUpDownControl
         {
-            get { return (NumericUpDown)base.Control; }
+            get { return (NumericUpDown)Control; }
         }
 
         #region ValueChanged
 
         public decimal Value
         {
-            get { return this.NumericUpDownControl.Value; }
-            set { this.NumericUpDownControl.Value = value; }
+            get { return NumericUpDownControl.Value; }
+            set { NumericUpDownControl.Value = value; }
         }
 
         public event EventHandler ValueChanged;
@@ -32,21 +31,17 @@ namespace ExcelAnalyzer.Controls
         {
             //...
 
-            this.OnValueChanged(new EventArgs());
+            OnValueChanged(new EventArgs());
         }
 
         protected virtual void OnValueChanged(EventArgs e)
         {
-            EventHandler ValueChangedEvent = ValueChanged;
-            if (ValueChangedEvent != null)
-            {
-                ValueChangedEvent(this, e);
-            }
+            ValueChanged?.Invoke(this, e);
         }
 
-        private void NumericUpDown_ValueChanged(Object sender, EventArgs e)
+        private void NumericUpDown_ValueChanged(object sender, EventArgs e)
         {
-            this.DoValueChanged();
+            DoValueChanged();
         }
 
         #endregion

@@ -2,8 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Arm
 {
@@ -13,10 +11,12 @@ namespace ExcelAnalyzer.Arm
 
         private RegionCollection(RegionCollection collection, Period period) : base()
         {
-            IEnumerable<Region> array = from Region R in collection where R.Start <= period && R.End >= period select R;
-            foreach (Region  R in array)
+            IEnumerable<Region> array = from Region R in collection
+                                        where R.Begin <= period && R.End >= period
+                                        select R;
+            foreach (Region R in array)
             {
-                base.List.Add(R);
+                List.Add(R);
             }
         }
 
@@ -27,12 +27,12 @@ namespace ExcelAnalyzer.Arm
 
         public Region this[int index]
         {
-            get { return (Region)base.List[index]; }
+            get { return (Region)List[index]; }
         }
 
         public int Add(Region item)
         {
-            return base.List.Add(item);
+            return List.Add(item);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:ValidateArgumentsOfPublicMethods")]
@@ -40,31 +40,30 @@ namespace ExcelAnalyzer.Arm
         {
             foreach (Region item in items)
             {
-                this.Add(item);
+                Add(item);
             }
         }
 
         public int IndexOf(Region item)
         {
-            return base.List.IndexOf(item);
+            return List.IndexOf(item);
         }
 
         public void Insert(int index, Region value)
         {
-            base.List.Insert(index, value);
+            List.Insert(index, value);
         }
 
         public void Remove(Region value)
         {
-            base.List.Remove(value);
+            List.Remove(value);
         }
 
         public bool Contains(Region value)
         {
-            return base.List.Contains(value);
+            return List.Contains(value);
         }
 
-        
         protected override void OnValidate(object value)
         {
             if (!typeof(Region).IsAssignableFrom(value.GetType()))

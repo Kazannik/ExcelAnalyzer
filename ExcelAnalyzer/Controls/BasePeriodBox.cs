@@ -1,13 +1,9 @@
-﻿using System;
+﻿using ExcelAnalyzer.Arm;
+using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ExcelAnalyzer.Controls
@@ -25,7 +21,7 @@ namespace ExcelAnalyzer.Controls
         private int month_label_height = 0;
         private const int month_label_border = 2;
 
-        private Arm.Period period;
+        private Period period;
 
         private PeriodBoxButtonCollection buttons;
         private PeriodBoxButton HoveringButton;
@@ -37,35 +33,35 @@ namespace ExcelAnalyzer.Controls
 
         public BasePeriodBox() : base()
         {
-            period = Arm.Period.Today();
+            period = Period.Today();
             InitializeComponent();
             InitializeButton();
         }
 
         public BasePeriodBox(string text):base(text:text)
         {
-            period = Arm.Period.Today();
+            period = Period.Today();
             InitializeComponent();
             InitializeButton();
         }
 
         public BasePeriodBox(Control parent, string text):base(parent:parent, text:text)
         {
-            period = Arm.Period.Today();
+            period = Period.Today();
             InitializeComponent();
             InitializeButton();
         }
 
         public BasePeriodBox(string text, int left, int top, int width, int height):base(text: text, left: left, top:top, width: width, height: height )
         {
-            period = Arm.Period.Today();
+            period = Period.Today();
             InitializeComponent();
             InitializeButton();
         }
         
         public BasePeriodBox(Control parent, string text, int left, int top, int width, int height):base(parent: parent, text: text, left: left, top: top, width: width, height: height)
         {
-            period = Arm.Period.Today();
+            period = Period.Today();
             InitializeComponent();
             InitializeButton();
         }
@@ -154,7 +150,7 @@ namespace ExcelAnalyzer.Controls
                 }
             }
                        
-            graphics.DrawString(this.period.ToShortDateString(), this.Font, new SolidBrush(this.ForeColor), this.periodRectagle, sf);
+            graphics.DrawString(period.ToShortDateString(), Font, new SolidBrush(ForeColor), periodRectagle, sf);
 
             Color BorderColor = GetBorderColor(ButtonState.Selected);
             Pen BorderColorPen = new Pen(BorderColor, 1);
@@ -249,15 +245,15 @@ namespace ExcelAnalyzer.Controls
                         if (colorIndex == 1) return Color.FromArgb(241, 241, 241);
                     break;
                 case ButtonState.Passive:
-                       if (colorIndex == 0) return this.BackColor;
-                        if (colorIndex == 1) return this.BackColor;
+                       if (colorIndex == 0) return BackColor;
+                        if (colorIndex == 1) return BackColor;
                     break;
                 default:
-                    if (colorIndex == 0) return this.BackColor;
-                    if (colorIndex == 1) return this.BackColor;
+                    if (colorIndex == 0) return BackColor;
+                    if (colorIndex == 1) return BackColor;
                     break;
             }
-            return this.BackColor;
+            return BackColor;
         }
 
         private Color GetBorderColor(ButtonState buttonState)
@@ -271,9 +267,9 @@ namespace ExcelAnalyzer.Controls
                 case ButtonState.Selected:
                     return Color.FromArgb(0, 102, 204);
                 case ButtonState.Passive:
-                    return this.BackColor;
+                    return BackColor;
                 default:
-                    return this.BackColor;
+                    return BackColor;
             }
         }
 
@@ -288,9 +284,9 @@ namespace ExcelAnalyzer.Controls
                 case ButtonState.Selected:
                     return Color.FromArgb(0, 102, 204);
                 case ButtonState.Passive:
-                    return this.ForeColor;
+                    return ForeColor;
                 default:
-                    return this.ForeColor;
+                    return ForeColor;
             }
         }
 
@@ -304,12 +300,12 @@ namespace ExcelAnalyzer.Controls
                 {
                     case MouseButtons.Left:
                         SelectedButton = button;
-                        this.OnButtonClick(new EventArgs());
-                        this.Invalidate();
+                        OnButtonClick(new EventArgs());
+                        Invalidate();
                         break;
                     case MouseButtons.Right:
                         RightClickedButton = button;
-                        this.Invalidate();
+                        Invalidate();
                         break;
                 }
             }
@@ -323,7 +319,7 @@ namespace ExcelAnalyzer.Controls
                 {
                     Rectangle rec = HoveringButton.rectangle;
                     HoveringButton = null;
-                    this.Invalidate(rec);
+                    Invalidate(rec);
                 }
             }
         }
@@ -333,11 +329,11 @@ namespace ExcelAnalyzer.Controls
             PeriodBoxButton focusButton = buttons[e.X, e.Y];
             if (focusButton != null)
             {
-                this.Cursor = Cursors.Hand;
+                Cursor = Cursors.Hand;
                 if (HoveringButton != focusButton)
                 {
                     HoveringButton = focusButton;
-                    this.Invalidate(HoveringButton.rectangle);
+                    Invalidate(HoveringButton.rectangle);
                 }
             }
             else
@@ -346,7 +342,7 @@ namespace ExcelAnalyzer.Controls
                 {
                     Rectangle rec = HoveringButton.rectangle;
                     HoveringButton = null;
-                    this.Invalidate(rec);
+                    Invalidate(rec);
                 }
                 this.Cursor = Cursors.Default;
             }
@@ -359,34 +355,30 @@ namespace ExcelAnalyzer.Controls
 
         #region Value
 
-        public Arm.Period Value
+        public Period Value
         {
-            get { return this.period; }
+            get { return period; }
             set
             {
-                if (!Equals(this.period, value))
+                if (!Equals(period, value))
                 {
-                    this.period = value;
-                    this.DoValueChanged();
+                    period = value;
+                    DoValueChanged();
                 }
             }
         }
 
-        public event EventHandler<Arm.PeriodEventArgs> ValueChanged;
+        public event EventHandler<PeriodEventArgs> ValueChanged;
 
         public void DoValueChanged()
         {
-            this.Invalidate();
-            this.OnValueChanged(new Arm.PeriodEventArgs(this.period));
+            Invalidate();
+            OnValueChanged(new PeriodEventArgs(this.period));
         }
 
-        protected virtual void OnValueChanged(Arm.PeriodEventArgs e)
+        protected virtual void OnValueChanged(PeriodEventArgs e)
         {
-            EventHandler<Arm.PeriodEventArgs> ValueChangedEvent = ValueChanged;
-            if (ValueChangedEvent != null)
-            {
-                ValueChangedEvent(this, e);
-            }
+            ValueChanged?.Invoke(this, e);
         }
 
         #endregion
@@ -397,11 +389,7 @@ namespace ExcelAnalyzer.Controls
         
         protected virtual void OnButtonClick(EventArgs e)
         {
-            EventHandler ButtonClickEvent = ButtonClick;
-            if (ButtonClickEvent != null)
-            {
-                ButtonClickEvent(this, e);
-            }
+            ButtonClick?.Invoke(this, e);
         }
 
         #endregion
@@ -425,8 +413,8 @@ namespace ExcelAnalyzer.Controls
             
             public PeriodBoxButton(int index, string text)
             {
-                this.Index = index;
-                this.Text = text;
+                Index = index;
+                Text = text;
             }
             public string Text { get; }
             public int Index { get; }
@@ -443,14 +431,14 @@ namespace ExcelAnalyzer.Controls
 
             public PeriodBoxButton this[int index]
             {
-                get { return (PeriodBoxButton) base.List[index]; }
+                get { return (PeriodBoxButton)List[index]; }
             }
 
             public PeriodBoxButton this[string text]
             {
                 get
                 {
-                    foreach (PeriodBoxButton item in base.List)
+                    foreach (PeriodBoxButton item in List)
                     {
                         if (item.Text.Equals(text)) return item;
                     }
@@ -461,7 +449,7 @@ namespace ExcelAnalyzer.Controls
             public PeriodBoxButton this[int x, int y]
             {
              get {
-                    foreach (PeriodBoxButton item in base.List)
+                    foreach (PeriodBoxButton item in List)
                     {
                         if (item.rectangle != null)
                         {
@@ -477,8 +465,8 @@ namespace ExcelAnalyzer.Controls
 
             public int Add(PeriodBoxButton item)
             {
-                item.owner = this.owner;
-                return base.List.Add(item);
+                item.owner = owner;
+                return List.Add(item);
             }
 
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design",
@@ -487,28 +475,28 @@ namespace ExcelAnalyzer.Controls
             {
                 foreach (PeriodBoxButton item in items)
                 {
-                    this.Add(item);
+                    Add(item);
                 }
             }
 
             public int IndexOf(PeriodBoxButton item)
             {
-                return base.List.IndexOf(item);                
+                return List.IndexOf(item);                
             }
 
             public void Insert(int index, PeriodBoxButton value)
             {
-                base.List.Insert(index, value);
+                List.Insert(index, value);
             }
 
             public void Remove(PeriodBoxButton value)
             {
-                base.List.Remove(value);
+                List.Remove(value);
             }
 
             public bool Contains(PeriodBoxButton value)
             {
-                return base.List.Contains(value);
+                return List.Contains(value);
             }
 
             protected override void OnValidate(object value)

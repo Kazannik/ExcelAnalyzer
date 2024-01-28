@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExcelAnalyzer.Arm
 {
     public class Form
     {
-        public Form(int code, string caption, Period start, Period end)
+        public Form(int code, string caption, Period begin, Period end)
         {
             Code = code;
             Caption = caption;
-            Start = start;
+            Begin = begin;
             End = end;
         }
 
-        public Form(int code, string caption) : this(code: code, caption: caption, start: Period.MinValue, end: Period.MaxValue) { }
+        public Form(int code, string caption) : this(code: code, caption: caption, begin: Period.MinValue, end: Period.MaxValue) { }
 
         public Form(int code) : this(code: code, caption: string.Empty) { }
 
@@ -24,7 +21,7 @@ namespace ExcelAnalyzer.Arm
         public string Caption { get; }
         public string Description { get; set; }
         public object Tag { get; set; }
-        public Period Start { get; }
+        public Period Begin { get; }
         public Period End { get; }
 
         public override string ToString()
@@ -55,14 +52,14 @@ namespace ExcelAnalyzer.Arm
             return region.Code.ToString("0000");
         }
 
-        public override bool Equals(Object obj)
+        public override bool Equals(object obj)
         {
-            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            if ((obj == null) || !GetType().Equals(obj.GetType()))
             { return false; }
             else
             {
                 Region p = (Region)obj;
-                return (this.Code == p.Code);
+                return (Code == p.Code);
             }
         }
 
@@ -143,9 +140,9 @@ namespace ExcelAnalyzer.Arm
             {
                 try
                 {
-                    int iCompare = Decimal.Compare(x.Code, y.Code);
+                    int iCompare = decimal.Compare(x.Code, y.Code);
                     if (iCompare != 0) { return iCompare; }
-                    iCompare = Period.Compare(x.Start, y.Start);
+                    iCompare = Period.Compare(x.Begin, y.Begin);
                     if (iCompare != 0) { return iCompare; }
                     iCompare = Period.Compare(x.End, y.End);
                     if (iCompare != 0) { return iCompare; }
@@ -165,7 +162,7 @@ namespace ExcelAnalyzer.Arm
         {
             if (!Equals(x, null) & !Equals(y, null))
             {
-                return Decimal.Compare(x.Code, y);
+                return decimal.Compare(x.Code, y);
             }
             else if (!Equals(x, null) & Equals(y, null))
             { return 1; }

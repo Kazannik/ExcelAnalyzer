@@ -28,8 +28,9 @@ Partial Class Form1
         Me.ErrorLabel = New System.Windows.Forms.Label()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.PeriodBox1 = New ExcelAnalyzer.Controls.PeriodBox()
         Me.LiteFormulaLabel = New System.Windows.Forms.Label()
+        Me.PeriodBox1 = New ExcelAnalyzer.Controls.PeriodBox()
+        Me.PeriodPicker1 = New ExcelAnalyzer.Controls.PeriodPicker()
         Me.SuspendLayout()
         '
         'ExpressionTextBox
@@ -87,14 +88,6 @@ Partial Class Form1
         Me.TextBox3.Size = New System.Drawing.Size(189, 20)
         Me.TextBox3.TabIndex = 6
         '
-        'PeriodBox1
-        '
-        Me.PeriodBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.PeriodBox1.Location = New System.Drawing.Point(12, 3)
-        Me.PeriodBox1.Name = "PeriodBox1"
-        Me.PeriodBox1.Size = New System.Drawing.Size(186, 120)
-        Me.PeriodBox1.TabIndex = 0
-        '
         'LiteFormulaLabel
         '
         Me.LiteFormulaLabel.AutoSize = True
@@ -106,11 +99,31 @@ Partial Class Form1
         Me.LiteFormulaLabel.TabIndex = 7
         Me.LiteFormulaLabel.Text = "Label2"
         '
+        'PeriodBox1
+        '
+        Me.PeriodBox1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.PeriodBox1.Location = New System.Drawing.Point(12, 3)
+        Me.PeriodBox1.Name = "PeriodBox1"
+        Me.PeriodBox1.Size = New System.Drawing.Size(186, 120)
+        Me.PeriodBox1.TabIndex = 0
+        '
+        'PeriodPicker1
+        '
+        Me.PeriodPicker1.DropDownHeight = 148
+        Me.PeriodPicker1.DropDownWidth = 209
+        Me.PeriodPicker1.FormattingEnabled = True
+        Me.PeriodPicker1.IntegralHeight = False
+        Me.PeriodPicker1.Location = New System.Drawing.Point(110, 215)
+        Me.PeriodPicker1.Name = "PeriodPicker1"
+        Me.PeriodPicker1.Size = New System.Drawing.Size(121, 21)
+        Me.PeriodPicker1.TabIndex = 8
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(284, 296)
+        Me.Controls.Add(Me.PeriodPicker1)
         Me.Controls.Add(Me.LiteFormulaLabel)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox2)
@@ -134,4 +147,5 @@ Partial Class Form1
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents LiteFormulaLabel As Label
+    Friend WithEvents PeriodPicker1 As ExcelAnalyzer.Controls.PeriodPicker
 End Class
